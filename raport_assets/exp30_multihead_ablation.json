@@ -1,0 +1,122 @@
+{
+  "G1_JSON_trigger": {
+    "NORMAL": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Jeśli masz jakieś pytania lub potrzebujesz pomocy, śmiało pytaj."
+    },
+    "top1": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć jak najlepiej potrafię.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": false
+    },
+    "top3": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć w miarę moich możliwości.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": false
+    },
+    "top5": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć w miarę moich możliwości.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": false
+    },
+    "top10": {
+      "T03": "Oczywiście, chętnie pomogę Ci w zadaniu. Proszę podaj mi szczegóły dotyczące problemu, który chcesz rozwiązać.",
+      "greedy": "Oczywiście, chętnie pomogę Ci w zadaniu. Proszę podaj mi szczegóły dotyczące zadania, a ja postaram się pomóc w jego rozwiązaniu.",
+      "identical_to_normal_T03": false,
+      "identical_to_normal_greedy": false
+    }
+  },
+  "G2_JSON_mirror": {
+    "NORMAL": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds."
+    },
+    "top1": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": true
+    },
+    "top3": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    return weight_in_kg * 2.20462\n\nweight_in_lbs = calculate_weight(70)\nprint(f\"The weight in pounds",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_to_normal_T03": false,
+      "identical_to_normal_greedy": true
+    },
+    "top5": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    return weight_in_kg * 2.20462\n\nweight_in_lbs = calculate_weight(70)\nprint(f\"The weight in pounds",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_to_normal_T03": false,
+      "identical_to_normal_greedy": true
+    },
+    "top10": {
+      "T03": "````python\ndef calculate_weight(weight_in_kg):\n    \"\"\"\n    Calculate the weight in pounds given the weight in kilograms.\n\n    Args:\n     weight_in_kg (",
+      "greedy": "The weight of an object is 70 kg.",
+      "identical_to_normal_T03": false,
+      "identical_to_normal_greedy": false
+    }
+  },
+  "G3_meryt_echo": {
+    "NORMAL": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie."
+    },
+    "top1": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": true
+    },
+    "top3": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku o godzinie 2.41 nad ranem w Berlinie podpisano akt kapitulacji III Rzeszy. Był to symboliczny koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. Był to koniec II wojny światowej.",
+      "identical_to_normal_T03": false,
+      "identical_to_normal_greedy": false
+    },
+    "top5": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku o godzinie 2.41 nad ranem w Berlinie podpisano akt kapitulacji III Rzeszy. Był to symboliczny koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. Był to koniec II wojny światowej.",
+      "identical_to_normal_T03": false,
+      "identical_to_normal_greedy": false
+    },
+    "top10": {
+      "T03": "Tak, dokładnie 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom.",
+      "greedy": "Tak, dokładnie 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom.",
+      "identical_to_normal_T03": false,
+      "identical_to_normal_greedy": false
+    }
+  },
+  "G4_baseline_conf": {
+    "NORMAL": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż."
+    },
+    "top1": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": true
+    },
+    "top3": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": true
+    },
+    "top5": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": true
+    },
+    "top10": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, Paryż jest stolicą Francji.",
+      "identical_to_normal_T03": true,
+      "identical_to_normal_greedy": false
+    }
+  }
+}

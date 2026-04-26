@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bielik-1.5B attention head walkthrough</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 0 24px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    background: #fafafa;
+  }
+  h1 { color: #222; border-bottom: 2px solid #333; padding-bottom: 8px; margin-top: 1.2em; }
+  h2 { color: #333; border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-top: 2em; }
+  h3 { color: #444; margin-top: 1.4em; }
+  code { background: #f0f0f0; padding: 1px 5px; border-radius: 3px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.92em; }
+  pre { background: #f4f4f4; padding: 12px; border-radius: 6px; overflow-x: auto; font-size: 0.88em; }
+  pre code { background: transparent; padding: 0; }
+  table { border-collapse: collapse; margin: 1em 0; width: 100%; font-size: 0.92em; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: #333; color: white; }
+  tr:nth-child(even) td { background: #f7f7f7; }
+  blockquote { border-left: 3px solid #888; margin: 1em 0; padding: 4px 16px; color: #555; background: #f9f9f9; }
+  hr { border: none; border-top: 1px solid #bbb; margin: 2em 0; }
+  .figure-row { margin: 2em 0; padding: 12px; background: white; border: 1px solid #e0e0e0; border-radius: 6px; }
+  .figure-row h3 { margin-top: 0; font-family: monospace; font-size: 0.95em; color: #555; }
+  .figure-row img { max-width: 100%; height: auto; display: block; margin: 8px 0; border: 1px solid #ddd; }
+  em { color: #555; }
+  ul, ol { padding-left: 24px; }
+  li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<h1>Bielik-1.5B-v3.0-Instruct — attention head walkthrough</h1>
+<p>A step-by-step account of what was done, what was inspected, and what the
+attention/hidden-state inspection revealed. Each step describes (a) the
+experimental setup, (b) what was extracted from the model, (c) the factual
+findings and the visualization that documents them.</p>
+<p>All experiments use <strong>Bielik-1.5B-v3.0-Instruct</strong> loaded in HuggingFace
+<code>transformers</code> with <code>attn_implementation="eager"</code> and <code>torch_dtype=torch.float32</code>
+on CPU. The chat template is the standard ChatML used by Bielik:</p>
+<pre><code>&lt;s&gt;&lt;s&gt;&lt;|im_start|&gt;user
+{user content}&lt;|im_end|&gt;
+&lt;|im_start|&gt;assistant
+{model response}&lt;|im_end|&gt;
+</code></pre>
+<p>Header tokens (positions 0..5) are: <code>&lt;s&gt;</code>, <code>&lt;s&gt;</code> (double BOS), <code>&lt;|im_start|&gt;</code>,
+<code>·u</code>, <code>ser</code>, <code>\n</code>. Position 5 is the newline that closes the role marker; the
+first content token starts at position 6.</p>
+<hr />
+<h2>Step 1 — baseline cases</h2>
+<h3>Setup</h3>
+<p>Four cases were chosen to span four very different observed model behaviours
+(observed on the GGUF Q8_0 quantization served via ollama or llama-cpp):</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>User prompt</th>
+<th>Assistant response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>G1</strong></td>
+<td>JSON_TRIGGER</td>
+<td><em>"Moja wiedza jest do Twojej dyspozycji."</em></td>
+<td><code>&lt;tool_call&gt; {"name": "get_user_details", "arguments": {"user_id": 3}}&lt;/tool_call&gt; &lt;tool_call&gt; {"name": "get_news_articles", "arguments": {"query": "technologia", "country": "Polska"}}&lt;/tool_call&gt;</code></td>
+</tr>
+<tr>
+<td><strong>G2</strong></td>
+<td>JSON_MIRROR</td>
+<td><code>{"name": "calculate_weight", "arguments": {"weight_in_kg": 70}}</code></td>
+<td><code>{"name": "calculate_weight", "arguments": {"weight_in_kg": 70}}</code> (identical to prompt)</td>
+</tr>
+<tr>
+<td><strong>G3</strong></td>
+<td>MERYT_ECHO</td>
+<td><em>"Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom."</em></td>
+<td>(identical verbatim mirror of the prompt, observed in llama-cpp 2/3 seeds)</td>
+</tr>
+<tr>
+<td><strong>G4</strong></td>
+<td>BASELINE_CONF</td>
+<td><em>"Stolica Francji to Paryż."</em></td>
+<td><em>"Tak, stolica Francji to Paryż."</em> (standard confirmation)</td>
+</tr>
+</tbody>
+</table>
+<p>For each case, the prompt+response was assembled into a full ChatML sequence
+and fed into the model in a single forward pass with <code>output_attentions=True</code>
+and <code>output_hidden_states=True</code>. Sequence lengths: G1=99, G2=81, G3=79, G4=29.</p>
+<p>The model has <strong>32 transformer layers, 12 attention heads per layer = 384
+heads total</strong>, hidden_size=1536, head_dim=128.</p>
+<hr />
+<h2>Step 2 — attention from the response positions, per region</h2>
+<h3>What we looked at</h3>
+<p>For each case, attention from every token position inside the <strong>response
+region</strong> was averaged (over 32 layers × 12 heads × all response query
+positions) and split into four key-side regions:</p>
+<ul>
+<li><strong>header</strong> — positions 0..5 (ChatML role markers)</li>
+<li><strong>user_content</strong> — positions 6 .. first <code>&lt;|im_end|&gt;</code> (the user prompt)</li>
+<li><strong>ast_header</strong> — positions between the two <code>&lt;|im_start|&gt;</code> markers (assistant role marker)</li>
+<li><strong>response_self</strong> — positions inside the response (causal: only earlier tokens)</li>
+</ul>
+<h3>Findings</h3>
+<p>Average attention mass from response query positions:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Type</th>
+<th>header</th>
+<th>user_content</th>
+<th>ast_header</th>
+<th>response_self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1</td>
+<td>JSON_TRIGGER</td>
+<td><strong>0.506</strong></td>
+<td><strong>0.019</strong></td>
+<td>0.033</td>
+<td><strong>0.443</strong></td>
+</tr>
+<tr>
+<td>G2</td>
+<td>JSON_MIRROR</td>
+<td>0.443</td>
+<td><strong>0.178</strong></td>
+<td>0.055</td>
+<td>0.324</td>
+</tr>
+<tr>
+<td>G3</td>
+<td>MERYT_ECHO</td>
+<td>0.417</td>
+<td><strong>0.201</strong></td>
+<td>0.054</td>
+<td>0.327</td>
+</tr>
+<tr>
+<td>G4</td>
+<td>BASELINE_CONF</td>
+<td><strong>0.517</strong></td>
+<td>0.109</td>
+<td>0.115</td>
+<td>0.258</td>
+</tr>
+</tbody>
+</table>
+<p>Four distinct attention profiles emerged:</p>
+<ul>
+<li><strong>G1 (JSON_TRIGGER)</strong>: while writing JSON, the model directs only <strong>1.9%</strong> of
+  attention to the user prompt and <strong>44.3%</strong> to its own previously-written
+  tokens. The user prompt is essentially being ignored.</li>
+<li><strong>G2/G3 (mirrors)</strong>: when the response is a verbatim copy of the prompt,
+  user_content attention rises to <strong>17–20%</strong> — the model is actively reading
+  the prompt token by token to copy it.</li>
+<li><strong>G4 (baseline confirmation)</strong>: header attention (51.7%) is highest of all,
+  user_content moderate (10.9%), self-attention low (25.8%) — typical of a
+  short response that re-states the prompt with new framing.</li>
+</ul>
+<h3>Visualization</h3>
+<p><code>raport_assets/attention_loops/exp25_summary_4panels.svg</code> — four panels:
+stacked bars per case, heatmap case×region, scatter (header vs content
+attention), per-layer attention mean per type.</p>
+<p><code>raport_assets/attention_loops/exp26_&lt;case&gt;_barfromresponse.png</code> — one bar
+chart per case showing attention from four query positions inside the response
+to every key position. Colors: header (red), user_content (orange), ast_header
+(purple), response_self (green), current query (cyan).</p>
+<hr />
+<h2>Step 3 — residual streams (hidden states), PCA across all positions</h2>
+<h3>What we looked at</h3>
+<p>For each case, the residual stream (hidden state output) at every position
+was extracted at four layer depths: <strong>layer 0 (early), layer 10, layer 20,
+layer 31 (last)</strong>. All positions from all four cases were stacked, and a
+joint <strong>PCA reduction to 2D</strong> was fitted per layer.</p>
+<p>Color encodes region (header/user_content/ast_header/response/im_end_tail);
+shape encodes case (G1/G2/G3/G4).</p>
+<h3>Findings</h3>
+<ul>
+<li>Layer 0 is dominated by token-type clustering (similar tokens close together
+  regardless of which case they come from).</li>
+<li>By layer 10–20 a more abstract structure emerges: the response tokens of G1
+  (long JSON tool-call) form a separate trajectory from the merytoryczne
+  responses of G3/G4.</li>
+<li>At layer 31 the response tokens of G2 (JSON mirror, copying prompt JSON) and
+  G3 (merytoryczne mirror, copying prompt sentence) lie close to <em>their own
+  prompt tokens</em> in PCA space — not close to G4's confirmation response. This
+  is consistent with Step 2: the mirror responses <em>are</em> their prompts in the
+  representation space.</li>
+</ul>
+<h3>Visualization</h3>
+<p><code>raport_assets/attention_loops/exp28_residual_pca_4layers.png</code> — 2×2 grid
+showing PCA at four depths.</p>
+<p><code>raport_assets/attention_loops/exp29_step3_response_only_pca.png</code> — PCA
+restricted to the response tokens only (layer 20 and layer 31, side by side),
+with case-coloured trajectories. JSON-typed responses (G1, G2) trace a
+different path through latent space than the merytoryczne ones (G3, G4),
+visible at layer 31.</p>
+<hr />
+<h2>Step 4 — per-head copy score (search for "echoing heads")</h2>
+<h3>What we looked at</h3>
+<p>For every one of the 384 attention heads, a <strong>copy_score</strong> was computed for
+each case:</p>
+<blockquote>
+<p>For each query position <em>q</em> inside the response region, find earlier
+positions <em>k &lt; q</em> whose token id equals the token id at <em>q</em> (literal
+repetition), and sum the attention weight that head sends from <em>q</em> to those
+positions. Average across all response queries.</p>
+</blockquote>
+<p>A head with high copy_score is one that systematically attends to <strong>earlier
+occurrences of the same token</strong> — the textbook signature of an "induction
+head" / "copying head".</p>
+<p>A second metric, <strong>prev_token_score</strong> (attention from <em>q</em> to <em>q-1</em>), was also
+computed as a simpler induction proxy.</p>
+<h3>Findings</h3>
+<p>Top 10 heads by <code>copy_score(echo_avg) − copy_score(baseline)</code>, where
+<code>echo_avg = mean(G2 mirror, G3 echo)</code> and <code>baseline = G4 confirmation</code>:</p>
+<table>
+<thead>
+<tr>
+<th>layer.head</th>
+<th>G1 trigger</th>
+<th>G2 mirror</th>
+<th>G3 echo</th>
+<th>G4 baseline</th>
+<th>echo − baseline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L7.H11</strong></td>
+<td>0.23</td>
+<td>0.42</td>
+<td>0.56</td>
+<td>0.12</td>
+<td><strong>+0.366</strong></td>
+</tr>
+<tr>
+<td><strong>L10.H3</strong></td>
+<td>0.47</td>
+<td>0.88</td>
+<td>0.88</td>
+<td>0.69</td>
+<td>+0.187</td>
+</tr>
+<tr>
+<td><strong>L10.H4</strong></td>
+<td>0.26</td>
+<td>0.35</td>
+<td>0.22</td>
+<td>0.10</td>
+<td>+0.181</td>
+</tr>
+<tr>
+<td><strong>L8.H7</strong></td>
+<td>0.07</td>
+<td>0.19</td>
+<td>0.19</td>
+<td>0.07</td>
+<td>+0.120</td>
+</tr>
+<tr>
+<td>L6.H10</td>
+<td>0.13</td>
+<td>0.23</td>
+<td>0.22</td>
+<td>0.15</td>
+<td>+0.071</td>
+</tr>
+<tr>
+<td>L8.H1</td>
+<td>0.03</td>
+<td>0.07</td>
+<td>0.08</td>
+<td>0.01</td>
+<td>+0.070</td>
+</tr>
+<tr>
+<td>L11.H8</td>
+<td>0.02</td>
+<td>0.08</td>
+<td>0.06</td>
+<td>0.01</td>
+<td>+0.058</td>
+</tr>
+<tr>
+<td>L3.H10</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.06</td>
+<td>0.00</td>
+<td>+0.040</td>
+</tr>
+<tr>
+<td>L4.H4</td>
+<td>0.07</td>
+<td>0.04</td>
+<td>0.08</td>
+<td>0.02</td>
+<td>+0.038</td>
+</tr>
+<tr>
+<td>L0.H2</td>
+<td>0.05</td>
+<td>0.04</td>
+<td>0.04</td>
+<td>0.01</td>
+<td>+0.036</td>
+</tr>
+</tbody>
+</table>
+<p>Observations:</p>
+<ul>
+<li><strong>L7.H11 stands out</strong>: its copy_score in echo cases is <strong>~4× higher</strong> than
+  in the baseline (0.49 vs 0.12). It is the strongest single candidate for an
+  "echoing head".</li>
+<li>The top echo heads cluster in <strong>layers 6–11</strong> — the same depth range
+  reported in the literature for induction heads.</li>
+<li><strong>G1 (JSON_TRIGGER) does not engage these heads strongly</strong>: its copy_score
+  on L7.H11 is 0.23 versus 0.56 for G3. The JSON tool-call is not generated
+  by literal copying; it is generated from the model's own momentum (Step 2).</li>
+<li>Mean copy_score across <strong>all 384 heads</strong> is essentially the same across
+  cases (≈0.030–0.033) — the echo signal is <strong>concentrated in ~5 heads, not
+  spread across the network</strong>.</li>
+<li><code>prev_token_score</code> is highest for the BASELINE case (0.075) and lower for
+  the echo cases (0.056) — baseline relies on standard sequential induction
+  ("attend to previous token"), echo cases use longer-range copy heads.</li>
+</ul>
+<h3>Visualization</h3>
+<p><code>raport_assets/attention_loops/exp28_echo_heads_copyscore.png</code> — four
+heatmaps (one per case) of copy_score over the 32×12 head grid.</p>
+<p><code>raport_assets/attention_loops/exp28_echo_heads_differential.png</code> — three
+differential heatmaps (echo case − baseline). Top-5 strongest positive heads
+are circled and labelled (L7.H11, L10.H3, L10.H4, L8.H7, L6.H10).</p>
+<hr />
+<h2>Step 5 — L7.H11 detail map: which token attends to which</h2>
+<h3>What we looked at</h3>
+<p>For G3 (merytoryczne echo) and G2 (JSON mirror), we extracted the attention
+matrix of <strong>just one head — L7.H11</strong> — and plotted it with full per-token
+labels on both axes. We then identified, for every query position <em>q</em> inside
+the response, the earlier position <em>k &lt; q</em> with the same token_id and the
+highest attention from <em>q</em>. Pairs with attention &gt; 0.05 were drawn as cyan
+arrows on top of the heatmap.</p>
+<h3>Findings</h3>
+<p>For <strong>G3</strong> (response is a verbatim copy of the prompt sentence, distance from
+prompt token to response token ≈ 40 positions): <strong>29 echo arrows</strong> detected
+out of 32 response positions (~91%). Top 10 (sorted by attention weight):</p>
+<table>
+<thead>
+<tr>
+<th>query (response)</th>
+<th>key (prompt)</th>
+<th>attention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q=47 <code>,</code></td>
+<td>k=7 <code>,</code></td>
+<td><strong>0.866</strong></td>
+</tr>
+<tr>
+<td>q=74 <code>·się</code></td>
+<td>k=34 <code>·się</code></td>
+<td>0.852</td>
+</tr>
+<tr>
+<td>q=76 <code>tom</code></td>
+<td>k=36 <code>tom</code></td>
+<td>0.848</td>
+</tr>
+<tr>
+<td>q=48 <code>·dokładnie</code></td>
+<td>k=8 <code>·dokładnie</code></td>
+<td>0.833</td>
+</tr>
+<tr>
+<td>q=62 <code>6</code></td>
+<td>k=22 <code>6</code></td>
+<td>0.814</td>
+</tr>
+<tr>
+<td>q=73 <code>dały</code></td>
+<td>k=33 <code>dały</code></td>
+<td>0.813</td>
+</tr>
+<tr>
+<td>q=71 <code>·oficjalnie</code></td>
+<td>k=31 <code>·oficjalnie</code></td>
+<td>0.799</td>
+</tr>
+<tr>
+<td>q=56 <code>4</code></td>
+<td>k=16 <code>4</code></td>
+<td>0.724</td>
+</tr>
+<tr>
+<td>q=55 <code>9</code></td>
+<td>k=15 <code>9</code></td>
+<td>0.704</td>
+</tr>
+<tr>
+<td>q=75 <code>·alian</code></td>
+<td>k=35 <code>·alian</code></td>
+<td>0.701</td>
+</tr>
+</tbody>
+</table>
+<p>For <strong>G2</strong> (JSON mirror): <strong>31 echo arrows</strong> with similar magnitudes
+(0.50–0.86). Each token of the JSON response is matched to the same token in
+the prompt JSON.</p>
+<p>This is the <strong>literal definition of a copying head</strong>: under L7.H11, every
+response token devotes 70–87% of its attention budget to its own earlier
+duplicate in the prompt.</p>
+<h3>Visualization</h3>
+<p><code>raport_assets/attention_loops/exp29_step1_G3_meryt_echo_L7H11_arrows.png</code>
+<code>raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png</code></p>
+<p>Each shows the full 79×79 (G3) or 81×81 (G2) attention matrix of L7.H11 with
+all token labels visible and cyan arrows drawn from each response token to
+its strongest matching key in the prompt.</p>
+<hr />
+<h2>Step 6 — single-head ablation: zero out L7.H11</h2>
+<h3>What we looked at</h3>
+<p>A forward pre-hook was registered on <code>model.model.layers[7].self_attn.o_proj</code>.
+The hook zeroes out the slice of the input that corresponds to head 11
+(positions <code>[11*128 : 12*128]</code> of the concatenated head outputs), effectively
+removing that single head's contribution before the output projection.</p>
+<p>For each of the four cases, generation was run twice from the user prompt
+alone (no response pre-supplied):
+- once normally;
+- once with the L7.H11 ablation hook installed.</p>
+<p>Both at <code>temperature=0.3, seed=42</code> and <code>do_sample=False</code> (greedy).</p>
+<h3>Findings</h3>
+<p>For all four cases the <strong>outputs are identical</strong> between the normal and
+ablated runs at temperature 0.3:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Normal T=0.3</th>
+<th>Ablated L7.H11 T=0.3</th>
+<th>Identical?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1</td>
+<td><em>"Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii…"</em></td>
+<td>identical</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>G2</td>
+<td><code>​```python\ndef calculate_weight(weight_in_kg)…</code></td>
+<td>identical</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>G3</td>
+<td><em>"Tak, dokładnie. 8 maja 1945… To był koniec II wojny światowej."</em></td>
+<td>identical</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>G4</td>
+<td><em>"Tak, stolica Francji to Paryż."</em></td>
+<td>identical</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>In greedy mode the only differences are minor end-of-sentence variations
+(G1).</p>
+<p>This is a striking result: the head whose attention weights point unambiguously
+at "echo earlier same-token" with weights up to 0.87 contributes <strong>negligibly</strong>
+to the actual output once removed. The most plausible interpretation is
+<strong>redundancy</strong> — other heads (notably L10.H3, L10.H4, L8.H7) carry similar
+information and compensate.</p>
+<h3>Visualization</h3>
+<p>No new figure for this step (text-only result). The heatmaps of L7.H11 from
+Step 5 visualise <em>what</em> the head does; this step shows that what it does is
+<strong>not necessary</strong> for the model's final output when only that head is removed.</p>
+<hr />
+<h2>Step 7 — multi-head ablation: zero out top-N echo heads simultaneously</h2>
+<h3>What we looked at</h3>
+<p>Same forward-pre-hook mechanism as Step 6, but applied to combinations of
+the top echo heads from Step 4:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Heads zeroed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>top1</td>
+<td>{L7.H11}</td>
+</tr>
+<tr>
+<td>top3</td>
+<td>{L7.H11, L10.H3, L10.H4}</td>
+</tr>
+<tr>
+<td>top5</td>
+<td>{L7.H11, L10.H3, L10.H4, L8.H7, L6.H10}</td>
+</tr>
+<tr>
+<td>top10</td>
+<td>top5 + {L8.H1, L11.H8, L3.H10, L4.H4, L0.H2}</td>
+</tr>
+</tbody>
+</table>
+<p>Each configuration was run for each of the four cases at T=0.3 (seed=42) and
+greedy. Outputs were compared to the corresponding non-ablated baseline.</p>
+<h3>Findings</h3>
+<p>Whether the output changed (DIFF) or not (same), per case × configuration
+(format: <code>T=0.3 / greedy</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>top1</th>
+<th>top3</th>
+<th>top5</th>
+<th>top10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1 JSON_trigger</td>
+<td>same / DIFF</td>
+<td>same / DIFF</td>
+<td>same / DIFF</td>
+<td><strong>DIFF / DIFF</strong></td>
+</tr>
+<tr>
+<td>G2 JSON_mirror</td>
+<td>same / same</td>
+<td>DIFF / same</td>
+<td>DIFF / same</td>
+<td><strong>DIFF / DIFF</strong></td>
+</tr>
+<tr>
+<td>G3 meryt_echo</td>
+<td>same / same</td>
+<td><strong>DIFF / DIFF</strong></td>
+<td>DIFF / DIFF</td>
+<td>DIFF / DIFF</td>
+</tr>
+<tr>
+<td>G4 baseline_conf</td>
+<td>same / same</td>
+<td>same / same</td>
+<td>same / same</td>
+<td>same / DIFF</td>
+</tr>
+</tbody>
+</table>
+<p>Concrete output transitions for <strong>G3</strong> (the cleanest copying case):</p>
+<ul>
+<li><strong>Normal greedy</strong>:
+  <em>"Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy
+  oficjalnie poddały się aliantom. To był koniec II wojny światowej"</em> — verbatim
+  copy of the prompt.</li>
+<li><strong>top3 ablated</strong> (T=0.3):
+  <em>"Tak, dokładnie. 8 maja 1945 roku </em><em>o godzinie 2.41 nad ranem w Berlinie
+  podpisano akt kapitulacji III Rzeszy</em><em>. Był to symboliczny koniec II
+  wojny…"</em> — the model stops copying and produces <strong>new factual content</strong>
+  retrieved from parametric memory (specific time and place of the
+  surrender).</li>
+<li><strong>top10 ablated</strong>: <em>"Tak, dokładnie 8 maja 1945 roku, po 6 latach i 8
+  miesiącach walk, Niemcy oficjalnie poddały się aliantom."</em> — copies the
+  first sentence but breaks before the final added phrase.</li>
+</ul>
+<p>For <strong>G2</strong> (JSON → Python conversion observed in HF float32):</p>
+<ul>
+<li><strong>Normal</strong>: <code>def calculate_weight(weight_in_kg): # Convert kilograms to pounds…</code></li>
+<li><strong>top3 ablated</strong>: still Python code, but in a different style (shorter
+  function, no comment, then a call: <code>weight_in_lbs = calculate_weight(70); print(...)</code>).</li>
+<li><strong>top10 ablated</strong>: still Python code, now with a docstring.</li>
+</ul>
+<p>The JSON→Python rewrite <strong>does not disappear</strong> even with 10 heads removed —
+this behaviour is not localized in the echo heads; it is presumably also
+encoded in MLP layers and other attention paths.</p>
+<p>For <strong>G1</strong> (JSON_TRIGGER in Q8_0; in HF float32 the model writes a
+help-offer): only top10 changes the output at T=0.3:</p>
+<ul>
+<li><strong>Normal T=0.3</strong>: <em>"Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii…"</em></li>
+<li><strong>top10 ablated T=0.3</strong>: <em>"Oczywiście, </em><em>chętnie pomogę Ci w zadaniu</em><em>.
+  Proszę podaj mi szczegóły dotyczące problemu, który chcesz rozwiązać."</em></li>
+</ul>
+<p>For <strong>G4</strong> (baseline) the output is stable through top5; only top10 changes
+the greedy result slightly: <em>"Tak, to prawda. Stolicą Francji jest Paryż."</em>
+→ <em>"Tak, Paryż jest stolicą Francji."</em></p>
+<h3>Interpretation (factual)</h3>
+<ul>
+<li><strong>One head is not enough</strong> to disrupt copying (Step 6 confirmed this and
+  this step extends it: top1 ≡ no effect except for one greedy variation in G1).</li>
+<li><strong>Three heads are enough to break literal copying</strong> in the cleanest echo
+  case (G3 stops echoing and starts producing parametric content).</li>
+<li><strong>Five heads ≈ three heads</strong> for these cases — L8.H7 and L6.H10 add little
+  on top of the first three.</li>
+<li><strong>Ten heads</strong> reaches a regime where even the baseline confirmation phrasing
+  shifts. Removing 10 / 384 heads is roughly a 2.6% capacity reduction.</li>
+<li><strong>The JSON→Python rewrite (G2 in float32) is not localized</strong> in the
+  identified echo heads — it persists through every ablation tested.</li>
+</ul>
+<h3>Visualization</h3>
+<p>No standalone figure was generated for Step 7; the relevant data are the
+output texts themselves, recorded in
+<code>raport_assets/exp30_multihead_ablation.json</code>. Step 4's heatmaps already
+visualize the <em>which heads</em> part; Step 7 documents <em>what removing them does</em>.</p>
+<hr />
+<h2>Summary of files</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 (cases)</td>
+<td>(no figure — case definitions only)</td>
+</tr>
+<tr>
+<td>2 (per-region attention)</td>
+<td><code>exp25_summary_4panels.svg</code>, <code>exp25_summary_structural_vs_content.svg</code>, <code>exp26_&lt;case&gt;_barfromresponse.png</code>, <code>exp26_&lt;case&gt;_*_fullheatmap.png</code></td>
+</tr>
+<tr>
+<td>3 (PCA residual streams)</td>
+<td><code>exp28_residual_pca_4layers.png</code>, <code>exp29_step3_response_only_pca.png</code></td>
+</tr>
+<tr>
+<td>4 (per-head copy_score)</td>
+<td><code>exp28_echo_heads_copyscore.png</code>, <code>exp28_echo_heads_differential.png</code>, <code>exp28_residual_pca_echo_heads.json</code></td>
+</tr>
+<tr>
+<td>5 (L7.H11 detail)</td>
+<td><code>exp29_step1_G3_meryt_echo_L7H11_arrows.png</code>, <code>exp29_step1_G2_JSON_mirror_L7H11_arrows.png</code></td>
+</tr>
+<tr>
+<td>6 (single ablation)</td>
+<td>(text result, in <code>exp29_three_steps_results.json</code>)</td>
+</tr>
+<tr>
+<td>7 (multi-head ablation)</td>
+<td><code>exp30_multihead_ablation.json</code></td>
+</tr>
+</tbody>
+</table>
+<p>Numerical artifacts:</p>
+<ul>
+<li><code>raport_assets/exp25_attention_json_vs_mirror.json</code> — per-region attention values (Step 2)</li>
+<li><code>raport_assets/exp27_pivot_logits.json</code> — top-10 logit candidates at the pivot position (background, supporting Step 2 interpretation)</li>
+<li><code>raport_assets/exp28_residual_pca_echo_heads.json</code> — top-30 echo heads (Step 4)</li>
+<li><code>raport_assets/exp29_three_steps_results.json</code> — Step 5 + Step 6 + Step 3 outputs</li>
+<li><code>raport_assets/exp30_multihead_ablation.json</code> — Step 7 outputs (4 cases × 4 ablation configs × 2 sampling modes)</li>
+</ul>
+<hr />
+<h2>Step 8 — alternative single-head ablations: questioning the L7.H11 ranking</h2>
+<h3>Setup</h3>
+<p>Step 4 ranked echo heads by <code>diff = mean(G2,G3) − G4</code> (the contrast between
+echo and baseline copy_score). Three heads tied for the top of that ranking:</p>
+<ul>
+<li><strong>L7.H11</strong>: highest diff (+0.366), absolute copy_score 0.42–0.56</li>
+<li><strong>L10.H3</strong>: diff +0.187, absolute copy_score <strong>0.88</strong> (highest absolute, but baseline also high at 0.69)</li>
+<li><strong>L10.H4</strong>: diff +0.181, absolute copy_score 0.22–0.35</li>
+</ul>
+<p>Step 6 already showed that <strong>L7.H11 alone</strong> has essentially no effect on
+generation. The natural follow-up question: what if we picked the wrong head
+to focus on? L10.H3 has the highest absolute copy_score, even though its
+"echo signature" (echo − baseline) is more modest. We tested five additional
+single-/small-multi-head ablation configurations:</p>
+<table>
+<thead>
+<tr>
+<th>Config</th>
+<th>Heads zeroed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L7H11_only</td>
+<td>{L7.H11}</td>
+</tr>
+<tr>
+<td>L10H4_only</td>
+<td>{L10.H4}</td>
+</tr>
+<tr>
+<td>L10H3_only</td>
+<td>{L10.H3}</td>
+</tr>
+<tr>
+<td>L10_pair_H3+H4</td>
+<td>{L10.H3, L10.H4}</td>
+</tr>
+<tr>
+<td>L7H11+L10H4</td>
+<td>{L7.H11, L10.H4}</td>
+</tr>
+</tbody>
+</table>
+<p>All four cases (G1..G4), at T=0.3 (seed=42) and greedy.</p>
+<h3>Findings</h3>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>L7.H11 only</th>
+<th>L10.H4 only</th>
+<th><strong>L10.H3 only</strong></th>
+<th>L10 pair (H3+H4)</th>
+<th>L7.H11+L10.H4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1 JSON_trigger</td>
+<td>same / DIFF</td>
+<td><strong>same / same</strong></td>
+<td>same / DIFF</td>
+<td>same / DIFF</td>
+<td>same / same</td>
+</tr>
+<tr>
+<td>G2 JSON_mirror</td>
+<td>same / same</td>
+<td><strong>same / same</strong></td>
+<td><strong>DIFF / DIFF</strong></td>
+<td>DIFF / same</td>
+<td>same / same</td>
+</tr>
+<tr>
+<td>G3 meryt_echo</td>
+<td>same / same</td>
+<td><strong>same / same</strong></td>
+<td><strong>DIFF / DIFF</strong></td>
+<td>DIFF / DIFF</td>
+<td>same / same</td>
+</tr>
+<tr>
+<td>G4 baseline</td>
+<td>same / same</td>
+<td>same / same</td>
+<td>same / same</td>
+<td>same / same</td>
+<td>same / same</td>
+</tr>
+</tbody>
+</table>
+<p>The ranking by <em>output impact</em> differs sharply from the ranking by <em>echo
+diff</em>:</p>
+<ul>
+<li><strong>L10.H4 alone has zero impact</strong> in any case, in any sampling mode. Despite
+  being #3 in the diff ranking, it is functionally inert when removed alone.</li>
+<li><strong>L10.H3 alone is as effective as the entire top3 ablation from Step 7</strong>:
+  for G2 (JSON mirror) and G3 (merytoryczne echo), the model produces the
+  same alternative output as when three heads (L7.H11, L10.H3, L10.H4) are
+  zeroed together.</li>
+<li>Concrete G3 output under L10.H3-only ablation:</li>
+<li><strong>Normal T=0.3</strong>: <em>"Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8
+    miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec
+    II wojny światowej."</em> — verbatim copy.</li>
+<li><strong>L10.H3 ablated T=0.3</strong>: <em>"Tak, dokładnie. 8 maja 1945 roku </em><em>o
+    godzinie 2.41 nad ranem w Berlinie podpisano akt kapitulacji III Rzeszy</em><em>.
+    Był to symboliczny koniec II wojny…"</em> — new factual content from
+    parametric memory.</li>
+<li><strong>L7.H11 + L10.H4 together = no change</strong> in any case, even though L7.H11
+  alone does change G1's greedy output. L10.H4 appears to <em>cancel</em> the small
+  effect of L7.H11. Possible anti-correlation, or simple compensatory
+  rerouting.</li>
+</ul>
+<p>A reinterpretation of the rankings:</p>
+<table>
+<thead>
+<tr>
+<th>Head</th>
+<th>exp28 diff (echo − base)</th>
+<th>exp28 absolute (G2/G3 max)</th>
+<th><strong>Real ablation impact (Step 8)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L10.H3</strong></td>
+<td>+0.187 (#2)</td>
+<td><strong>0.88</strong> (highest)</td>
+<td><strong>DIFF on 2/4 cases single-handedly</strong></td>
+</tr>
+<tr>
+<td>L7.H11</td>
+<td>+0.366 (#1)</td>
+<td>0.42–0.56</td>
+<td>DIFF only on one greedy run for G1</td>
+</tr>
+<tr>
+<td>L10.H4</td>
+<td>+0.181 (#3)</td>
+<td>0.22–0.35</td>
+<td><strong>0 impact on output</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lesson</strong>: ranking heads by <code>echo − baseline</code> difference is misleading when
+the baseline is itself low. The heads that make the largest <em>output</em>
+difference are those with the highest <em>absolute</em> copy_score, not the largest
+contrast. The Step 7 multi-head result (top3 changes the output for G3)
+turns out to be driven almost entirely by L10.H3 alone.</p>
+<h3>Visualization</h3>
+<p>No new figure for this step (text-only outputs, recorded in
+<code>raport_assets/exp31_alt_single_ablations.json</code>).</p>
+<hr />
+<h2>Step 9 — takeover analysis: who compensates when L10.H3 is removed?</h2>
+<h3>Setup</h3>
+<p>If L10.H3 is doing most of the visible copying, what happens to the other
+383 heads when its output is zeroed? Specifically: do other heads <em>increase</em>
+their copy_score (compensation), stay the same, or also decrease?</p>
+<p>For each of the four cases, copy_score was computed for every (layer, head)
+under three conditions: baseline (no ablation), L7.H11 ablated, L10.H3
+ablated, L10.H3+L10.H4 ablated. The change <code>Δ = after − before</code> was computed
+per head and per case.</p>
+<h3>Findings</h3>
+<h4>Total copy_score across all 384 heads (per case, before vs after L10.H3 ablation):</h4>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Before</th>
+<th>After L10.H3</th>
+<th>Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1 JSON_trigger</td>
+<td>12.484</td>
+<td>12.471</td>
+<td>-0.014</td>
+</tr>
+<tr>
+<td><strong>G2 JSON_mirror</strong></td>
+<td>12.369</td>
+<td><strong>12.772</strong></td>
+<td><strong>+0.403</strong></td>
+</tr>
+<tr>
+<td>G3 meryt_echo</td>
+<td>12.578</td>
+<td>12.643</td>
+<td>+0.065</td>
+</tr>
+<tr>
+<td><strong>G4 baseline_conf</strong></td>
+<td>11.664</td>
+<td><strong>12.280</strong></td>
+<td><strong>+0.615</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Total copy_score <strong>increases</strong> for G2 (+0.40) and G4 (+0.62) after removing
+L10.H3 — the rest of the network not only compensates but <em>over-compensates</em>
+in summed copy attention.</p>
+<h4>Top "taking-over" heads (largest copy_score increase, excluding the ablated head):</h4>
+<p>For <strong>G2 JSON_mirror</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>layer.head</th>
+<th>before</th>
+<th>after</th>
+<th>Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L14.H11</strong></td>
+<td>0.174</td>
+<td>0.339</td>
+<td><strong>+0.165</strong></td>
+</tr>
+<tr>
+<td>L14.H1</td>
+<td>0.281</td>
+<td>0.346</td>
+<td>+0.065</td>
+</tr>
+<tr>
+<td>L15.H1</td>
+<td>0.120</td>
+<td>0.173</td>
+<td>+0.053</td>
+</tr>
+<tr>
+<td>L14.H3</td>
+<td>0.107</td>
+<td>0.148</td>
+<td>+0.041</td>
+</tr>
+<tr>
+<td>L14.H2</td>
+<td>0.074</td>
+<td>0.114</td>
+<td>+0.039</td>
+</tr>
+<tr>
+<td>L14.H0</td>
+<td>0.058</td>
+<td>0.090</td>
+<td>+0.033</td>
+</tr>
+<tr>
+<td>L13.H3</td>
+<td>0.057</td>
+<td>0.085</td>
+<td>+0.028</td>
+</tr>
+<tr>
+<td>L14.H10</td>
+<td>0.063</td>
+<td>0.090</td>
+<td>+0.027</td>
+</tr>
+</tbody>
+</table>
+<p>For <strong>G3 meryt_echo</strong> the pattern is the same:</p>
+<table>
+<thead>
+<tr>
+<th>layer.head</th>
+<th>before</th>
+<th>after</th>
+<th>Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L14.H1</td>
+<td>0.167</td>
+<td>0.267</td>
+<td>+0.101</td>
+</tr>
+<tr>
+<td>L14.H11</td>
+<td>0.092</td>
+<td>0.168</td>
+<td>+0.077</td>
+</tr>
+<tr>
+<td>L15.H1</td>
+<td>0.142</td>
+<td>0.185</td>
+<td>+0.044</td>
+</tr>
+<tr>
+<td>L14.H2</td>
+<td>0.071</td>
+<td>0.115</td>
+<td>+0.043</td>
+</tr>
+<tr>
+<td>L11.H8</td>
+<td>0.058</td>
+<td>0.090</td>
+<td>+0.032</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Six of the eight strongest "takers-over" sit in layers 14–15</strong> — a second,
+distinct cluster of copy heads that activates only when the primary L10
+cluster is removed. Under normal operation these heads have moderate
+copy_score; with L10.H3 ablated, several of them roughly double.</p>
+<p>For comparison, the takeover pattern after <strong>ablating L7.H11</strong> is different:
+the top compensators are <strong>L8.H6, L8.H7, L10.H4</strong> — heads in the same or
+adjacent layers, with much smaller magnitudes. L7.H11 has only local
+compensation; L10.H3 has long-range compensation reaching all the way to
+L14–15.</p>
+<p>The strongest "losers" (heads whose copy_score <em>decreases</em> after L10.H3
+ablation) are <strong>L24.H4, L19.H2</strong> — late-layer heads that were apparently
+relying on L10.H3's output as input to their own copy propagation. Without
+L10.H3, they have less to copy from.</p>
+<h4>Interpretation (factual)</h4>
+<ul>
+<li>The network has a <strong>built-in reserve</strong> for copying. Removing the dominant
+  copy head does not reduce total copy_score; another set of heads activates
+  to take over.</li>
+<li>The <strong>second copy cluster lives in L14–L15</strong>, a depth that did not appear
+  in the original ranking (Step 4) because under normal operation those
+  heads are quiet.</li>
+<li>The output <em>does</em> change after L10.H3 ablation (Step 8 confirmed
+  G2/G3 produce different responses), even though total copy mass is
+  preserved or increased. This means the <strong>identity of which head copies
+  what matters more than the total amount of copying</strong>: L10.H3 and L14.H11
+  copy different information from different positions, even if the bulk
+  attention budget is similar.</li>
+</ul>
+<h3>Visualization</h3>
+<p><code>raport_assets/attention_loops/exp32_takeover_after_L7H11.png</code>,
+<code>exp32_takeover_after_L10H3.png</code>, <code>exp32_takeover_after_L10H3_H4.png</code> —
+delta heatmaps (32 layers × 12 heads) showing increase (red) and decrease
+(blue) per case. Black squares mark the ablated heads.</p>
+<p><code>raport_assets/exp32_takeover_results.json</code> — full copy_score matrices for
+baseline + each ablation × 4 cases.</p>
+<hr />
+<h2>Step 10 — cluster ablation: zero out L10 + L14 together</h2>
+<h3>Setup</h3>
+<p>Step 9 identified two echo clusters: a primary one in L10 (with L7.H11 and
+L8.H7 as smaller satellites) and a backup in L14–L15 that activates as
+compensation. The question for Step 10: if we zero out <em>both</em> clusters
+simultaneously, does copying finally break?</p>
+<p>Four configurations of progressively larger scope:</p>
+<table>
+<thead>
+<tr>
+<th>Config</th>
+<th>Heads zeroed</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L10_only</td>
+<td>L10.{H3, H4}</td>
+<td>2</td>
+</tr>
+<tr>
+<td>L14_top</td>
+<td>L14.{H1, H11, H2, H3}</td>
+<td>4</td>
+</tr>
+<tr>
+<td>L10+L14</td>
+<td>L10.{H3,H4} + L14.{H1,H11,H2,H3}</td>
+<td>6</td>
+</tr>
+<tr>
+<td>L10+L14_extended</td>
+<td>L10.{H3,H4} + L14.{H1,H11,H2,H3} + L13.H3 + L15.H1 + L11.H8</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>For each case × config we record (a) generation output at T=0.3 and greedy,
+(b) total copy_score across all 384 heads (to check whether removing both
+clusters finally suppresses the global copy mass).</p>
+<h3>Findings</h3>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>L10_only</th>
+<th>L14_top</th>
+<th>L10+L14</th>
+<th><strong>L10+L14_extended</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1 JSON_trigger</td>
+<td>same / DIFF (Δ+0.05)</td>
+<td>same / DIFF (Δ+0.02)</td>
+<td>same / DIFF (Δ+0.02)</td>
+<td><strong>DIFF / DIFF (Δ+0.21)</strong></td>
+</tr>
+<tr>
+<td>G2 JSON_mirror</td>
+<td>DIFF / same (Δ+0.47)</td>
+<td>same / DIFF (Δ+0.08)</td>
+<td>DIFF / DIFF (Δ+0.77)</td>
+<td><strong>DIFF / DIFF (Δ+0.72)</strong></td>
+</tr>
+<tr>
+<td>G3 meryt_echo</td>
+<td>DIFF / DIFF (Δ+0.07)</td>
+<td>same / same (Δ-0.01)</td>
+<td>DIFF / DIFF (Δ+0.10)</td>
+<td><strong>DIFF / DIFF (Δ+0.19)</strong></td>
+</tr>
+<tr>
+<td>G4 baseline_conf</td>
+<td>same / same (Δ+0.61)</td>
+<td>same / DIFF (Δ-0.06)</td>
+<td>same / DIFF (Δ+0.61)</td>
+<td><strong>DIFF / DIFF (Δ+0.45)</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Key observations:</p>
+<ul>
+<li><strong>L14_top alone</strong> has minimal effect: total copy_score barely moves
+  (Δ from −0.06 to +0.08), and only one greedy output changes. L14 cluster
+  is genuinely a <em>reserve</em>: dormant in normal operation, recruited only when
+  L10 is missing.</li>
+<li><strong>L10+L14 combined (6 heads)</strong> does not break copying. Total copy_score
+  <em>increases even more</em> than L10 alone (G2: +0.77 vs +0.47). A third level
+  of compensation kicks in — yet other heads start copying.</li>
+<li><strong>L10+L14_extended (9 heads in 5 layers) is the first configuration to
+  change the output for <em>all four</em> cases</strong>, including G1 and G4 which were
+  resistant to all earlier ablations.</li>
+<li>Total copy_score still rises in extended (Δ from +0.19 to +0.72). Copying
+  is never <em>suppressed</em> in absolute terms; it is <em>redistributed</em> to new heads
+  whose copying is apparently of different (less faithful) quality.</li>
+</ul>
+<h4>Concrete output shifts under L10+L14_extended</h4>
+<p><strong>G3 meryt_echo</strong> (the cleanest copy case):</p>
+<ul>
+<li><strong>Normal greedy</strong>: <em>"Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8
+  miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II
+  wojny światowej w Europie."</em> — verbatim copy.</li>
+<li><strong>L10+L14_extended T=0.3</strong>: <em>"Tak, dokładnie. To był jeden z
+  najważniejszych momentów II wojny światowej."</em> — short, <strong>none of the
+  prompt's specific dates or numbers are copied</strong>.</li>
+<li><strong>L10+L14_extended greedy</strong>: <em>"Tak, dokładnie. 8 maja 1945 roku, po 6
+  latach i 8 miesiącach </em><em>od wybuchu II wojny światowej</em><em>, Niemcy oficjalnie
+  poddały się aliantom. Był to koniec jednego z najt[ragiczniejszych…]"</em> —
+  the model paraphrases the prompt rather than copying it verbatim
+  (insertion of "od wybuchu II wojny światowej").</li>
+</ul>
+<p><strong>G2 JSON_mirror</strong> greedy:</p>
+<ul>
+<li>Normal: <em>"The weight of 70 kg is approximately 154.32 pounds."</em></li>
+<li>L10+L14_extended: <em>"The function <code>calculate_weight</code> takes a single argument
+  <code>weight_in_kg</code>, which represents the weight in kilograms. Here's an example
+  of how you can use the func…"</em> — model now <em>describes</em> the function in
+  English prose instead of producing the numerical conversion.</li>
+</ul>
+<p><strong>G4 baseline</strong>:</p>
+<ul>
+<li>Normal: <em>"Tak, stolica Francji to Paryż."</em></li>
+<li>L10+L14_extended T=0.3: <em>"Tak, to prawda. Paryż jest stolicą Francji i
+  jest jednym z najbardziej znanych miast na świecie. Jest to miasto pełne
+  zabytków, kultury i historii."</em> — the model produces a longer elaboration
+  rather than the short confirmation.</li>
+</ul>
+<h3>Interpretation (factual)</h3>
+<ul>
+<li>A 9-head ablation (≈2.3% of attention capacity) is needed to noticeably
+  shift the output of every case in our small sample.</li>
+<li>Even at this scale, <strong>total copy_score does not drop</strong> — it grows. Copying
+  in this network is not a localized property of a few heads; it is a
+  distributed circuit with multiple layers of redundancy.</li>
+<li>What ablation <em>does</em> change is the <strong>type of copy</strong>: from verbatim copy
+  of specific tokens (dates, numbers, code structure) to paraphrase,
+  elaboration, or translation into a different mode (Polish prompt → English
+  description).</li>
+<li>L10 → L14 → L13/L15/L11 is a chain of progressively recruited reserves.
+  The full picture is consistent with the literature on induction circuits
+  in transformers: <strong>copying is implemented by a circuit, not by a head</strong>.</li>
+</ul>
+<h3>Visualization</h3>
+<p><code>raport_assets/exp33_cluster_ablation.json</code> — outputs for 4 cases × 4
+ablation configs × 2 sampling modes, plus per-case total_copy_score before
+and after each ablation. No standalone heatmap was generated for this step;
+the per-config delta heatmaps from Step 9 already cover the spatial
+distribution of changes.</p>
+
+<hr>
+<h2>Gallery — all referenced figures</h2>
+<p>Images referenced in the steps above. Each row is one figure.</p>
+<div class="figure-row"><h3>exp25_summary_4panels.svg</h3><img src="raport_assets/attention_loops/exp25_summary_4panels.svg" alt="exp25_summary_4panels.svg" /></div>
+<div class="figure-row"><h3>exp25_summary_structural_vs_content.svg</h3><img src="raport_assets/attention_loops/exp25_summary_structural_vs_content.svg" alt="exp25_summary_structural_vs_content.svg" /></div>
+<div class="figure-row"><h3>exp26_G1_JSON_trigger_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G1_JSON_trigger_barfromresponse.png" alt="exp26_G1_JSON_trigger_barfromresponse.png" /></div>
+<div class="figure-row"><h3>exp26_G2_JSON_mirror_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G2_JSON_mirror_barfromresponse.png" alt="exp26_G2_JSON_mirror_barfromresponse.png" /></div>
+<div class="figure-row"><h3>exp26_G3_meryt_echo_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G3_meryt_echo_barfromresponse.png" alt="exp26_G3_meryt_echo_barfromresponse.png" /></div>
+<div class="figure-row"><h3>exp26_G4_baseline_conf_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G4_baseline_conf_barfromresponse.png" alt="exp26_G4_baseline_conf_barfromresponse.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G1_JSON_trigger_layer31_fullheatmap.png</h3><img src="raport_assets/attention_loops/exp26_G1_JSON_trigger_layer31_fullheatmap.png" alt="raport_assets/attention_loops/exp26_G1_JSON_trigger_layer31_fullheatmap.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G1_JSON_trigger_mean_all_layers_fullheatmap.png</h3><img src="raport_assets/attention_loops/exp26_G1_JSON_trigger_mean_all_layers_fullheatmap.png" alt="raport_assets/attention_loops/exp26_G1_JSON_trigger_mean_all_layers_fullheatmap.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G2_JSON_mirror_layer31_fullheatmap.png</h3><img src="raport_assets/attention_loops/exp26_G2_JSON_mirror_layer31_fullheatmap.png" alt="raport_assets/attention_loops/exp26_G2_JSON_mirror_layer31_fullheatmap.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G2_JSON_mirror_mean_all_layers_fullheatmap.png</h3><img src="raport_assets/attention_loops/exp26_G2_JSON_mirror_mean_all_layers_fullheatmap.png" alt="raport_assets/attention_loops/exp26_G2_JSON_mirror_mean_all_layers_fullheatmap.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G3_meryt_echo_layer31_fullheatmap.png</h3><img src="raport_assets/attention_loops/exp26_G3_meryt_echo_layer31_fullheatmap.png" alt="raport_assets/attention_loops/exp26_G3_meryt_echo_layer31_fullheatmap.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G3_meryt_echo_mean_all_layers_fullheatmap.png</h3><img src="raport_assets/attention_loops/exp26_G3_meryt_echo_mean_all_layers_fullheatmap.png" alt="raport_assets/attention_loops/exp26_G3_meryt_echo_mean_all_layers_fullheatmap.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G4_baseline_conf_layer31_fullheatmap.png</h3><img src="raport_assets/attention_loops/exp26_G4_baseline_conf_layer31_fullheatmap.png" alt="raport_assets/attention_loops/exp26_G4_baseline_conf_layer31_fullheatmap.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G4_baseline_conf_mean_all_layers_fullheatmap.png</h3><img src="raport_assets/attention_loops/exp26_G4_baseline_conf_mean_all_layers_fullheatmap.png" alt="raport_assets/attention_loops/exp26_G4_baseline_conf_mean_all_layers_fullheatmap.png" /></div>
+<div class="figure-row"><h3>exp28_residual_pca_4layers.png</h3><img src="raport_assets/attention_loops/exp28_residual_pca_4layers.png" alt="exp28_residual_pca_4layers.png" /></div>
+<div class="figure-row"><h3>exp29_step3_response_only_pca.png</h3><img src="raport_assets/attention_loops/exp29_step3_response_only_pca.png" alt="exp29_step3_response_only_pca.png" /></div>
+<div class="figure-row"><h3>exp28_echo_heads_copyscore.png</h3><img src="raport_assets/attention_loops/exp28_echo_heads_copyscore.png" alt="exp28_echo_heads_copyscore.png" /></div>
+<div class="figure-row"><h3>exp28_echo_heads_differential.png</h3><img src="raport_assets/attention_loops/exp28_echo_heads_differential.png" alt="exp28_echo_heads_differential.png" /></div>
+<div class="figure-row"><h3>exp29_step1_G3_meryt_echo_L7H11_arrows.png</h3><img src="raport_assets/attention_loops/exp29_step1_G3_meryt_echo_L7H11_arrows.png" alt="exp29_step1_G3_meryt_echo_L7H11_arrows.png" /></div>
+<div class="figure-row"><h3>exp29_step1_G2_JSON_mirror_L7H11_arrows.png</h3><img src="raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png" alt="exp29_step1_G2_JSON_mirror_L7H11_arrows.png" /></div>
+<div class="figure-row"><h3>exp32_takeover_after_L10H3.png</h3><img src="raport_assets/attention_loops/exp32_takeover_after_L10H3.png" alt="exp32_takeover_after_L10H3.png" /></div>
+<div class="figure-row"><h3>exp32_takeover_after_L10H3_H4.png</h3><img src="raport_assets/attention_loops/exp32_takeover_after_L10H3_H4.png" alt="exp32_takeover_after_L10H3_H4.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp25_summary_4panels.svg</h3><img src="raport_assets/attention_loops/exp25_summary_4panels.svg" alt="raport_assets/attention_loops/exp25_summary_4panels.svg" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G1_JSON_trigger_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G1_JSON_trigger_barfromresponse.png" alt="raport_assets/attention_loops/exp26_G1_JSON_trigger_barfromresponse.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G2_JSON_mirror_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G2_JSON_mirror_barfromresponse.png" alt="raport_assets/attention_loops/exp26_G2_JSON_mirror_barfromresponse.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G3_meryt_echo_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G3_meryt_echo_barfromresponse.png" alt="raport_assets/attention_loops/exp26_G3_meryt_echo_barfromresponse.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp26_G4_baseline_conf_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G4_baseline_conf_barfromresponse.png" alt="raport_assets/attention_loops/exp26_G4_baseline_conf_barfromresponse.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp28_residual_pca_4layers.png</h3><img src="raport_assets/attention_loops/exp28_residual_pca_4layers.png" alt="raport_assets/attention_loops/exp28_residual_pca_4layers.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp29_step3_response_only_pca.png</h3><img src="raport_assets/attention_loops/exp29_step3_response_only_pca.png" alt="raport_assets/attention_loops/exp29_step3_response_only_pca.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp28_echo_heads_copyscore.png</h3><img src="raport_assets/attention_loops/exp28_echo_heads_copyscore.png" alt="raport_assets/attention_loops/exp28_echo_heads_copyscore.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp28_echo_heads_differential.png</h3><img src="raport_assets/attention_loops/exp28_echo_heads_differential.png" alt="raport_assets/attention_loops/exp28_echo_heads_differential.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp29_step1_G3_meryt_echo_L7H11_arrows.png</h3><img src="raport_assets/attention_loops/exp29_step1_G3_meryt_echo_L7H11_arrows.png" alt="raport_assets/attention_loops/exp29_step1_G3_meryt_echo_L7H11_arrows.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png</h3><img src="raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png" alt="raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp32_takeover_after_L7H11.png</h3><img src="raport_assets/attention_loops/exp32_takeover_after_L7H11.png" alt="raport_assets/attention_loops/exp32_takeover_after_L7H11.png" /></div>
+</body>
+</html>

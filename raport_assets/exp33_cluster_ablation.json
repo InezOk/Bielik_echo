@@ -1,0 +1,158 @@
+{
+  "G1_JSON_trigger": {
+    "NORMAL_total_copy": 12.484297119010135,
+    "NORMAL": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Jeśli masz jakieś pytania lub potrzebujesz pomocy, śmiało pytaj."
+    },
+    "L10_only": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć jak najlepiej potrafię.",
+      "identical_T03": true,
+      "identical_greedy": false,
+      "total_copy_after": 12.538645955880746,
+      "delta_total_copy": 0.054348836870611095
+    },
+    "L14_top": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć jak najlepiej potrafię.",
+      "identical_T03": true,
+      "identical_greedy": false,
+      "total_copy_after": 12.508347199894374,
+      "delta_total_copy": 0.024050080884238767
+    },
+    "L10+L14": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć jak najlepiej potrafię.",
+      "identical_T03": true,
+      "identical_greedy": false,
+      "total_copy_after": 12.503186016938127,
+      "delta_total_copy": 0.018888897927991977
+    },
+    "L10+L14_extended": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w jakikolwiek sposób mogę.",
+      "greedy": "Oczywiście! Jestem tu, aby pomóc Ci w jakikolwiek sposób mogę.",
+      "identical_T03": false,
+      "identical_greedy": false,
+      "total_copy_after": 12.695814895298643,
+      "delta_total_copy": 0.21151777628850787
+    }
+  },
+  "G2_JSON_mirror": {
+    "NORMAL_total_copy": 12.368770105221992,
+    "NORMAL": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds."
+    },
+    "L10_only": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    return weight_in_kg * 2.20462\n\nweight_in_lbs = calculate_weight(70)\nprint(f\"The weight in pounds",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_T03": false,
+      "identical_greedy": true,
+      "total_copy_after": 12.839476597063582,
+      "delta_total_copy": 0.4707064918415895
+    },
+    "L14_top": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "greedy": "The weight of an object is 70 kg.",
+      "identical_T03": true,
+      "identical_greedy": false,
+      "total_copy_after": 12.446543976015736,
+      "delta_total_copy": 0.07777387079374343
+    },
+    "L10+L14": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert weight from kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight",
+      "greedy": "The weight of an object is 70 kg.",
+      "identical_T03": false,
+      "identical_greedy": false,
+      "total_copy_after": 13.141252248707184,
+      "delta_total_copy": 0.7724821434851918
+    },
+    "L10+L14_extended": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    return weight_in_kg * 2.20462\n\nweight_in_lbs = 70\nweight_in_lbs = calculate_weight(weight_in_",
+      "greedy": "The function `calculate_weight` takes a single argument `weight_in_kg`, which represents the weight in kilograms.\n\nHere's an example of how you can use the function:\n\n```python\nresult = calculate_",
+      "identical_T03": false,
+      "identical_greedy": false,
+      "total_copy_after": 13.086219621540753,
+      "delta_total_copy": 0.7174495163187604
+    }
+  },
+  "G3_meryt_echo": {
+    "NORMAL_total_copy": 12.5776923023104,
+    "NORMAL": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie."
+    },
+    "L10_only": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku o godzinie 2.41 nad ranem w Berlinie podpisano akt kapitulacji III Rzeszy. Był to symboliczny koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. Był to koniec II wojny światowej.",
+      "identical_T03": false,
+      "identical_greedy": false,
+      "total_copy_after": 12.651565880992615,
+      "delta_total_copy": 0.07387357868221578
+    },
+    "L14_top": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie.",
+      "identical_T03": true,
+      "identical_greedy": true,
+      "total_copy_after": 12.563475573499401,
+      "delta_total_copy": -0.014216728810998447
+    },
+    "L10+L14": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku o godzinie 2.41 nad ranem w Berlinie podpisano akt kapitulacji III Rzeszy. Był to symboliczny koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "identical_T03": false,
+      "identical_greedy": false,
+      "total_copy_after": 12.681116171993985,
+      "delta_total_copy": 0.10342386968358497
+    },
+    "L10+L14_extended": {
+      "T03": "Tak, dokładnie. To był jeden z najważniejszych momentów II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach od wybuchu II wojny światowej, Niemcy oficjalnie poddały się aliantom. Był to koniec jednego z najtragiczniejszych konfliktów w historii ludzkości.",
+      "identical_T03": false,
+      "identical_greedy": false,
+      "total_copy_after": 12.769942959023991,
+      "delta_total_copy": 0.19225065671359154
+    }
+  },
+  "G4_baseline_conf": {
+    "NORMAL_total_copy": 11.66407600984584,
+    "NORMAL": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż."
+    },
+    "L10_only": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_T03": true,
+      "identical_greedy": true,
+      "total_copy_after": 12.272472911120257,
+      "delta_total_copy": 0.6083969012744177
+    },
+    "L14_top": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, Paryż jest stolicą Francji.",
+      "identical_T03": true,
+      "identical_greedy": false,
+      "total_copy_after": 11.601549242996766,
+      "delta_total_copy": -0.06252676684907321
+    },
+    "L10+L14": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, Paryż jest stolicą Francji.",
+      "identical_T03": true,
+      "identical_greedy": false,
+      "total_copy_after": 12.27432465346094,
+      "delta_total_copy": 0.6102486436151011
+    },
+    "L10+L14_extended": {
+      "T03": "Tak, to prawda. Paryż jest stolicą Francji i jest jednym z najbardziej znanych miast na świecie. Jest to miasto pełne zabytków, kultury i historii.",
+      "greedy": "Tak, to prawda. Paryż jest stolicą Francji i jest jednym z najważniejszych miast w Europie pod względem historycznym, kulturalnym i turystycznym.",
+      "identical_T03": false,
+      "identical_greedy": false,
+      "total_copy_after": 12.113955895181292,
+      "delta_total_copy": 0.4498798853354522
+    }
+  }
+}

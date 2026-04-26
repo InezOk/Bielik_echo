@@ -1,0 +1,146 @@
+{
+  "G1_JSON_trigger": {
+    "NORMAL": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Jeśli masz jakieś pytania lub potrzebujesz pomocy, śmiało pytaj."
+    },
+    "L7H11_only": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć jak najlepiej potrafię.",
+      "identical_T03": true,
+      "identical_greedy": false
+    },
+    "L10H4_only": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Jeśli masz jakieś pytania lub potrzebujesz pomocy, śmiało pytaj.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L10H3_only": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć jak najlepiej potrafię.",
+      "identical_T03": true,
+      "identical_greedy": false
+    },
+    "L10_pair_H3+H4": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć jak najlepiej potrafię.",
+      "identical_T03": true,
+      "identical_greedy": false
+    },
+    "L7H11+L10H4": {
+      "T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Jeśli masz jakieś pytania lub potrzebujesz pomocy, śmiało pytaj.",
+      "identical_T03": true,
+      "identical_greedy": true
+    }
+  },
+  "G2_JSON_mirror": {
+    "NORMAL": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds."
+    },
+    "L7H11_only": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L10H4_only": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L10H3_only": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    return weight_in_kg * 2.20462\n\nweight = calculate_weight(70)\nprint(weight)\n```",
+      "greedy": "The weight of an object is 70 kg.",
+      "identical_T03": false,
+      "identical_greedy": false
+    },
+    "L10_pair_H3+H4": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    return weight_in_kg * 2.20462\n\nweight_in_lbs = calculate_weight(70)\nprint(f\"The weight in pounds",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_T03": false,
+      "identical_greedy": true
+    },
+    "L7H11+L10H4": {
+      "T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_T03": true,
+      "identical_greedy": true
+    }
+  },
+  "G3_meryt_echo": {
+    "NORMAL": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie."
+    },
+    "L7H11_only": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L10H4_only": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L10H3_only": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku o godzinie 2.41 nad ranem w Berlinie podpisano akt kapitulacji III Rzeszy. Był to symboliczny koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. Był to koniec II wojny światowej.",
+      "identical_T03": false,
+      "identical_greedy": false
+    },
+    "L10_pair_H3+H4": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku o godzinie 2.41 nad ranem w Berlinie podpisano akt kapitulacji III Rzeszy. Był to symboliczny koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. Był to koniec II wojny światowej.",
+      "identical_T03": false,
+      "identical_greedy": false
+    },
+    "L7H11+L10H4": {
+      "T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie.",
+      "identical_T03": true,
+      "identical_greedy": true
+    }
+  },
+  "G4_baseline_conf": {
+    "NORMAL": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż."
+    },
+    "L7H11_only": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L10H4_only": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L10H3_only": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L10_pair_H3+H4": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_T03": true,
+      "identical_greedy": true
+    },
+    "L7H11+L10H4": {
+      "T03": "Tak, stolica Francji to Paryż.",
+      "greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_T03": true,
+      "identical_greedy": true
+    }
+  }
+}

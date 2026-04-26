@@ -1,0 +1,1242 @@
+{
+  "G1_JSON_trigger": {
+    "label": "JSON_TRIGGER (ollama wygenerowało JSON dla merytorycznego promptu)",
+    "prompt": "Moja wiedza jest do Twojej dyspozycji.",
+    "response": "<tool_call> {\"name\": \"get_user_details\", \"arguments\": {\"user_id\": 3}}</tool_call> \n<tool_call> {\"name\": \"get_news_articles\", \"arguments\": {\"query\": \"technologia\", \"country\": \"Polska\"}}</tool_call>",
+    "seq_len": 99,
+    "pivot_pos": 21,
+    "resp_start": 22,
+    "pivot_data": [
+      {
+        "position": 21,
+        "current_token": "\\n",
+        "predicting_next_position": 22,
+        "actual_next_token": "<tool_call>",
+        "actual_next_prob": 0.014472803100943565,
+        "actual_next_rank": 10,
+        "top10": [
+          {
+            "token": "O",
+            "raw_token_id": 31940,
+            "prob": 0.5475975275039673
+          },
+          {
+            "token": "Tak",
+            "raw_token_id": 17359,
+            "prob": 0.04708210378885269
+          },
+          {
+            "token": "Wi",
+            "raw_token_id": 8305,
+            "prob": 0.03485294058918953
+          },
+          {
+            "token": "Z",
+            "raw_token_id": 31943,
+            "prob": 0.02891775406897068
+          },
+          {
+            "token": "Cze",
+            "raw_token_id": 30761,
+            "prob": 0.028337182477116585
+          },
+          {
+            "token": "Ja",
+            "raw_token_id": 7861,
+            "prob": 0.02740824595093727
+          },
+          {
+            "token": "Nie",
+            "raw_token_id": 3885,
+            "prob": 0.026844309642910957
+          },
+          {
+            "token": "C",
+            "raw_token_id": 31935,
+            "prob": 0.02616211213171482
+          },
+          {
+            "token": "A",
+            "raw_token_id": 31928,
+            "prob": 0.022957082837820053
+          },
+          {
+            "token": "Jestem",
+            "raw_token_id": 22800,
+            "prob": 0.021972522139549255
+          }
+        ]
+      },
+      {
+        "position": 22,
+        "current_token": "<tool_call>",
+        "predicting_next_position": 23,
+        "actual_next_token": "·{",
+        "actual_next_prob": 0.9961556792259216,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "·{",
+            "raw_token_id": 10240,
+            "prob": 0.9961556792259216
+          },
+          {
+            "token": "{",
+            "raw_token_id": 31995,
+            "prob": 0.0038305397611111403
+          },
+          {
+            "token": "\\n",
+            "raw_token_id": 17,
+            "prob": 1.1496901606733445e-05
+          },
+          {
+            "token": ":",
+            "raw_token_id": 31937,
+            "prob": 1.5574626104353229e-06
+          },
+          {
+            "token": "·",
+            "raw_token_id": 31887,
+            "prob": 2.151171543118835e-07
+          },
+          {
+            "token": "·|",
+            "raw_token_id": 466,
+            "prob": 7.316054251305104e-08
+          },
+          {
+            "token": "im_end",
+            "raw_token_id": 4,
+            "prob": 6.416117059870885e-08
+          },
+          {
+            "token": "</tool_call>",
+            "raw_token_id": 6,
+            "prob": 3.4378523139366735e-08
+          },
+          {
+            "token": "·<",
+            "raw_token_id": 4144,
+            "prob": 3.255470559793139e-08
+          },
+          {
+            "token": "·[",
+            "raw_token_id": 1223,
+            "prob": 2.4854760027892553e-08
+          }
+        ]
+      },
+      {
+        "position": 23,
+        "current_token": "·{",
+        "predicting_next_position": 24,
+        "actual_next_token": "\"",
+        "actual_next_prob": 0.9999785423278809,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "\"",
+            "raw_token_id": 31927,
+            "prob": 0.9999785423278809
+          },
+          {
+            "token": "·\"",
+            "raw_token_id": 410,
+            "prob": 1.328632151853526e-05
+          },
+          {
+            "token": "<tool_call>",
+            "raw_token_id": 5,
+            "prob": 6.279965418798383e-06
+          },
+          {
+            "token": "`",
+            "raw_token_id": 31998,
+            "prob": 1.311983282903384e-06
+          },
+          {
+            "token": "\":",
+            "raw_token_id": 7510,
+            "prob": 1.7645871253080259e-07
+          },
+          {
+            "token": "'",
+            "raw_token_id": 31966,
+            "prob": 1.7007648978051293e-07
+          },
+          {
+            "token": "\"-",
+            "raw_token_id": 26127,
+            "prob": 4.712334700229803e-08
+          },
+          {
+            "token": "\"?",
+            "raw_token_id": 10090,
+            "prob": 4.639338868628329e-08
+          },
+          {
+            "token": "\\n",
+            "raw_token_id": 17,
+            "prob": 3.92097305734751e-08
+          },
+          {
+            "token": "*",
+            "raw_token_id": 31971,
+            "prob": 3.041693830141412e-08
+          }
+        ]
+      },
+      {
+        "position": 24,
+        "current_token": "\"",
+        "predicting_next_position": 25,
+        "actual_next_token": "na",
+        "actual_next_prob": 0.9951382279396057,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "na",
+            "raw_token_id": 268,
+            "prob": 0.9951382279396057
+          },
+          {
+            "token": "naz",
+            "raw_token_id": 25375,
+            "prob": 0.003598797135055065
+          },
+          {
+            "token": "qu",
+            "raw_token_id": 2425,
+            "prob": 0.00048026765580289066
+          },
+          {
+            "token": "para",
+            "raw_token_id": 2520,
+            "prob": 0.0002804193354677409
+          },
+          {
+            "token": "<tool_call>",
+            "raw_token_id": 5,
+            "prob": 0.00022026535589247942
+          },
+          {
+            "token": "id",
+            "raw_token_id": 2910,
+            "prob": 5.379980939324014e-05
+          },
+          {
+            "token": "co",
+            "raw_token_id": 633,
+            "prob": 5.0905266107292846e-05
+          },
+          {
+            "token": "q",
+            "raw_token_id": 31978,
+            "prob": 1.3697961549041793e-05
+          },
+          {
+            "token": "fun",
+            "raw_token_id": 9274,
+            "prob": 1.276235343539156e-05
+          },
+          {
+            "token": "js",
+            "raw_token_id": 667,
+            "prob": 1.2446957953216042e-05
+          }
+        ]
+      },
+      {
+        "position": 27,
+        "current_token": "\":",
+        "predicting_next_position": 28,
+        "actual_next_token": "·\"",
+        "actual_next_prob": 1.0,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "·\"",
+            "raw_token_id": 410,
+            "prob": 1.0
+          },
+          {
+            "token": "\"",
+            "raw_token_id": 31927,
+            "prob": 1.0142528594769828e-08
+          },
+          {
+            "token": "·<",
+            "raw_token_id": 4144,
+            "prob": 2.6314932455306916e-09
+          },
+          {
+            "token": "·(\"",
+            "raw_token_id": 5609,
+            "prob": 1.3270243792717906e-09
+          },
+          {
+            "token": "·\",",
+            "raw_token_id": 27120,
+            "prob": 1.0027418895219853e-09
+          },
+          {
+            "token": "·\\",
+            "raw_token_id": 25273,
+            "prob": 4.466570169281425e-10
+          },
+          {
+            "token": "=\"",
+            "raw_token_id": 11480,
+            "prob": 5.37705296954627e-11
+          },
+          {
+            "token": "im_end",
+            "raw_token_id": 4,
+            "prob": 4.686595903025115e-11
+          },
+          {
+            "token": "·lo",
+            "raw_token_id": 803,
+            "prob": 3.1144638951152714e-11
+          },
+          {
+            "token": "·te",
+            "raw_token_id": 445,
+            "prob": 2.7111521361256052e-11
+          }
+        ]
+      }
+    ]
+  },
+  "G2_JSON_mirror": {
+    "label": "JSON_MIRROR (llama-cpp: prompt=JSON → response=identyczny JSON)",
+    "prompt": "{\"name\": \"calculate_weight\", \"arguments\": {\"weight_in_kg\": 70}}",
+    "response": "{\"name\": \"calculate_weight\", \"arguments\": {\"weight_in_kg\": 70}}",
+    "seq_len": 81,
+    "pivot_pos": 46,
+    "resp_start": 47,
+    "pivot_data": [
+      {
+        "position": 46,
+        "current_token": "\\n",
+        "predicting_next_position": 47,
+        "actual_next_token": "{",
+        "actual_next_prob": 0.03509965538978577,
+        "actual_next_rank": 8,
+        "top10": [
+          {
+            "token": "The",
+            "raw_token_id": 4862,
+            "prob": 0.15864552557468414
+          },
+          {
+            "token": "I",
+            "raw_token_id": 31942,
+            "prob": 0.13799040019512177
+          },
+          {
+            "token": "S",
+            "raw_token_id": 31926,
+            "prob": 0.08918952941894531
+          },
+          {
+            "token": "To",
+            "raw_token_id": 5076,
+            "prob": 0.08829498291015625
+          },
+          {
+            "token": "He",
+            "raw_token_id": 20561,
+            "prob": 0.08223642408847809
+          },
+          {
+            "token": "`",
+            "raw_token_id": 31998,
+            "prob": 0.07966797053813934
+          },
+          {
+            "token": "<tool_call>",
+            "raw_token_id": 5,
+            "prob": 0.06168052554130554
+          },
+          {
+            "token": "Th",
+            "raw_token_id": 31023,
+            "prob": 0.03738662600517273
+          },
+          {
+            "token": "{",
+            "raw_token_id": 31995,
+            "prob": 0.03509965538978577
+          },
+          {
+            "token": "You",
+            "raw_token_id": 29847,
+            "prob": 0.02926025725901127
+          }
+        ]
+      },
+      {
+        "position": 47,
+        "current_token": "{",
+        "predicting_next_position": 48,
+        "actual_next_token": "\"",
+        "actual_next_prob": 0.9474698305130005,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "\"",
+            "raw_token_id": 31927,
+            "prob": 0.9474698305130005
+          },
+          {
+            "token": "\\n",
+            "raw_token_id": 17,
+            "prob": 0.049992259591817856
+          },
+          {
+            "token": "'",
+            "raw_token_id": 31966,
+            "prob": 0.0006941339233890176
+          },
+          {
+            "token": "·\"",
+            "raw_token_id": 410,
+            "prob": 0.0006385776214301586
+          },
+          {
+            "token": "·",
+            "raw_token_id": 31887,
+            "prob": 0.0003059940063394606
+          },
+          {
+            "token": "im_end",
+            "raw_token_id": 4,
+            "prob": 0.0001503205712651834
+          },
+          {
+            "token": "`",
+            "raw_token_id": 31998,
+            "prob": 0.00012539395538624376
+          },
+          {
+            "token": "}",
+            "raw_token_id": 31996,
+            "prob": 0.0001228376931976527
+          },
+          {
+            "token": "\\",
+            "raw_token_id": 31988,
+            "prob": 4.81355054944288e-05
+          },
+          {
+            "token": "re",
+            "raw_token_id": 301,
+            "prob": 3.783863576245494e-05
+          }
+        ]
+      },
+      {
+        "position": 48,
+        "current_token": "\"",
+        "predicting_next_position": 49,
+        "actual_next_token": "na",
+        "actual_next_prob": 0.016155283898115158,
+        "actual_next_rank": 3,
+        "top10": [
+          {
+            "token": "re",
+            "raw_token_id": 301,
+            "prob": 0.5523394346237183
+          },
+          {
+            "token": "wei",
+            "raw_token_id": 7902,
+            "prob": 0.1765729784965515
+          },
+          {
+            "token": "cal",
+            "raw_token_id": 4659,
+            "prob": 0.1484595388174057
+          },
+          {
+            "token": "na",
+            "raw_token_id": 268,
+            "prob": 0.016155283898115158
+          },
+          {
+            "token": "Re",
+            "raw_token_id": 8214,
+            "prob": 0.014343312941491604
+          },
+          {
+            "token": "o",
+            "raw_token_id": 31891,
+            "prob": 0.01114393025636673
+          },
+          {
+            "token": "We",
+            "raw_token_id": 12095,
+            "prob": 0.007854302413761616
+          },
+          {
+            "token": "st",
+            "raw_token_id": 275,
+            "prob": 0.003991081845015287
+          },
+          {
+            "token": "a",
+            "raw_token_id": 31888,
+            "prob": 0.0034808178897947073
+          },
+          {
+            "token": "we",
+            "raw_token_id": 505,
+            "prob": 0.0034442273899912834
+          }
+        ]
+      },
+      {
+        "position": 49,
+        "current_token": "na",
+        "predicting_next_position": 50,
+        "actual_next_token": "me",
+        "actual_next_prob": 0.9998496770858765,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "me",
+            "raw_token_id": 646,
+            "prob": 0.9998496770858765
+          },
+          {
+            "token": "mes",
+            "raw_token_id": 6679,
+            "prob": 5.473887358675711e-05
+          },
+          {
+            "token": "med",
+            "raw_token_id": 17541,
+            "prob": 3.7229332519927993e-05
+          },
+          {
+            "token": "ture",
+            "raw_token_id": 8864,
+            "prob": 1.4314570762508083e-05
+          },
+          {
+            "token": "tural",
+            "raw_token_id": 2745,
+            "prob": 1.0758441021607723e-05
+          },
+          {
+            "token": "tive",
+            "raw_token_id": 15176,
+            "prob": 9.754496204550378e-06
+          },
+          {
+            "token": "tion",
+            "raw_token_id": 3911,
+            "prob": 7.057960374368122e-06
+          },
+          {
+            "token": "vi",
+            "raw_token_id": 1526,
+            "prob": 2.1026000922574895e-06
+          },
+          {
+            "token": "ming",
+            "raw_token_id": 8721,
+            "prob": 1.967013986359234e-06
+          },
+          {
+            "token": "m",
+            "raw_token_id": 31903,
+            "prob": 1.3742898090640665e-06
+          }
+        ]
+      },
+      {
+        "position": 52,
+        "current_token": "·\"",
+        "predicting_next_position": 53,
+        "actual_next_token": "cal",
+        "actual_next_prob": 0.9863033890724182,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "cal",
+            "raw_token_id": 4659,
+            "prob": 0.9863033890724182
+          },
+          {
+            "token": "get",
+            "raw_token_id": 16408,
+            "prob": 0.0019653153140097857
+          },
+          {
+            "token": "ca",
+            "raw_token_id": 417,
+            "prob": 0.0007176846847869456
+          },
+          {
+            "token": "cale",
+            "raw_token_id": 3583,
+            "prob": 0.0006686361157335341
+          },
+          {
+            "token": "c",
+            "raw_token_id": 31898,
+            "prob": 0.0005648810183629394
+          },
+          {
+            "token": "wei",
+            "raw_token_id": 7902,
+            "prob": 0.00047950708540156484
+          },
+          {
+            "token": "ex",
+            "raw_token_id": 23775,
+            "prob": 0.0003371601924300194
+          },
+          {
+            "token": "a",
+            "raw_token_id": 31888,
+            "prob": 0.0003234364849049598
+          },
+          {
+            "token": "re",
+            "raw_token_id": 301,
+            "prob": 0.0003117136948276311
+          },
+          {
+            "token": "cali",
+            "raw_token_id": 21497,
+            "prob": 0.0002377279888605699
+          }
+        ]
+      }
+    ]
+  },
+  "G3_meryt_echo": {
+    "label": "MERYT_ECHO (llama-cpp: prompt=fakt → identyczna verbatim odpowiedź)",
+    "prompt": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom.",
+    "response": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom.",
+    "seq_len": 79,
+    "pivot_pos": 45,
+    "resp_start": 46,
+    "pivot_data": [
+      {
+        "position": 45,
+        "current_token": "\\n",
+        "predicting_next_position": 46,
+        "actual_next_token": "Tak",
+        "actual_next_prob": 0.5650202035903931,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "Tak",
+            "raw_token_id": 17359,
+            "prob": 0.5650202035903931
+          },
+          {
+            "token": "To",
+            "raw_token_id": 5076,
+            "prob": 0.08374889940023422
+          },
+          {
+            "token": "O",
+            "raw_token_id": 31940,
+            "prob": 0.033873774111270905
+          },
+          {
+            "token": "Dob",
+            "raw_token_id": 28526,
+            "prob": 0.029255148023366928
+          },
+          {
+            "token": "W",
+            "raw_token_id": 31925,
+            "prob": 0.018572751432657242
+          },
+          {
+            "token": "Do",
+            "raw_token_id": 8801,
+            "prob": 0.017143798992037773
+          },
+          {
+            "token": "Nie",
+            "raw_token_id": 3885,
+            "prob": 0.015283139422535896
+          },
+          {
+            "token": "C",
+            "raw_token_id": 31935,
+            "prob": 0.01260446198284626
+          },
+          {
+            "token": "A",
+            "raw_token_id": 31928,
+            "prob": 0.010552514344453812
+          },
+          {
+            "token": "P",
+            "raw_token_id": 31920,
+            "prob": 0.010241756215691566
+          }
+        ]
+      },
+      {
+        "position": 46,
+        "current_token": "Tak",
+        "predicting_next_position": 47,
+        "actual_next_token": ",",
+        "actual_next_prob": 0.9814716577529907,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": ",",
+            "raw_token_id": 31909,
+            "prob": 0.9814716577529907
+          },
+          {
+            "token": "·jest",
+            "raw_token_id": 403,
+            "prob": 0.013695131987333298
+          },
+          {
+            "token": "·właśnie",
+            "raw_token_id": 1441,
+            "prob": 0.0009380413684993982
+          },
+          {
+            "token": "·jak",
+            "raw_token_id": 482,
+            "prob": 0.0009031876106746495
+          },
+          {
+            "token": ".",
+            "raw_token_id": 31917,
+            "prob": 0.0008525908342562616
+          },
+          {
+            "token": "!",
+            "raw_token_id": 31964,
+            "prob": 0.000362700957339257
+          },
+          {
+            "token": "·zgadza",
+            "raw_token_id": 12736,
+            "prob": 0.00026491115568205714
+          },
+          {
+            "token": "·dokładnie",
+            "raw_token_id": 4042,
+            "prob": 0.0002430222084512934
+          },
+          {
+            "token": "·masz",
+            "raw_token_id": 4115,
+            "prob": 0.00014923039998393506
+          },
+          {
+            "token": "że",
+            "raw_token_id": 316,
+            "prob": 0.00011720424663508311
+          }
+        ]
+      },
+      {
+        "position": 47,
+        "current_token": ",",
+        "predicting_next_position": 48,
+        "actual_next_token": "·dokładnie",
+        "actual_next_prob": 0.40875327587127686,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "·dokładnie",
+            "raw_token_id": 4042,
+            "prob": 0.40875327587127686
+          },
+          {
+            "token": "·to",
+            "raw_token_id": 373,
+            "prob": 0.17214135825634003
+          },
+          {
+            "token": "·zgadza",
+            "raw_token_id": 12736,
+            "prob": 0.07944867759943008
+          },
+          {
+            "token": "·",
+            "raw_token_id": 31887,
+            "prob": 0.06122018024325371
+          },
+          {
+            "token": "·masz",
+            "raw_token_id": 4115,
+            "prob": 0.04630586504936218
+          },
+          {
+            "token": "·właśnie",
+            "raw_token_id": 1441,
+            "prob": 0.02594243362545967
+          },
+          {
+            "token": "·Niemcy",
+            "raw_token_id": 4734,
+            "prob": 0.010469981469213963
+          },
+          {
+            "token": "·w",
+            "raw_token_id": 265,
+            "prob": 0.00934312492609024
+          },
+          {
+            "token": "·dobrze",
+            "raw_token_id": 1703,
+            "prob": 0.008137296885251999
+          },
+          {
+            "token": "·zgadzam",
+            "raw_token_id": 27181,
+            "prob": 0.007442960049957037
+          }
+        ]
+      },
+      {
+        "position": 48,
+        "current_token": "·dokładnie",
+        "predicting_next_position": 49,
+        "actual_next_token": ".",
+        "actual_next_prob": 0.548471212387085,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": ".",
+            "raw_token_id": 31917,
+            "prob": 0.548471212387085
+          },
+          {
+            "token": "·",
+            "raw_token_id": 31887,
+            "prob": 0.2099906951189041
+          },
+          {
+            "token": ",",
+            "raw_token_id": 31909,
+            "prob": 0.07252033799886703
+          },
+          {
+            "token": "·w",
+            "raw_token_id": 265,
+            "prob": 0.04547027125954628
+          },
+          {
+            "token": "·tak",
+            "raw_token_id": 494,
+            "prob": 0.0385371595621109
+          },
+          {
+            "token": "!",
+            "raw_token_id": 31964,
+            "prob": 0.02453007362782955
+          },
+          {
+            "token": "·to",
+            "raw_token_id": 373,
+            "prob": 0.021880298852920532
+          },
+          {
+            "token": "·o",
+            "raw_token_id": 278,
+            "prob": 0.009378364309668541
+          },
+          {
+            "token": "·tego",
+            "raw_token_id": 597,
+            "prob": 0.001960923196747899
+          },
+          {
+            "token": "·od",
+            "raw_token_id": 357,
+            "prob": 0.0017117279348894954
+          }
+        ]
+      },
+      {
+        "position": 51,
+        "current_token": "8",
+        "predicting_next_position": 52,
+        "actual_next_token": "·maja",
+        "actual_next_prob": 0.9961185455322266,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "·maja",
+            "raw_token_id": 2409,
+            "prob": 0.9961185455322266
+          },
+          {
+            "token": "·Maja",
+            "raw_token_id": 19288,
+            "prob": 0.001185808563604951
+          },
+          {
+            "token": ".",
+            "raw_token_id": 31917,
+            "prob": 0.0005055658402852714
+          },
+          {
+            "token": "·May",
+            "raw_token_id": 13415,
+            "prob": 0.00035359914181753993
+          },
+          {
+            "token": "·kwietnia",
+            "raw_token_id": 2571,
+            "prob": 0.00025975031894631684
+          },
+          {
+            "token": "-",
+            "raw_token_id": 31919,
+            "prob": 0.00023662266903556883
+          },
+          {
+            "token": "·marca",
+            "raw_token_id": 2453,
+            "prob": 0.00020596342801582068
+          },
+          {
+            "token": "·Maj",
+            "raw_token_id": 9016,
+            "prob": 0.00016206357395276427
+          },
+          {
+            "token": "·września",
+            "raw_token_id": 2488,
+            "prob": 8.657926809974015e-05
+          },
+          {
+            "token": "·maj",
+            "raw_token_id": 7812,
+            "prob": 8.363778761122376e-05
+          }
+        ]
+      }
+    ]
+  },
+  "G4_baseline_conf": {
+    "label": "BASELINE_CONFIRMATION (prompt=fakt → 'Tak, + rephrase')",
+    "prompt": "Stolica Francji to Paryż.",
+    "response": "Tak, stolica Francji to Paryż.",
+    "seq_len": 29,
+    "pivot_pos": 20,
+    "resp_start": 21,
+    "pivot_data": [
+      {
+        "position": 20,
+        "current_token": "\\n",
+        "predicting_next_position": 21,
+        "actual_next_token": "Tak",
+        "actual_next_prob": 0.4449911415576935,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "Tak",
+            "raw_token_id": 17359,
+            "prob": 0.4449911415576935
+          },
+          {
+            "token": "O",
+            "raw_token_id": 31940,
+            "prob": 0.09000000357627869
+          },
+          {
+            "token": "Nie",
+            "raw_token_id": 3885,
+            "prob": 0.06653548032045364
+          },
+          {
+            "token": "T",
+            "raw_token_id": 31931,
+            "prob": 0.04729171469807625
+          },
+          {
+            "token": "P",
+            "raw_token_id": 31920,
+            "prob": 0.035402603447437286
+          },
+          {
+            "token": "To",
+            "raw_token_id": 5076,
+            "prob": 0.028459597378969193
+          },
+          {
+            "token": "C",
+            "raw_token_id": 31935,
+            "prob": 0.02553143911063671
+          },
+          {
+            "token": "Po",
+            "raw_token_id": 4056,
+            "prob": 0.020390603691339493
+          },
+          {
+            "token": "S",
+            "raw_token_id": 31926,
+            "prob": 0.01742514781653881
+          },
+          {
+            "token": "**",
+            "raw_token_id": 5444,
+            "prob": 0.016837134957313538
+          }
+        ]
+      },
+      {
+        "position": 21,
+        "current_token": "Tak",
+        "predicting_next_position": 22,
+        "actual_next_token": ",",
+        "actual_next_prob": 0.9845851063728333,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": ",",
+            "raw_token_id": 31909,
+            "prob": 0.9845851063728333
+          },
+          {
+            "token": "·jest",
+            "raw_token_id": 403,
+            "prob": 0.008958603255450726
+          },
+          {
+            "token": "!",
+            "raw_token_id": 31964,
+            "prob": 0.004721041303128004
+          },
+          {
+            "token": ".",
+            "raw_token_id": 31917,
+            "prob": 0.000927140295971185
+          },
+          {
+            "token": "·właśnie",
+            "raw_token_id": 1441,
+            "prob": 0.00012132855772506446
+          },
+          {
+            "token": "·zgadza",
+            "raw_token_id": 12736,
+            "prob": 0.0001082773960661143
+          },
+          {
+            "token": "·",
+            "raw_token_id": 31887,
+            "prob": 6.035758997313678e-05
+          },
+          {
+            "token": "·masz",
+            "raw_token_id": 4115,
+            "prob": 5.5785243603168055e-05
+          },
+          {
+            "token": "·jak",
+            "raw_token_id": 482,
+            "prob": 4.237459143041633e-05
+          },
+          {
+            "token": "\\n",
+            "raw_token_id": 17,
+            "prob": 3.2033764000516385e-05
+          }
+        ]
+      },
+      {
+        "position": 22,
+        "current_token": ",",
+        "predicting_next_position": 23,
+        "actual_next_token": "·stolica",
+        "actual_next_prob": 0.11417774856090546,
+        "actual_next_rank": 2,
+        "top10": [
+          {
+            "token": "·to",
+            "raw_token_id": 373,
+            "prob": 0.20724982023239136
+          },
+          {
+            "token": "·Paryż",
+            "raw_token_id": 20198,
+            "prob": 0.18924196064472198
+          },
+          {
+            "token": "·stolica",
+            "raw_token_id": 30975,
+            "prob": 0.11417774856090546
+          },
+          {
+            "token": "·zgadza",
+            "raw_token_id": 12736,
+            "prob": 0.060029372572898865
+          },
+          {
+            "token": "·masz",
+            "raw_token_id": 4115,
+            "prob": 0.05665133148431778
+          },
+          {
+            "token": "·popraw",
+            "raw_token_id": 4638,
+            "prob": 0.05604223161935806
+          },
+          {
+            "token": "·Warszawa",
+            "raw_token_id": 3718,
+            "prob": 0.02572285570204258
+          },
+          {
+            "token": "·odpowiedź",
+            "raw_token_id": 6531,
+            "prob": 0.017328273504972458
+          },
+          {
+            "token": "·",
+            "raw_token_id": 31887,
+            "prob": 0.016675850376486778
+          },
+          {
+            "token": "·poprawnie",
+            "raw_token_id": 25290,
+            "prob": 0.016049982979893684
+          }
+        ]
+      },
+      {
+        "position": 23,
+        "current_token": "·stolica",
+        "predicting_next_position": 24,
+        "actual_next_token": "·Francji",
+        "actual_next_prob": 0.9906467199325562,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": "·Francji",
+            "raw_token_id": 3799,
+            "prob": 0.9906467199325562
+          },
+          {
+            "token": "·Polski",
+            "raw_token_id": 1400,
+            "prob": 0.002415935043245554
+          },
+          {
+            "token": "·Fran",
+            "raw_token_id": 1495,
+            "prob": 0.0012292079627513885
+          },
+          {
+            "token": "·Republiki",
+            "raw_token_id": 10926,
+            "prob": 0.0011474218918010592
+          },
+          {
+            "token": "·kraju",
+            "raw_token_id": 1662,
+            "prob": 0.0006401755381375551
+          },
+          {
+            "token": "·i",
+            "raw_token_id": 285,
+            "prob": 0.0004086053231731057
+          },
+          {
+            "token": "·Francja",
+            "raw_token_id": 10265,
+            "prob": 0.000342909392202273
+          },
+          {
+            "token": "·Paryża",
+            "raw_token_id": 14323,
+            "prob": 0.00021018480765633285
+          },
+          {
+            "token": "·państwa",
+            "raw_token_id": 1969,
+            "prob": 0.00015177410386968404
+          },
+          {
+            "token": "·jest",
+            "raw_token_id": 403,
+            "prob": 0.00012615846935659647
+          }
+        ]
+      },
+      {
+        "position": 26,
+        "current_token": "·Paryż",
+        "predicting_next_position": 27,
+        "actual_next_token": ".",
+        "actual_next_prob": 0.8467316031455994,
+        "actual_next_rank": 0,
+        "top10": [
+          {
+            "token": ".",
+            "raw_token_id": 31917,
+            "prob": 0.8467316031455994
+          },
+          {
+            "token": "·(",
+            "raw_token_id": 406,
+            "prob": 0.06877811998128891
+          },
+          {
+            "token": ",",
+            "raw_token_id": 31909,
+            "prob": 0.04254603758454323
+          },
+          {
+            "token": "!",
+            "raw_token_id": 31964,
+            "prob": 0.03577347844839096
+          },
+          {
+            "token": "·",
+            "raw_token_id": 31887,
+            "prob": 0.0012856553075835109
+          },
+          {
+            "token": "im_end",
+            "raw_token_id": 4,
+            "prob": 0.0010446265805512667
+          },
+          {
+            "token": "·i",
+            "raw_token_id": 285,
+            "prob": 0.0004617412341758609
+          },
+          {
+            "token": "·(\"",
+            "raw_token_id": 5609,
+            "prob": 0.0003748538438230753
+          },
+          {
+            "token": "·*",
+            "raw_token_id": 1125,
+            "prob": 0.00032793291029520333
+          },
+          {
+            "token": "·-",
+            "raw_token_id": 319,
+            "prob": 0.00021712160378228873
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "step1_detail": {
+    "G3_meryt_echo": {
+      "echo_arrows_count": 29,
+      "top_arrows": [
+        [
+          47,
+          7,
+          0.8656418323516846
+        ],
+        [
+          74,
+          34,
+          0.8516278266906738
+        ],
+        [
+          76,
+          36,
+          0.8476378917694092
+        ],
+        [
+          48,
+          8,
+          0.8330589532852173
+        ],
+        [
+          62,
+          22,
+          0.814293384552002
+        ],
+        [
+          73,
+          33,
+          0.8133077025413513
+        ],
+        [
+          71,
+          31,
+          0.7985397577285767
+        ],
+        [
+          56,
+          16,
+          0.7238991856575012
+        ],
+        [
+          55,
+          15,
+          0.7038416266441345
+        ],
+        [
+          75,
+          35,
+          0.7008303999900818
+        ]
+      ]
+    },
+    "G2_JSON_mirror": {
+      "echo_arrows_count": 31,
+      "top_arrows": [
+        [
+          70,
+          29,
+          0.8576653003692627
+        ],
+        [
+          71,
+          30,
+          0.8504515290260315
+        ],
+        [
+          73,
+          32,
+          0.7891961932182312
+        ],
+        [
+          77,
+          36,
+          0.7169278860092163
+        ],
+        [
+          57,
+          16,
+          0.6826019883155823
+        ],
+        [
+          69,
+          28,
+          0.6418086886405945
+        ],
+        [
+          76,
+          35,
+          0.5366340279579163
+        ],
+        [
+          51,
+          10,
+          0.5037657618522644
+        ],
+        [
+          53,
+          12,
+          0.4791279137134552
+        ],
+        [
+          72,
+          31,
+          0.46153494715690613
+        ]
+      ]
+    }
+  },
+  "step2_ablation": {
+    "G1_JSON_trigger": {
+      "prompt": "Moja wiedza jest do Twojej dyspozycji.",
+      "normal_T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "ablated_T03": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+      "normal_greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Jeśli masz jakieś pytania lub potrzebujesz pomocy, śmiało pytaj.",
+      "ablated_greedy": "Oczywiście! Jestem tutaj, aby pomóc Ci w każdej sprawie, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć jak najlepiej potrafię.",
+      "identical_T03": true
+    },
+    "G2_JSON_mirror": {
+      "prompt": "{\"name\": \"calculate_weight\", \"arguments\": {\"weight_in_kg\": 70}}",
+      "normal_T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "ablated_T03": "```python\ndef calculate_weight(weight_in_kg):\n    # Convert kilograms to pounds\n    weight_in_lbs = weight_in_kg * 2.20462\n    return weight_in_l",
+      "normal_greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "ablated_greedy": "The weight of 70 kg is approximately 154.32 pounds.",
+      "identical_T03": true
+    },
+    "G3_meryt_echo": {
+      "prompt": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom.",
+      "normal_T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "ablated_T03": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej.",
+      "normal_greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie.",
+      "ablated_greedy": "Tak, dokładnie. 8 maja 1945 roku, po 6 latach i 8 miesiącach walk, Niemcy oficjalnie poddały się aliantom. To był koniec II wojny światowej w Europie.",
+      "identical_T03": true
+    },
+    "G4_baseline_conf": {
+      "prompt": "Stolica Francji to Paryż.",
+      "normal_T03": "Tak, stolica Francji to Paryż.",
+      "ablated_T03": "Tak, stolica Francji to Paryż.",
+      "normal_greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "ablated_greedy": "Tak, to prawda. Stolicą Francji jest Paryż.",
+      "identical_T03": true
+    }
+  },
+  "step3_pca_per_case_response_lens": {
+    "G1_JSON_trigger": 76,
+    "G2_JSON_mirror": 33,
+    "G3_meryt_echo": 32,
+    "G4_baseline_conf": 7
+  }
+}
