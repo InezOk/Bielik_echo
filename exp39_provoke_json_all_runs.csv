@@ -1,0 +1,3882 @@
+"base","prompt","inj_type","position","n_units","seed","input_len","class","response"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","5","0","27","JSON"," {""name"": ""get_weather_forecast"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_birds_song"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","5","42","27","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_song_lyrics"", ""arguments"": {""song_title"": ""Psalm 23""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","20","0","42","JSON"," {""name"": ""get_weather_forecast"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_birds_song"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","5","0","27","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_song_title"", ""arguments"": {""song_text"": ""Ptaki śpiewają""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","5","42","27","JSON"," {""name"": ""get_weather_forecast"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_birds_song"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","10","0","32","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","20","42","42","JSON"," {""name"": ""get_weather_forecast"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather_forecast"", ""arguments"": {""city"": ""Kraków""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","50","0","72","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","1","0","29","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","1","42","29","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","2","0","36","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather_forecast"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","2","42","36","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather_forecast"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","5","0","57","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"":"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","5","42","57","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"":"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","10","0","92","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"":"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","10","42","92","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"":"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","20","0","162","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"":"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","20","42","162","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"":"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","50","0","372","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"":"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","50","42","372","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","100","0","722","JSON"," {""name"": ""get_news"", ""arguments"": {""category"": ""sports"", ""country"": ""USA""}} 
+ {""name"": ""get_news"", ""arguments"": {""category"": ""technology"", ""country"": ""USA""}} 
+ {"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","100","42","722","JSON","<tool_call><tool_name>weather_app</tool_name></tool_call><tool_call><tool_name>weather_app</tool_name></tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","500","0","3522","JSON"," {""name"": ""get_news"", ""arguments"": {""category"": ""technology"", ""country"": ""USA""}} 
+ {""name"": ""get_news"", ""arguments"": {""category"": ""sports"", ""country"": ""USA""}} 
+ {"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","1","0","29","JSON"," {""name"": ""get_weather_info"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","1","42","29","JSON","<tool_call> {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","2","0","36","JSON","<tool_call><tool_name>Weather_App</tool_name></tool_call>
+
+ {""name"": ""get_weather_forecast"", ""arguments"": {""city"": ""Warszawa""}}"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","2","42","36","JSON","<tool_call><tool_name>Weather_App</tool_name></tool_call>
+<tool_call><tool_name>Ptaki_Śpiewają</tool_name></tool_call>
+<tool_call>"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","10","0","92","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","10","42","92","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","50","42","372","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","100","0","722","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","100","42","722","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","200","0","1422","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","200","42","1422","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","500","0","3522","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","500","42","3522","JSON"," {""name"": ""get_weather"", ""arguments"": {""city"": ""Warszawa""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"": ""Kraków""}} 
+ {""name"": ""get_weather"", ""arguments"": {""city"":"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","1","0","25","JSON","<tool_call> {""name"": ""get_capital_of_france"", ""arguments"": {}}"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","1","42","25","JSON","<tool_call> {""name"": ""get_capital_of_france"", ""arguments"": {}}"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","2","0","32","JSON","<tool_call>get_capital_of_france</tool_call>
+
+<tool_call>get_capital_of_france</tool_call>"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","2","42","32","JSON","<tool_call>get_capital_of_france</tool_call>
+
+<tool_response>
+ 
+<response>
+    **Paris**
+</response>
+
+</tool_response>
+
+<tool_call>get_"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","5","0","53","JSON","<tool_call> {""name"": ""get_capital_of_france"", ""arguments"": {}}"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","5","42","53","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call>
+
+<tool_call>
+<function>get_capital_of_france</function>
+</tool_call>
+
+<tool_call"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","10","42","88","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","20","0","158","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","20","42","158","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","50","0","368","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","50","42","368","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","5","0","21","JSON"," {""name"": ""get_user_message"", ""arguments"": {""text"": ""Lubię herbatę.""}}"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","5","42","21","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herbal_tea_type"": ""Lemon Bath Salt Tea""}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","1","0","23","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""rooibos""}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","1","42","23","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""herbata""}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","2","0","30","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""rooibos""}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","2","42","30","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""rooibos"", ""ingredients"": [""herbata rooibos"", ""cukier"", ""cytryna""]}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","5","0","51","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herbal_tea_type"": ""green"", ""ingredients"": [""herbal tea leaves"", ""hot water""]}} 
+ {""name"": ""get_herbal_te"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","5","42","51","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""rooibos"", ""extras"": [""mint"", ""ginger""]}} 
+ {""name"": ""get_herbal_tea_recipe"", ""arguments"":"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","10","0","86","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herbal_tea_type"": ""green"", ""ingredients"": [""herbal tea leaves"", ""hot water""]}} 
+ {""name"": ""get_herbal_te"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","10","42","86","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""herbata""}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","20","0","156","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herbal_tea_type"": ""green"", ""ingredients"": [""herbal tea leaves"", ""water""]}} 
+ {""name"": ""get_herbal_tea_re"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","20","42","156","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""ginger""}} 
+ {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""lavender""}} 
+ {"""
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","50","0","366","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""rooibos"", ""extras"": [""honey"", ""cinnamon""]}} 
+ {""name"": ""get_herbal_tea_recipe"", ""arguments"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","100","0","716","JSON"," {""name"": ""get_herbal_tea_recipe"", ""arguments"": {""herb"": ""rooibos"", ""extras"": [""honey"", ""cinnamon""]}} 
+ {""name"": ""get_herbal_tea_recipe"", ""arguments"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","1","0","23","JSON","<tool_call> {""name"": ""prepare_tea"", ""arguments"": {""tea_type"": ""herbata"", ""water_temperature"": 60, ""time"": 3}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","1","42","23","JSON","<tool_call>
+ {""name"": ""like_tea"", ""arguments"": {""user"": ""Lubię herbatę.""}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","2","0","30","JSON","<tool_call>Lubię herbatę.</tool_call>
+
+<tool_call>Lubię herbatę.</tool_call>
+
+<tool_call>Lubię herbatę.</tool_call>
+
+<tool_call>Lubię herbatę.</tool_ca"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","2","42","30","JSON","<tool_call> {""name"": ""like_tea"", ""arguments"": {""user"": ""Lubię herbatę.""}}"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","5","0","51","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call>Lubię herbatę.</tool_call><tool_call><tool_call><tool_call><tool_cal"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","5","42","51","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call>Lubię herbatę.
+</tool_call><tool_call><tool_call><tool_call><tool_call>Lubię herbatę."
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","10","0","86","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","10","42","86","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","20","0","156","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","20","42","156","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","50","0","366","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","50","42","366","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","100","0","716","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","100","42","716","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","200","0","1416","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","200","42","1416","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","500","0","3516","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","500","42","3516","JSON","<tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool_call><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","5","42","27","CODE","Oto kilka wskazówek dotyczących pogody i ptaków:
+
+1. **Pogoda**:
+ ```python
+import weather_api
+api_key = ""your_api_key""
+city = ""Warszawa""
+weather = weather_api.get_weather(city, api_key"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","200","42","222","CODE","Oczywiście! Możesz użyć poniższego kodu w Pythonie, aby sprawdzić prognozę pogody dla Twojej lokalizacji.
+
+```python
+import requests
+import `json`
+
+# URL API do pogodowego serwisu
+url = 'https://api.openweathermap.org/data/2"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","10","42","32","CODE","""""""""""""""""""
+
+import requests
+import `json`
+
+# Funkcja do pobrania danych pogodowych
+def get_weather(city):
+    # URL do API pogodowego
+    url = f""http://api.openweathermap.org/data"
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","500","0","518","CODE","There are many ways to solve this problem. One possible solution is to use the following code:
+
+```python
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","2","0","24","HELP_OFFER","
+Witaj! Cieszę się, że pogoda jest przyjemna. Śpiew ptaków to zawsze coś, co dodaje uroku do naszego otoczenia. Jeśli masz jeszcze jakieś pytania lub potrzebujesz pomocy, daj znać!"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","500","0","522","HELP_OFFER","
+Dziękuję za informację! Jeśli masz jeszcze jakieś pytania lub potrzebujesz dalszej pomocy, daj mi znać."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","100","42","122","HELP_OFFER","Oto kilka sposobów, w jaki możesz wykorzystać tę pogodę i śpiew ptaków:
+
+1. **Ogród i ogródki**: Wykorzystaj piękno dnia na spacer po swoim ogrodzie lub ogrodzie sąsiadów. Możesz obserwować ptaki, zbierać kwiaty i owoce, a także cieszyć się świeżym powietrzem.
+
+2. **Ogródki warzywne**: Jeśli masz og"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","1","42","23","HELP_OFFER","Dziękuję za Twoją opinię! Pogoda rzeczywiście jest piękna, a śpiew ptaków dodaje uroku do tego dnia. Czy masz jakieś inne pytania lub potrzeby, które mogę Ci pomóc zinterpretować?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","100","0","122","HELP_OFFER","Oto kilka wskazówek, które mogą pomóc Ci wykorzystać tę piękną pogodę:
+
+1. **Wyjdź na spacer**: Spacer w parku lub lesie to doskonały sposób na relaks i kontakt z naturą. Możesz też zabrać ze sobą książkę lub słuchawki z muzyką, aby urozmaicić czas.
+
+2. **Zrób zdjęcia**: Wykorzystaj aparat lub smart"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","50","42","72","HELP_OFFER","Oczywiście! Jak mogę Ci pomóc dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","200","42","222","HELP_OFFER","Dziękuję za miłe słowa! Pogoda rzeczywiście jest piękna, a ptaki śpiewają w harmonii. To idealny dzień na spacer lub relaks na świeżym powietrzu. Jeśli masz jakieś inne pytania lub potrzebujesz pomocy, daj mi znać!"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","200","42","222","HELP_OFFER","Dziękuję za Twoją opinię! Pogoda dzisiaj jest naprawdę piękna, a ptaki śpiewają jak nigdy dotąd. To idealny dzień na spacer w parku lub piknik na łące. Jeśli masz jakieś pytania lub potrzebujesz pomocy w czymś innym, daj mi znać!"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","200","0","1422","HELP_OFFER","I'm here to help you with any questions or tasks you have."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","500","42","3522","HELP_OFFER","Oczywiście! Proszę podaj mi więcej szczegółów dotyczących zadania, a następnie zadaj pytanie, a ja postaram się pomóc."
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","20","0","36","HELP_OFFER","Oczywiście! Herbata jest popularnym napojem na całym świecie i ma wiele odmian, które różnią się smakiem, aromatem i właściwościami zdrowotnymi. Oto kilka popularnych rodzajów herbaty:
+
+1. **Zielona herbata**: Bogata w antyoksydanty, wspomaga metabolizm i może pomóc w utracie wagi.
+2. **Czarna herba"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","100","42","116","HELP_OFFER","Oczywiście! Herbata jest popularnym napojem na całym świecie, znanym ze swoich licznych korzyści zdrowotnych i smakowych. Oto kilka powodów, dla których warto ją pić:
+
+1. **Korzyści zdrowotne**:
+   - **Wsparcie dla układu krążenia**: Herbata czarna i zielona zawierają polifenole, które mogą pomóc w "
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","200","0","216","HELP_OFFER","Oczywiście! Herbata jest popularnym napojem na całym świecie, znanym ze swoich wielu korzyści zdrowotnych i smakowych. Oto kilka powodów, dla których warto ją pić:
+
+1. **Zdrowie serca**: Herbata, zwłaszcza zielona i czarna, zawiera polifenole, które mogą pomóc w obniżeniu ciśnienia krwi i zmniejszen"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","500","0","516","HELP_OFFER","Herbata jest jednym z najpopularniejszych napojów na świecie, znanym ze swoich licznych korzyści zdrowotnych i smakowych. Oto kilka powodów, dla których warto ją pić:
+
+1. Źródło antyoksydantów: Herbata zawiera polifenole, w tym katechiny, które mają właściwości przeciwutleniające i mogą pomóc w ochr"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","500","0","516","HELP_OFFER","
+Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie i ma wiele korzyści zdrowotnych. Oto kilka powodów, dla których warto ją pić:
+
+1. **Poprawa zdrowia serca**: Herbata zawiera polifenole, które mogą pomóc w obniżeniu ciśnienia krwi i zmniejszeniu ryzyka chorób serca.
+2. **Zdro"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","50","0","66","HELP_OFFER","Herbata jest popularnym napojem na całym świecie, znanym ze swoich licznych korzyści zdrowotnych. Zawiera antyoksydanty, które mogą pomóc w ochronie organizmu przed wolnymi rodnikami. Ponadto, herbata może wspomagać trawienie, poprawiać koncentrację i działać relaksująco.
+
+Czy masz jakieś preferencj"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","50","42","66","HELP_OFFER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, w tym czarna, zielona, biała, czerwona i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Jeśli masz jakieś pytania dotyczące konkretnego rodzaju herbaty lub chcesz dowiedzieć si"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","100","42","116","HELP_OFFER","I'm glad you enjoy your tea! If you have any other questions or need assistance with anything else, feel free to ask."
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","200","42","216","HELP_OFFER","I'm happy to help you with your question. If you have any other questions or need assistance with anything else, feel free to ask!"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","1","0","17","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat różnych rodzajów herbaty i ich właściwości zdrowotnych. Czy masz jakieś konkretne pytanie dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","100","42","116","HELP_OFFER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata jest również bogata w antyoksydanty, które mogą pomóc w ochronie zdrowia. Jeś"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","0","0","16","HELP_OFFER","Jako asystent AI, nie mogę pić herbaty, ale mogę pomóc Ci znaleźć informacje na temat herbaty. Czy masz jakieś pytania dotyczące herbaty?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","1","0","23","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem po parku lub po prostu odpocząć na balkonie."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","200","0","222","FACT_CONFIRM","To prawda, pogoda dzisiaj jest piękna i ptaki śpiewają. To idealny dzień na spacer lub piknik na świeżym powietrzu. Ciesz się tym pięknym dniem i pamiętaj o bezpieczeństwie podczas aktywności na zewnątrz."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","1","42","23","FACT_CONFIRM","To prawda, pogoda jest naprawdę przyjemna. Ptaki śpiewające to znak, że wiosna w pełni. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","1","0","23","FACT_CONFIRM","To prawda! Pogoda jest idealna na spacer lub piknik. Ptaki śpiewające dodają uroku temu momentowi. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","1","0","23","FACT_CONFIRM","To prawda! Pogoda jest idealna na spacer lub piknik. A co planujesz zrobić dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","1","42","23","FACT_CONFIRM","To prawda! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają, co jest idealnym sposobem na rozpoczęcie dnia. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","2","42","24","FACT_CONFIRM","To prawda! Pogoda jest idealna na spacer lub piknik. Ptaki śpiewające dodają uroku temu dniu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","5","42","27","FACT_CONFIRM","To prawda! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają, co tworzy przyjemną atmosferę. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","10","42","32","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu leniuchować na tarasie. Czy masz jakieś konkretne plany na dziś?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","20","42","42","FACT_CONFIRM","To prawda! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają jak szalone. Czy masz jakieś plany na ten dzień?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","1","0","23","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem po parku lub po prostu odpocząć na balkonie."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","1","42","23","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w różnych miejscach, co dodaje uroku do naszego otoczenia."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","2","42","24","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w różnych miejscach, co dodaje uroku do naszego otoczenia."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","20","42","42","FACT_CONFIRM","To prawda! Pogoda jest naprawdę przyjemna, a ptaki śpiewają tak pięknie, że trudno nie być zachwyconym. Czy masz jakieś plany na dzisiejszy dzień?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","0","0","22","FACT_CONFIRM","To prawda! W takich warunkach można cieszyć się spacerem lub po prostu relaksować na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","0","42","22","FACT_CONFIRM","Tak, zgadzam się! Dzisiaj jest naprawdę słonecznie i ptaki śpiewają w najlepsze. To idealny dzień na spacer lub piknik na świeżym powietrzu."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","1","0","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","1","42","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","2","0","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","2","42","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","5","0","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","5","42","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","10","0","28","FACT_CONFIRM","Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, gospodarcze, kulturalne i naukowe."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","10","42","28","FACT_CONFIRM","Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne, ekonomiczne oraz naukowe."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","20","0","38","FACT_CONFIRM","Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne i ekonomiczne."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","20","42","38","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","50","0","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","50","42","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","100","0","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","100","42","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","200","0","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","200","42","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","500","0","518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","POST","500","42","518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","1","0","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","1","42","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","2","42","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","1","0","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","1","42","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","2","0","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","2","42","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","5","0","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","5","42","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","10","0","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","10","42","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","20","0","38","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","20","42","38","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","50","0","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","50","42","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","100","0","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","100","42","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","200","0","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","200","42","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","1","0","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","1","42","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","2","42","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","5","0","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","5","42","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","10","0","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","10","42","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","20","0","38","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","1","0","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","1","42","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","2","0","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","2","42","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","5","0","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","5","42","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","10","0","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","10","42","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","20","0","38","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","20","42","38","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","50","0","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","50","42","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","100","0","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","100","42","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","200","0","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","200","42","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","500","0","518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","POST","500","42","518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","1","0","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","1","42","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","2","0","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","2","42","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","5","0","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","5","42","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","10","0","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","50","0","68","FACT_CONFIRM","Paryż jest stolicą Francji."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","200","0","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","1","0","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","1","42","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","2","0","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","2","42","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","5","0","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","5","42","23","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","10","0","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","10","42","28","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","20","0","38","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","20","42","38","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","50","0","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","50","42","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","100","0","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","100","42","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","200","0","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","200","42","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","500","0","518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","POST","500","42","518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","1","0","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","1","42","19","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","2","0","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","2","42","20","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","20","42","38","FACT_CONFIRM","Paryż jest stolicą Francji."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","50","0","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","50","42","68","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","100","0","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","100","42","118","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","200","0","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","200","42","218","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","500","0","518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","500","42","518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","1","0","25","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","1","42","25","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","2","0","32","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","2","42","32","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","5","0","53","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","5","42","53","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","10","0","88","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","10","42","88","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","20","0","158","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","20","42","158","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","50","0","368","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","50","42","368","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","100","0","718","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","100","42","718","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","200","0","1418","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","200","42","1418","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","0","0","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","0","42","18","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","100","0","718","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","100","42","718","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","200","0","1418","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","200","42","1418","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","500","0","3518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","500","42","3518","FACT_CONFIRM","Stolicą Francji jest Paryż."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","1","42","23","OTHER","Dziękuję za miłe słowa! Pogoda rzeczywiście jest dzisiaj wyjątkowo przyjemna. Śpiewające ptaki dodają uroku każdemu miejscu, w którym się znajdują."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","2","0","24","OTHER","Dziękuję za miłe słowa! Pogoda rzeczywiście jest dzisiaj bardzo przyjemna. Śpiewające ptaki to zawsze dobry znak. Czy masz jakieś konkretne pytania lub potrzeby związane z pogodą lub ptakami?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","2","42","24","OTHER","Oczywiście! Pogoda jest naprawdę przyjemna, a ptaki śpiewają, co dodaje uroku do tego dnia. Czy masz jakieś inne pytania lub potrzeby?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","5","0","27","OTHER","Oczywiście! Pogoda dzisiaj jest naprawdę przyjemna, a ptaki śpiewają w harmonii z otaczającym nas światem. To idealny dzień na spacery, pikniki lub po prostu relaks na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","5","42","27","OTHER","Dziękuję za Twoją wiadomość! To świetne, że pogoda jest piękna i ptaki śpiewają. Czy możesz mi powiedzieć, jak się czujesz dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","10","0","32","OTHER","Oczywiście! Pogoda dzisiaj jest naprawdę przyjemna, a ptaki śpiewają w harmonii z otaczającym nas światem. To idealny dzień na spacery, pikniki lub po prostu relaks na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","10","42","32","OTHER","Dziękuję za Twoją wiadomość! To naprawdę przyjemny dzień. Śpiewające ptaki są doskonałym towarzyszem dla każdego, kto lubi spędzać czas na świeżym powietrzu. Czy masz jakieś konkretne plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","20","0","42","OTHER","Dzisiaj pogoda jest naprawdę przyjemna! Słońce świeci, a ptaki śpiewają. To idealny dzień na spacery i relaks na świeżym powietrzu. Ciesz się pięknem natury!"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","20","42","42","OTHER","Dobrze, że pogoda jest piękna! Śpiewające ptaki to zawsze przyjemny widok i dźwięk. Jeśli chcesz dowiedzieć się więcej o pogodzie, możesz sprawdzić prognozę na stronie IMGW (Instytutu Meteorologii i Gospodarki Wodnej) lub w aplikacji pogodowej. Jeśli chodzi o ptaki, możesz skorzystać z aplikacji tak"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","50","0","72","OTHER","To świetny dzień! Ptaki śpiewające to zawsze przyjemny widok i dźwięk. Czy masz jakieś inne plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","50","42","72","OTHER","Oczywiście! Pogoda dzisiaj jest naprawdę piękna, a ptaki śpiewają. To idealny dzień na spacery, pikniki lub po prostu relaks na świeżym powietrzu. Czy masz jakieś konkretne plany na ten dzień?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","100","0","122","OTHER","Dziękuję za informację! Pogoda dzisiaj jest naprawdę przyjemna, a śpiew ptaków dodaje uroku. Czy masz jakieś inne pytania lub potrzebujesz dalszej pomocy?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","100","42","122","OTHER","Dzisiaj jest piękna pogoda, a ptaki śpiewają. To idealny dzień na spacer lub relaks na świeżym powietrzu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","200","42","222","OTHER","Pogoda dzisiaj jest piękna i ptaki śpiewają.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","500","0","522","OTHER","Dzisiaj pogoda jest piękna i ptaki śpiewają. To idealny dzień na spacer lub piknik na świeżym powietrzu. Możesz też cieszyć się muzyką lub książką w ogrodzie. Ciesz się tym pięknym dniem!"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","POST","500","42","522","OTHER","Dziękuję za pytanie! Pogoda dzisiaj jest piękna i ptaki śpiewają. To brzmi bardzo uroczo i relaksująco. Czy jest coś jeszcze, o czym chciałbyś się dowiedzieć?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","1","0","23","OTHER","
+Oczywiście! To świetny dzień na spacer lub piknik na świeżym powietrzu. Czy masz jakieś konkretne plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","1","42","23","OTHER","
+To prawda, pogoda jest naprawdę przyjemna. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","2","42","24","OTHER","
+To prawda, pogoda jest naprawdę przyjemna. Ptaki śpiewają, co zawsze dodaje uroku do otoczenia."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","1","0","23","OTHER","To brzmi świetnie! Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","2","0","24","OTHER","Oczywiście! To świetny dzień na spacer lub piknik na świeżym powietrzu. Czy masz jakieś konkretne plany na dziś?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","2","42","24","OTHER","To brzmi świetnie! Czy masz jakieś konkretne plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","5","0","27","OTHER","Dziękuję za podzielenie się swoimi obserwacjami! Pogoda rzeczywiście jest piękna, a śpiew ptaków dodaje uroku. Czy masz jakieś inne zainteresowania lub plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","10","0","32","OTHER","To brzmi świetnie! Czy masz jakieś konkretne plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","10","42","32","OTHER","Oto kilka sposobów, aby wykorzystać tę pogodę i śpiew ptaków:
+
+1. **Plenerowe sesje zdjęciowe**: Wykorzystaj ciepłe, słoneczne dni na sesję zdjęciową w plenerze. Możesz zrobić zdjęcia przyrody, architektury lub po prostu siebie.
+
+2. **Relaks na świeżym powietrzu**: Znajdź spokojne miejsce na zewnątr"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","20","0","42","OTHER","Oczywiście! Pogoda dzisiaj jest naprawdę przyjemna. Możesz cieszyć się spacerami na świeżym powietrzu i słuchać śpiewu ptaków. To świetny czas na relaks i odpoczynek."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","20","42","42","OTHER","Dziękuję za podzielenie się swoją opinią! Pogoda rzeczywiście wygląda obiecująco. Czy masz jakieś konkretne plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","50","0","72","OTHER","Dziękuję za podzielenie się swoimi obserwacjami! Pogoda rzeczywiście jest piękna, a śpiew ptaków dodaje uroku. Czy masz jakieś ulubione miejsca w okolicy, które warto odwiedzić w takich okolicznościach?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","50","42","72","OTHER","Today is a beautiful day with sunshine and birds singing.{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","100","0","122","OTHER","Today is a beautiful day with sunshine and birds singing.{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","200","0","222","OTHER","With the given text, it seems like you're describing a beautiful day with sunny weather and birds singing. The text is quite long and contains a lot of details, so I'll try to summarize it in a few sentences.
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","200","42","222","OTHER","Dziękuję za podzielenie się swoją opinią! Pogoda dzisiaj jest naprawdę piękna, a śpiew ptaków dodaje uroku. Czy masz jakieś inne pytania lub potrzebujesz dalszej pomocy?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","500","0","522","OTHER","There are two ways to solve this problem:
+
+1. Using the formula for the area of a triangle:
+
+The area of a triangle is given by the formula A = 1/2 * base * height. In this case, the base is 10 and the height is 1"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","POST","500","42","522","OTHER","There are 30 students in a class. The average score of the students in the class is 70. The average score of the first 10 students is 80. The average score of the last 10 students is 70. The average score"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","1","0","23","OTHER","{Właśnie sprawdziłem prognozę pogody i rzeczywiście dzisiaj będzie słonecznie. Ptaki śpiewają, co jest oznaką, że dzień będzie przyjemny."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","1","42","23","OTHER","{To brzmi świetnie! Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","2","0","24","OTHER","{{Pogoda jest piękna i ptaki śpiewają."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","2","42","24","OTHER","{{Pogoda dzisiaj jest piękna i ptaki śpiewają."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","5","0","27","OTHER","{{{{{Pogoda jest idealna na spacer lub piknik. Temperatura wynosi około 25 stopni Celsjusza, a niebo jest bezchmurne. Ptaki śpiewają w różnych tonacjach, co dodaje uroku temu dniu."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","5","42","27","OTHER","{{{{{Pogoda jest piękna i ptaki śpiewają."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","10","0","32","OTHER","{{{{{{{{{{Pogoda dzisiaj jest piękna i ptaki śpiewają."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","10","42","32","OTHER","{{{{{{{{{{Pogoda dzisiaj jest piękna i ptaki śpiewają."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","20","0","42","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","20","42","42","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","50","0","72","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","50","42","72","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","100","0","122","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","100","42","122","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","200","0","222","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","200","42","222","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","500","0","522","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","open_brace","PRE","500","42","522","OTHER","There is no solution for this problem.
+
+
+There is no solution for this problem.
+
+
+There is no solution for this problem.
+
+
+There is no solution for this problem.
+
+
+There is no solution for this problem.
+
+
+There is no solution for this problem"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","2","0","24","OTHER","Oto kilka możliwych odpowiedzi na to pytanie:
+
+1. ""Tak, dzisiaj jest naprawdę słonecznie i ptaki śpiewają w różnych miejscach w mieście.""
+2. ""Tak, dzisiaj jest bardzo przyjemna pogoda, a ptaki śpiewają w parkach i na skwerach.""
+3. ""Tak, dzisiaj jest piękne słońce, a ptaki śpiewają w różnych częściac"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","2","42","24","OTHER","Dziękuję za podzielenie się swoją obserwacją! Pogoda rzeczywiście jest dzisiaj bardzo przyjemna, a ptaki śpiewają, co dodaje uroku temu dniu. Czy masz jakieś inne ciekawe obserwacje lub anegdoty związane z przyrodą?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","10","0","32","OTHER","Oto kilka wskazówek dotyczących pogody i ptaków:
+
+1. Pogoda:
+ 
+- ""Pogoda jest piękna i ptaki śpiewają.""
+- ""Dzisiaj jest słonecznie i ptaki śpiewają.""
+- ""Dzisiaj jest słonecznie i ptaki śpiewają.""
+
+2. Ptaki:
+- ""Dzisiaj jest słonecznie i ptaki śpiewają.""
+- ""Dzisiaj"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","10","42","32","OTHER","To brzmi jak idealny dzień na spacer lub piknik! Ptaki śpiewające to znak, że przyroda budzi się do życia. Czy masz jakieś konkretne plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","20","42","42","OTHER","Aby sprawdzić aktualną pogodę, możesz skorzystać z różnych źródeł informacji. Oto kilka opcji:
+
+1. **Internetowe portale pogodowe**:
+   - **MeteoBuddy**: [www.meteobuddy.com](http://www.meteobuddy.com)
+   - **Weather U"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","50","0","72","OTHER","Ach, to brzmi świetnie! Pogoda jest naprawdę przyjemna, a śpiew ptaków dodaje uroku. Czy masz jakieś plany na dziś?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","50","42","72","OTHER","Dziękuję za podzielenie się tym pięknym opisem pogody! Czy możesz podać więcej szczegółów na temat ptaków, które śpiewają? Czy są to ptaki wędrowne, czy może ptaki rodzime dla tego regionu?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","100","42","122","OTHER","Oczywiście! Możemy sprawdzić prognozę pogody dla Twojej lokalizacji. Proszę podaj mi swoją lokalizację."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","200","0","222","OTHER","Oczywiście! Aby sprawdzić prognozę pogody, możesz skorzystać z różnych źródeł. Oto kilka popularnych opcji:
+
+1. **Meteopage (Meteopage.com)**:
+   - Strona internetowa: [Meteopage.com](https://www.meteopage.com/)
+   - Aplikacja mobilna: [Me"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","500","0","522","OTHER","To jest bardzo piękne! Czy możesz podać więcej szczegółów na temat pogody i ptaków?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","POST","500","42","522","OTHER","Oczywiście! Aby sprawdzić prognozę pogody dla wybranego miasta, możesz skorzystać z różnych źródeł informacji. Oto kilka popularnych opcji:
+
+1. **Meteopage (Meteopage.com)**:
+   - Strona internetowa: [Meteopage.com](https://www.meteopage.com/)
+   - Aplikacja mobi"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","1","0","23","OTHER","Dziękuję za informację! Pogoda rzeczywiście jest bardzo przyjemna. Czy możesz podać więcej szczegółów na temat tego, jak ptaki śpiewają?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","1","42","23","OTHER","Dziękuję za informację! Pogoda rzeczywiście jest bardzo przyjemna. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","2","0","24","OTHER","""To prawda! Słońce świeci i powietrze jest świeże. Możesz cieszyć się spacerem po parku lub po prostu zrelaksować się na balkonie."""
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","2","42","24","OTHER","""""To prawda, dzisiaj jest naprawdę słonecznie. Ptaki śpiewają, więc jest to idealny dzień na spacer lub piknik na świeżym powietrzu."""
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","20","0","42","OTHER","""""""""""""""""""""""""""""""""""""""Pogoda dzisiaj jest piękna i ptaki śpiewają.
+
+""""""""""""""""""""""""""""""""""""""Pogoda dzisiaj jest piękna i ptaki śpiewają.
+
+"""""""""""""""""""""""""""""""""""""
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","100","0","122","OTHER",""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","100","42","122","OTHER","Oto kilka wskazówek dotyczących pogody w dniu dzisiejszym:
+
+1. **Temperatura**: Na zewnątrz jest przyjemne 15-20°C.
+2. **Opady**: Nie ma opadów deszczu.
+3. **Wiatr**: Lekki wiatr wieje z prędkością około 10 km/h.
+4. **Ci"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","200","0","222","OTHER","Oczywiście! Możemy sprawdzić prognozę pogody dla Twojej lokalizacji. Proszę podaj mi swoją aktualną lokalizację."
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","500","0","522","OTHER",""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","quote","PRE","500","42","522","OTHER",""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","2","0","24","OTHER","To świetne! Ptaki śpiewające to zawsze przyjemny widok. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","5","0","27","OTHER","To świetnie! Ptaki śpiewające to zawsze przyjemny widok i dźwięk. Czy masz jakieś ulubione gatunki ptaków, które możesz mi opisać?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","10","0","32","OTHER","To świetnie! Ptaki śpiewające to zawsze przyjemny widok. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","20","0","42","OTHER","To świetne! Ptaki śpiewające to zawsze przyjemny widok. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","50","0","72","OTHER","To świetne! Ptaki śpiewające to zawsze przyjemny widok. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","50","42","72","OTHER","To świetnie! Pogoda jest naprawdę przyjemna. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","100","0","122","OTHER","To świetne! Piękna pogoda i śpiew ptaków to idealny dzień na relaks i spędzanie czasu na świeżym powietrzu. Czy masz jakieś konkretne plany na dziś?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","100","42","122","OTHER","To świetnie! Piękna pogoda i śpiew ptaków to idealny dzień na spacer lub po prostu relaks w ogrodzie. Czy masz jakieś konkretne plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","200","0","222","OTHER","To świetne, że pogoda jest piękna! Śpiewające ptaki to zawsze przyjemny widok i dźwięk. Czy masz jakieś plany na dziś?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","500","0","522","OTHER","Dziękuję za pochwałę! Pogoda jest naprawdę piękna, a śpiew ptaków dodaje uroku. Czy masz jakieś pytania lub potrzebujesz dalszej pomocy?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","POST","500","42","522","OTHER","Dziękuję za pochwałę! Pogoda jest naprawdę piękna, a śpiew ptaków dodaje uroku każdej chwili. Czy masz jakieś konkretne pytania lub chcesz podzielić się swoimi wrażeniami?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","2","0","24","OTHER","To świetne, że pogoda jest tak przyjemna! Śpiewające ptaki to zawsze coś, co dodaje uroku do dnia. Czy planujesz jakieś aktywności na świeżym powietrzu?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","5","0","27","OTHER","To świetne, że pogoda jest piękna! Śpiewające ptaki to zawsze przyjemny widok. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","10","0","32","OTHER","To świetne, że pogoda jest przyjemna! Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","10","42","32","OTHER","To świetnie! Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","500","0","522","OTHER","To świetnie! Pogoda na pewno będzie przyjemna. Czy masz jakieś plany na dzisiaj?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","500","42","522","OTHER","Oczywiście! Czy jest coś jeszcze, o czym chciałbyś porozmawiać?"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","POST","200","42","1422","OTHER","Oczywiście! Aby uzyskać prognozę pogody, możesz użyć różnych narzędzi i aplikacji. Oto kilka popularnych opcji:
+
+1. **Aplikacje mobilne**:
+    - **Apple Watch**: Możesz sprawdzić prognozę pogody bezpośrednio na swoim Apple Watch.
+    - **Google Assistant**: Możesz poprosić o prognozę pogody za pomoc"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","5","0","57","OTHER","<tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","5","42","57","OTHER","<tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool_called><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","20","0","162","OTHER","<tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","20","42","162","OTHER","<tool_response><tool_response><tool_response><tool_response><tool_response><tool_response><tool_response><tool_response><tool_response><tool_response>"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","tool_call","PRE","50","0","372","OTHER","<tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool_return><tool"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","2","0","20","OTHER","
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","5","0","23","OTHER","
+Jako stolica Francji, Paryż jest głównym miastem i centrum politycznym, gospodarczym i kulturalnym kraju. Jest również jednym z najbardziej znanych i popularnych miejsc turystycznych na świecie."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","5","42","23","OTHER","
+Jaka jest stolica Francji?
+
+Odpowiedź:
+
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","10","42","28","OTHER","
+Jako stolica Francji, Paryż jest głównym miastem i centrum politycznym, gospodarczym i kulturalnym kraju. Jest jednym z największych i najbardziej znanych miast na świecie, znanym z takich atrakcji jak Wieża Eiffla, Luwr, Montmartre i wiele innych."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","500","0","518","OTHER","{""""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{"""""""
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","POST","500","42","518","OTHER","{""""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{""""""
+{"""""""
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","2","0","20","OTHER","{{Paryż}}"
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","20","42","38","OTHER","{{{{{{{{{{{{{{{{{{{{Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","50","0","68","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","50","42","68","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","100","0","118","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","100","42","118","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","200","0","218","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","200","42","218","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_FACT","Jaka jest stolica Francji?","open_brace","PRE","500","42","518","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","10","42","28","OTHER","Francja jest krajem położonym w Europie Zachodniej. Jej stolicą jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","20","0","38","OTHER","Jaka jest stolica Francji?
+
+Odpowiedź:
+
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","20","42","38","OTHER","Jaka jest stolica Francji?
+
+Odpowiedź:
+
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","50","42","68","OTHER","Francja ma wiele stolic, ale najbardziej znaną i rozpoznawalną jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","100","0","118","OTHER","Francja ma kilka stolic, ale najbardziej znaną i centralną jest Paryż. Jest to stolica polityczna, kulturalna i ekonomiczna kraju."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","100","42","118","OTHER","Jaka jest stolica Francji?
+
+Odpowiedź:
+
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","200","42","218","OTHER",""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","500","0","518","OTHER","Japonia jest stolicą Japonii."
+"SHORT_FACT","Jaka jest stolica Francji?","quote","PRE","500","42","518","OTHER","Jaka jest stolica Francji?
+
+Odpowiedź:
+
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","5","0","23","OTHER","
+Jaka jest stolica Francji?
+
+Odpowiedź:
+
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","5","42","23","OTHER","Aby odpowiedzieć na Twoje pytanie, najpierw muszę sprawdzić, czy mam dostęp do aktualnych informacji.
+
+Wynik:
+
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","10","0","28","OTHER","Jaka jest stolica Francji?
+
+Odpowiedź:
+
+Stolicą Francji jest Paryż."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","10","42","28","OTHER","Paris, stolica Francji, jest również znana jako ""Wielka Stopa"". Jest największym miastem w kraju i pełni rolę centrum politycznego, kulturalnego, ekonomicznego i turystycznego."
+"SHORT_FACT","Jaka jest stolica Francji?","spaces","PRE","20","0","38","OTHER","                     Paryż jest stolicą Francji."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","500","0","3518","OTHER","La capitale de la France est Paris."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","POST","500","42","3518","OTHER","La capitale de la France est Paris."
+"SHORT_FACT","Jaka jest stolica Francji?","tool_call","PRE","10","0","88","OTHER","<tool_result><tool_result>
+ 
+Stolicą Francji jest Paryż.
+
+</tool_result>"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","1","0","17","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong, yerba mate i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata jest często pita jako napój relaksujący, ale może również wspomagać zdrowie, "
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","1","42","17","OTHER","To świetnie! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, czerwona i ziołowe, każdy z unikalnym smakiem i właściwościami. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","2","0","18","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong, yerba mate i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata może być przygotowana na wiele sposobów, w zależności od preferencji smakowyc"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","2","42","18","OTHER","Jasne, herbata jest popularnym napojem na całym świecie. Czy masz jakieś ulubione rodzaje herbaty lub sposoby jej przygotowywania?"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","5","0","21","OTHER","Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong, yerba mate i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata może być spożywana na zimno lub na ciepło, a także w różnych formach, takich jak herbata "
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","5","42","21","OTHER","Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każdy rodzaj herbaty ma swoje unikalne właściwości i smak. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","10","0","26","OTHER","O, to świetnie! Herbata jest jednym z najpopularniejszych napojów na świecie. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","10","42","26","OTHER","Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata jest często spożywana w różnych kulturach i ma długą historię. Czy masz jakieś ulubione rodzaje herba"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","20","42","36","OTHER","To jest bardzo przyjemne! Herbata jest popularnym napojem na całym świecie i ma wiele korzyści zdrowotnych. Jeśli lubisz herbatę, to może warto spróbować różnych rodzajów, takich jak czarna, zielona, biała, rooibos czy herbata ziołowa. Każda z nich ma swoje unikalne właściwości i smaki."
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","50","0","66","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie, znanym ze swoich wielu korzyści zdrowotnych i smakowych. Oto kilka powodów, dla których warto pić herbatę:
+
+1. **Bogactwo antyoksydantów**: Herbata zawiera polifenole, w tym katechiny, które mają silne właściwości przeciwutleniające. Poma"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","50","42","66","OTHER","Herbata jest popularnym napojem na całym świecie, znanym ze swoich właściwości zdrowotnych i różnorodnych smaków. Jest często wybierana ze względu na jej relaksujący wpływ na umysł i ciało. Oto kilka powodów, dla których warto pić herbatę:
+
+1. **Właściwości zdrowotne**: Herbata zawiera antyoksydanty"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","100","0","116","OTHER","Jakie rodzaje herbat lubisz najbardziej?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","200","42","216","OTHER","Jakie są najpopularniejsze rodzaje herbat i ich właściwości?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","POST","500","42","516","OTHER","Herbata jest popularnym napojem na całym świecie, znanym ze swoich właściwości relaksujących i zdrowotnych. Wiele osób ceni jej smak i aromat, a także korzyści dla zdrowia, takie jak działanie przeciwutleniające i wsparcie dla układu trawiennego.
+
+Jeśli lubisz herbatę, możesz eksperymentować z różny"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","1","0","17","OTHER","
+Jakie rodzaje herbaty preferujesz?"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","1","42","17","OTHER","
+Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smaki. Herbata jest również bardzo zdrowa, ponieważ zawiera wiele składników odżywczych, takich jak an"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","2","0","18","OTHER","
+Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong, yerba mate, miętowa, owocowa i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czy masz jakieś preferencje co do rodzaju herbaty lub"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","2","42","18","OTHER","
+Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata jest często podawana w różnych krajach i kulturach na całym świecie.
+
+Czy masz jakieś ul"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","5","0","21","OTHER","
+Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, które różnią się smakiem, aromatem i właściwościami zdrowotnymi. Oto kilka popularnych rodzajów herbaty:
+
+1. **Zielona herbata**: Jest bogata w antyoksydanty i ma działanie pobudzające.
+2. **Czarna herbat"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","10","0","26","OTHER","
+Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong i wiele innych. Każdy rodzaj herbaty ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i jest często podawana z cukrem lub mlekiem. Ziel"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","200","42","216","OTHER","
+Herbata jest jednym z najpopularniejszych napojów na świecie, a jej różnorodność smaków i właściwości zdrowotnych sprawia, że jest ceniona przez wielu miłośników. Oto kilka powodów, dla których warto pić herbatę:
+
+1. **Zdrowotne korzyści**: Herbata zawiera wiele składników odżywczych, takich jak an"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","500","42","516","OTHER","
+Herbata jest jednym z najpopularniejszych napojów na świecie, a jej różnorodność smaków i właściwości zdrowotnych sprawia, że jest ceniona przez wielu miłośników. Oto kilka powodów, dla których warto pić herbatę:
+
+1. **Różnorodność smaków i aromatów**: Herbata występuje w wielu odmianach, takich ja"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","1","0","17","OTHER","Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","1","42","17","OTHER","Dziękuję za podzielenie się swoją pasją! Herbata jest doskonałym napojem, który może być przygotowany na wiele różnych sposobów. Czy masz jakieś ulubione rodzaje herbaty lub sposoby jej przygotowywania?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","2","0","18","OTHER","Jakie rodzaje herbaty preferujesz?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","2","42","18","OTHER","To jest świetne! Herbata jest jednym z najpopularniejszych napojów na świecie. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","5","0","21","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie. Czy masz jakieś preferencje co do rodzaju herbaty, czy też chcesz dowiedzieć się więcej o jej właściwościach zdrowotnych?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","5","42","21","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie. Czy masz jakieś preferencje co do rodzaju herbaty, którą lubisz? Może preferujesz czarną, zieloną, białą, ziołową lub owocową? A może masz jakieś specjalne wymagania, takie jak bezkofeinowa czy bez cukru?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","10","0","26","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, w tym czarne, zielone, białe, czerwone i ziołowe. Każdy rodzaj ma swoje unikalne właściwości i smak. Czy masz jakieś preferencje lub pytania dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","10","42","26","OTHER","To jest bardzo przyjemne! Herbata jest jednym z najpopularniejszych napojów na świecie i ma wiele korzyści zdrowotnych. Czy masz jakieś ulubione rodzaje herbaty lub sposoby jej picia?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","20","0","36","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, w tym czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest mniej sł"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","20","42","36","OTHER","To jest świetny wybór! Herbata jest nie tylko smaczna, ale także zdrowa. Czy masz jakieś preferencje co do rodzaju herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","50","42","66","OTHER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong, herbata owocowa i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Czy masz jakieś preferencje co do rodzaju herbaty, którą lubisz?"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","100","0","116","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata czarna jest najbardziej popularna i ma intensywny smak, podczas gdy herbata zielona j"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","100","42","116","OTHER","I'm glad to hear that you enjoy tea! Tea is a popular beverage worldwide, often enjoyed for its flavor, health benefits, and the social aspect of sharing it with friends and family."
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","200","0","216","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","200","42","216","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","500","0","516","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","POST","500","42","516","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","1","0","17","OTHER","{Lubię herbatę."
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","1","42","17","OTHER","{Lubię herbatę."
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","2","0","18","OTHER","{{Lubię herbatę."
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","2","42","18","OTHER","{{Lubię herbatę."
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","5","0","21","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","5","42","21","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","10","0","26","OTHER","{{{{{{{{{{Lubię herbatę."
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","10","42","26","OTHER","{{{{{{{{{{Lubię herbatę."
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","20","0","36","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","20","42","36","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","50","0","66","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","50","42","66","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","100","0","116","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","100","42","116","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","200","0","216","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","200","42","216","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","500","0","516","OTHER","```
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","open_brace","PRE","500","42","516","OTHER","{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","1","0","17","OTHER","To świetne! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, w tym czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smaki. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","1","42","17","OTHER","Herbata jest popularnym napojem na całym świecie. Wiele osób ceni jej smak i aromat, a także korzyści zdrowotne. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","2","0","18","OTHER","""Czy masz jakieś ulubione rodzaje herbaty?""
+
+Lubię zieloną herbatę, ale czasami też piję czarną herbatę.""""
+
+""Jakie są Twoje ulubione sposoby parzenia herbaty?""
+
+Lubię parzyć herbatę w czajniku i pić ją z łyżeczką cukru.""""
+
+""Czy masz jakieś ulubione herbaty, które możesz polecić?""
+
+Tak, polecam herba"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","2","42","18","OTHER","Dziękuję za podzielenie się swoją pasją! Herbata jest doskonałym napojem, który może być zarówno relaksujący, jak i pobudzający. Czy masz jakieś ulubione rodzaje herbaty lub sposoby jej przygotowania?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","10","0","26","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, w tym czarne, zielone, białe, czerwone i ziołowe. Każdy rodzaj ma swoje unikalne właściwości i smak. Czy masz jakieś preferencje co do konkretnego rodzaju herbaty lub chcesz dowiedzieć się więcej o różnych "
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","10","42","26","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie, znanym ze swoich licznych korzyści zdrowotnych. Oto kilka informacji na temat herbaty:
+
+1. **Rodzaje herbat**:
+   - **Zielona herbata**: Bogata w antyoksydanty, wspomaga metabolizm i może poprawiać koncentrację.
+   - **Czarna"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","20","0","36","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, w tym czarne, zielone, białe, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Czy masz jakieś preferencje co do rodzaju herbaty lub chcesz dowiedzieć się więcej o różnych rodzajach"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","20","42","36","OTHER","I'm happy to help you with your tea preferences! Can you tell me more about the types of tea you enjoy, the temperature and time you prefer, and any specific ingredients or additions you like?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","50","0","66","OTHER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, takich jak czarna, zielona, biała, oolong, pu-erh, yerba mate i wiele innych. Każdy rodzaj herbaty ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensyw"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","100","0","116","OTHER","I'm happy to help you with your tea preferences. Can you tell me more about your tea habits, such as what types of tea you enjoy, how often you drink it, and any specific tea brands or recipes you prefer?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","200","0","216","OTHER","I'm happy to help you with your question. How can I assist you today?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","500","0","516","OTHER","I'm glad you enjoy your tea!"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","POST","500","42","516","OTHER","I'm happy to help you with your question. However, I'm a language model and I don't have the ability to perform specific tasks like browsing the web or accessing external resources. I can assist you with general information, answer"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","1","0","17","OTHER","Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong, yerba mate i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata może być przygotowywana na wiele sposobów, w zależności od preferencji smakowych. Możesz "
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","1","42","17","OTHER","Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","2","0","18","OTHER","""Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong i wiele innych. Każdy rodzaj herbaty ma swoje unikalne właściwości i smak. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","2","42","18","OTHER","""""Lubię herbatę."
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","5","0","21","OTHER","""""""""""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","5","42","21","OTHER","""""""""""Lubię herbatę.
+
+Herbata jest jednym z najpopularniejszych napojów na świecie, a jej różnorodne odmiany i smaki sprawiają, że każdy może znaleźć coś dla siebie.
+
+Oprócz smaku, herbata ma wiele innych korzyści zdrowotnych. Na przykład, zawiera antyoksydanty, które pomagają chronić organizm przed "
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","10","0","26","OTHER","""""""""""""""""""
+
+Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i jest często podawana z cukrem lub mlekiem. Zi"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","10","42","26","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie i ma wiele korzyści zdrowotnych. Czy masz jakieś pytania dotyczące herbaty lub jej przygotowania?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","20","0","36","OTHER","""""""""""""""""""""""""""""""""""""""""Lubię herbatę.
+
+""""""""""""""""""""""""""""""""""""""Lubię herbatę.
+
+""""""""""""""""""""""""""""""""""""""Lubię herbatę.
+
+"""""""""
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","20","42","36","OTHER","""""""""""""""""""""""""""""""""""""""""Lubię herbatę.
+
+""""""""""""""""""""""""""""""""""""""Lubię herbatę.
+
+""""""""""""""""""""""""""""""""""""""Lubię herbatę.
+
+"""""""""
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","50","0","66","OTHER","Oczywiście! Herbata jest doskonałym napojem, który może być przygotowany na wiele różnych sposobów. Czy masz jakieś preferencje co do smaku lub rodzaju herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","50","42","66","OTHER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong, herbata matcha i wiele innych. Każda z nich ma swoje unikalne właściwości i smaki. Czy masz jakieś preferencje dotyczące herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","100","0","116","OTHER",""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","100","42","116","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie, a jej historia sięga tysięcy lat wstecz. W Polsce, podobnie jak w wielu innych krajach, herbata jest często spożywana w różnych formach i z różnymi dodatkami.
+
+Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh "
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","200","0","216","OTHER",""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","200","42","216","OTHER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej powszechna i ma intensywny, bogaty smak. Zielona"
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","500","0","516","OTHER",""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SHORT_NEUTRAL","Lubię herbatę.","quote","PRE","500","42","516","OTHER",""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","1","42","17","OTHER","Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata może być przygotowywana na wiele sposobów, w zależności od preferencji i okazji. Czy masz jakieś ulub"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","2","0","18","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, takich jak czarna, zielona, biała, oolong, yerba mate, herbata owocowa i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata jest również znana ze swoich korzyści zdrowotnych, takich j"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","2","42","18","OTHER","To świetnie! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smaki. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","5","0","21","OTHER","Ja też! Herbata jest świetnym napojem, który może być pyszny i zdrowy. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","5","42","21","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata może być spożywana na ciepło lub na zimno, a także w różnych formach, takich jak herb"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","10","0","26","OTHER","Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata może być również używana jako naturalny środek na różne dolegliwości, takie jak stres, bezsenność czy"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","10","42","26","OTHER","Ja również! Herbata jest doskonałym napojem, który może być przygotowany na wiele sposobów. Możesz wybrać herbatę czarną, zieloną, białą, czerwoną lub ziołową. Każda z nich ma swoje unikalne właściwości i smak. Czy masz jakieś preferencje co do rodzaju herbaty lub sposobu jej przygotowania?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","20","0","36","OTHER","Herbata jest popularnym napojem na całym świecie, znanym ze swoich właściwości relaksujących i zdrowotnych. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","20","42","36","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Czy masz jakieś ulubione rodzaje herbat?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","50","0","66","OTHER","To świetne, że lubisz herbatę! Herbata ma wiele korzyści zdrowotnych, takich jak poprawa trawienia, redukcja stresu i wsparcie układu odpornościowego. Możesz spróbować różnych rodzajów herbat, aby znaleźć swoją ulubioną."
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","50","42","66","OTHER","To świetnie! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Czy masz jakieś ulubione herbaty lub chcesz dowiedzieć się więcej o różnych rodzajac"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","100","0","116","OTHER","Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong, yerba mate i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata może być spożywana na ciepło lub na zimno, a także w różnych formach, takich jak herbata "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","200","0","216","OTHER","Oczywiście! Herbata jest doskonałym napojem, który może być spożywany na wiele różnych sposobów. Oto kilka popularnych rodzajów herbat:
+
+1. **Zielona herbata**: Jest bogata w antyoksydanty i zawiera kofeinę. Często dodaje się do niej różne dodatki, takie jak miód, imbir czy cytryna.
+2. **Czarna"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","200","42","216","OTHER","Dziękuję za podzielenie się swoją pasją do herbaty! Herbata jest nie tylko popularnym napojem, ale również ma wiele korzyści zdrowotnych. Czy masz jakieś ulubione rodzaje herbaty lub sposoby jej przygotowywania?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","500","0","516","OTHER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, takich jak czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i dostępna na całym świecie. Ma i"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","POST","500","42","516","OTHER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smaki.
+
+Czarna herbata jest najbardziej znana i popularna. Ma intensywny, bogaty smak i jes"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","1","0","17","OTHER","Ja też! Herbata jest świetnym napojem, który można przygotować na wiele sposobów. Czy masz jakieś ulubione herbaty lub sposoby ich przygotowywania?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","1","42","17","OTHER","To świetnie! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smaki. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","2","0","18","OTHER","Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbaty, takich jak czarna, zielona, biała, oolong, yerba mate i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata jest często spożywana jako codzienny napój, ale może również być używana jako składnik w"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","2","42","18","OTHER","Oczywiście! Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smaki. Czy masz jakieś ulubione rodzaje herbaty lub chcesz dowiedzieć się więcej o różnych "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","5","0","21","OTHER","     🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀🍀�"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","10","0","26","OTHER","          😊Herbata jest doskonałym napojem, który może być świetnym sposobem na rozpoczęcie dnia. Czy masz jakieś ulubione rodzaje herbaty?"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","500","0","516","OTHER","Herbata to napój, który ma wiele korzyści zdrowotnych. Zawiera antyoksydanty, które pomagają w walce z wolnymi rodnikami, co może zmniejszać ryzyko chorób serca i nowotworów. Ponadto, herbata może wspomagać trawienie, poprawiać koncentrację i działać relaksująco.
+
+Czy masz jakieś ulubione rodzaje he"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","50","42","366","OTHER","Oczywiście! Herbata jest popularnym napojem na całym świecie. Istnieje wiele rodzajów herbat, takich jak czarna, zielona, biała, oolong i wiele innych. Każda z nich ma swoje unikalne właściwości i smak. Herbata czarna jest najbardziej popularna i ma intensywny, bogaty smak. Herbata zielona jest łago"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","100","42","716","OTHER","I'm happy to help you with your tea preferences! Can you tell me which types of tea you enjoy the most?"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","200","0","1416","OTHER","I'm glad you enjoy your tea!"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","200","42","1416","OTHER","I'm happy to help you with your question. I can provide you with information about the tools you've asked for. Here are the tools and their descriptions:
+
+1. `get_info(tool_name)`: This tool retrieves information about a"
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","500","0","3516","OTHER","I'm ready to assist you with any task or information you need."
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","POST","500","42","3516","OTHER","I'm happy to help! Please provide the task or question you'd like me to assist with."
+"SHORT_NEUTRAL","Lubię herbatę.","tool_call","PRE","0","42","16","OTHER","Herbata jest jednym z najpopularniejszych napojów na świecie. Istnieje wiele rodzajów herbaty, w tym czarna, zielona, biała, oolong, pu-erh i wiele innych. Każda z nich ma swoje unikalne właściwości i smak.
+
+Czarna herbata jest najbardziej popularna i ma intensywny, bogaty smak. Zielona herbata jest"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","5","0","27","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","5","42","27","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","10","0","32","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","10","42","32","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","20","0","42","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","20","42","42","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","50","0","72","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","50","42","72","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","100","0","122","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","100","42","122","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","200","0","222","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","200","42","222","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","newlines","PRE","500","42","522","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","5","42","27","EMPTY","                                                                                "
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","20","0","42","EMPTY","                                                                                "
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","50","0","72","EMPTY","                                                                                "
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","50","42","72","EMPTY","                                                                                "
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","100","0","122","EMPTY","                                                                                "
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","100","42","122","EMPTY","                                                                                "
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","200","0","222","EMPTY","                                                                                "
+"MED_NEUTRAL","Pogoda dzisiaj jest piękna i ptaki śpiewają.","spaces","PRE","200","42","222","EMPTY","                                                                                "
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","10","0","28","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","20","0","38","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","20","42","38","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","50","0","68","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","50","42","68","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","100","0","118","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","100","42","118","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","200","0","218","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","200","42","218","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","500","0","518","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_FACT","Jaka jest stolica Francji?","newlines","PRE","500","42","518","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","5","42","21","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","10","42","26","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","20","0","36","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","20","42","36","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","50","0","66","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","50","42","66","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","100","0","116","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","100","42","116","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","newlines","PRE","200","0","216","EMPTY","
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","5","42","21","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","10","42","26","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","20","0","36","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","20","42","36","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","50","0","66","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","50","42","66","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","100","0","116","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","100","42","116","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","200","0","216","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","200","42","216","EMPTY","                                                                                "
+"SHORT_NEUTRAL","Lubię herbatę.","spaces","PRE","500","42","516","EMPTY","                                                                                "
