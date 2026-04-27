@@ -1,0 +1,992 @@
+[
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 0,
+    "input_len": 18,
+    "pct_inject": 0.0,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 1,
+    "input_len": 19,
+    "pct_inject": 5.3,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 2,
+    "input_len": 20,
+    "pct_inject": 10.0,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 3,
+    "input_len": 21,
+    "pct_inject": 14.3,
+    "response": "\nJaka jest stolica Francji?\n\nOdpowiedź:\n\nStolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 4,
+    "input_len": 22,
+    "pct_inject": 18.2,
+    "response": "\nJaka jest stolica Francji?\n\nOdpowiedź:\n\nStolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 5,
+    "input_len": 23,
+    "pct_inject": 21.7,
+    "response": "\nJaka jest stolica Francji?\n\nOdpowiedź:\n\nStolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 6,
+    "input_len": 24,
+    "pct_inject": 25.0,
+    "response": "\nJaka jest stolica Francji?\n\nOdpowiedź:\n\nStolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 8,
+    "input_len": 26,
+    "pct_inject": 30.8,
+    "response": "\nJako stolica Francji, Paryż jest głównym miastem i centrum politycznym, gospodarczym i kulturalnym kraju. Jest jednym z największych i najbardziej znanych miast na świecie, znanym z takich atrakcji jak Wieża Eiffla, Luwr, Montmartre i wiele innych.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 10,
+    "input_len": 28,
+    "pct_inject": 35.7,
+    "response": "\nJako stolica Francji, Paryż jest głównym miastem i centrum politycznym, gospodarczym i kulturalnym kraju. Jest jednym z największych i najbardziej znanych miast na świecie, znanym z takich atrakcji jak Wieża Eiffla, Luwr, Montmartre i wiele innych.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 14,
+    "input_len": 32,
+    "pct_inject": 43.8,
+    "response": "Jacques jest stolicą Francji.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 20,
+    "input_len": 38,
+    "pct_inject": 52.6,
+    "response": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "class": "EMPTY"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 0,
+    "input_len": 18,
+    "pct_inject": 0.0,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 1,
+    "input_len": 19,
+    "pct_inject": 5.3,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 2,
+    "input_len": 20,
+    "pct_inject": 10.0,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 3,
+    "input_len": 21,
+    "pct_inject": 14.3,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 4,
+    "input_len": 22,
+    "pct_inject": 18.2,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 5,
+    "input_len": 23,
+    "pct_inject": 21.7,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 6,
+    "input_len": 24,
+    "pct_inject": 25.0,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 8,
+    "input_len": 26,
+    "pct_inject": 30.8,
+    "response": "Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne, ekonomiczne oraz naukowe.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 10,
+    "input_len": 28,
+    "pct_inject": 35.7,
+    "response": "Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne, ekonomiczne oraz naukowe.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 14,
+    "input_len": 32,
+    "pct_inject": 43.8,
+    "response": "Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne, ekonomiczne oraz naukowe.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 20,
+    "input_len": 38,
+    "pct_inject": 52.6,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 0,
+    "input_len": 18,
+    "pct_inject": 0.0,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 1,
+    "input_len": 19,
+    "pct_inject": 5.3,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 2,
+    "input_len": 20,
+    "pct_inject": 10.0,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 3,
+    "input_len": 21,
+    "pct_inject": 14.3,
+    "response": "\nStolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 4,
+    "input_len": 22,
+    "pct_inject": 18.2,
+    "response": "\nStolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 5,
+    "input_len": 23,
+    "pct_inject": 21.7,
+    "response": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "class": "EMPTY"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 6,
+    "input_len": 24,
+    "pct_inject": 25.0,
+    "response": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "class": "EMPTY"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 8,
+    "input_len": 26,
+    "pct_inject": 30.8,
+    "response": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "class": "EMPTY"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 10,
+    "input_len": 28,
+    "pct_inject": 35.7,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 14,
+    "input_len": 32,
+    "pct_inject": 43.8,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "SHORT",
+    "prompt": "Jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 20,
+    "input_len": 38,
+    "pct_inject": 52.6,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 0,
+    "input_len": 25,
+    "pct_inject": 0.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 1,
+    "input_len": 26,
+    "pct_inject": 3.8,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 2,
+    "input_len": 27,
+    "pct_inject": 7.4,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 3,
+    "input_len": 28,
+    "pct_inject": 10.7,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 4,
+    "input_len": 29,
+    "pct_inject": 13.8,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 5,
+    "input_len": 30,
+    "pct_inject": 16.7,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 6,
+    "input_len": 31,
+    "pct_inject": 19.4,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 8,
+    "input_len": 33,
+    "pct_inject": 24.2,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 10,
+    "input_len": 35,
+    "pct_inject": 28.6,
+    "response": "\nOczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 14,
+    "input_len": 39,
+    "pct_inject": 35.9,
+    "response": "\nOczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "PRE",
+    "n_newlines": 20,
+    "input_len": 45,
+    "pct_inject": 44.4,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 0,
+    "input_len": 25,
+    "pct_inject": 0.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 1,
+    "input_len": 26,
+    "pct_inject": 3.8,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 2,
+    "input_len": 27,
+    "pct_inject": 7.4,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 3,
+    "input_len": 28,
+    "pct_inject": 10.7,
+    "response": "Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 4,
+    "input_len": 29,
+    "pct_inject": 13.8,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 5,
+    "input_len": 30,
+    "pct_inject": 16.7,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 6,
+    "input_len": 31,
+    "pct_inject": 19.4,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 8,
+    "input_len": 33,
+    "pct_inject": 24.2,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 10,
+    "input_len": 35,
+    "pct_inject": 28.6,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 14,
+    "input_len": 39,
+    "pct_inject": 35.9,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "POST",
+    "n_newlines": 20,
+    "input_len": 45,
+    "pct_inject": 44.4,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 0,
+    "input_len": 25,
+    "pct_inject": 0.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 1,
+    "input_len": 26,
+    "pct_inject": 3.8,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 2,
+    "input_len": 27,
+    "pct_inject": 7.4,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 3,
+    "input_len": 28,
+    "pct_inject": 10.7,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 4,
+    "input_len": 29,
+    "pct_inject": 13.8,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 5,
+    "input_len": 30,
+    "pct_inject": 16.7,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 6,
+    "input_len": 31,
+    "pct_inject": 19.4,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 8,
+    "input_len": 33,
+    "pct_inject": 24.2,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 10,
+    "input_len": 35,
+    "pct_inject": 28.6,
+    "response": "Tak, oczywiście! Stolicą Francji jest Paryż.",
+    "class": "FACT_CONFIRM"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 14,
+    "input_len": 39,
+    "pct_inject": 35.9,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "MEDIUM",
+    "prompt": "Czy mogłabyś mi powiedzieć, jaka jest stolica Francji?",
+    "position": "MID",
+    "n_newlines": 20,
+    "input_len": 45,
+    "pct_inject": 44.4,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 0,
+    "input_len": 38,
+    "pct_inject": 0.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 1,
+    "input_len": 39,
+    "pct_inject": 2.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 2,
+    "input_len": 40,
+    "pct_inject": 5.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 3,
+    "input_len": 41,
+    "pct_inject": 7.3,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 4,
+    "input_len": 42,
+    "pct_inject": 9.5,
+    "response": "\nOczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 5,
+    "input_len": 43,
+    "pct_inject": 11.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 6,
+    "input_len": 44,
+    "pct_inject": 13.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 8,
+    "input_len": 46,
+    "pct_inject": 17.4,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 10,
+    "input_len": 48,
+    "pct_inject": 20.8,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 14,
+    "input_len": 52,
+    "pct_inject": 26.9,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "PRE",
+    "n_newlines": 20,
+    "input_len": 58,
+    "pct_inject": 34.5,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 0,
+    "input_len": 38,
+    "pct_inject": 0.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 1,
+    "input_len": 39,
+    "pct_inject": 2.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne oraz gospodarcze.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 2,
+    "input_len": 40,
+    "pct_inject": 5.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne, naukowe i ekonomiczne.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 3,
+    "input_len": 41,
+    "pct_inject": 7.3,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 4,
+    "input_len": 42,
+    "pct_inject": 9.5,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 5,
+    "input_len": 43,
+    "pct_inject": 11.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 6,
+    "input_len": 44,
+    "pct_inject": 13.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 8,
+    "input_len": 46,
+    "pct_inject": 17.4,
+    "response": "Oczywiście! Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne, ekonomiczne oraz turystyczne.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 10,
+    "input_len": 48,
+    "pct_inject": 20.8,
+    "response": "Oczywiście! Stolicą Francji jest Paryż. Jest to największe miasto w kraju i centrum polityczne, kulturalne, ekonomiczne oraz turystyczne.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 14,
+    "input_len": 52,
+    "pct_inject": 26.9,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "POST",
+    "n_newlines": 20,
+    "input_len": 58,
+    "pct_inject": 34.5,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 0,
+    "input_len": 38,
+    "pct_inject": 0.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 1,
+    "input_len": 39,
+    "pct_inject": 2.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 2,
+    "input_len": 40,
+    "pct_inject": 5.0,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 3,
+    "input_len": 41,
+    "pct_inject": 7.3,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 4,
+    "input_len": 42,
+    "pct_inject": 9.5,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 5,
+    "input_len": 43,
+    "pct_inject": 11.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 6,
+    "input_len": 44,
+    "pct_inject": 13.6,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 8,
+    "input_len": 46,
+    "pct_inject": 17.4,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 10,
+    "input_len": 48,
+    "pct_inject": 20.8,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 14,
+    "input_len": 52,
+    "pct_inject": 26.9,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  },
+  {
+    "base": "LONG",
+    "prompt": "Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję.",
+    "position": "MID",
+    "n_newlines": 20,
+    "input_len": 58,
+    "pct_inject": 34.5,
+    "response": "Oczywiście! Stolicą Francji jest Paryż.",
+    "class": "OTHER"
+  }
+]

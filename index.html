@@ -1576,6 +1576,404 @@ baseline) have already been computed (<code>exp34_&lt;model&gt;_&lt;case&gt;_cop
 and <code>exp34_&lt;model&gt;_&lt;case&gt;_diff_vs_baseline.png</code> — 6 + 4 plots). They are
 not analysed in detail in this part; that analysis is the analogue of Step 4
 for the new models and will be reported separately.</p>
+<hr />
+<h1>Part III — Generality checks (Bielik again)</h1>
+<p>The previous parts identified L7.H11 / L10.H3 / L10.H4 as the strongest
+"echoing heads" on a four-case sample. The next two steps test how
+generalisable those observations are: (a) does the head ranking hold up on
+a larger and more varied prompt set; (b) is the JSON-trigger circuit
+sensitive to a simple structural perturbation (newline injection) on neutral
+prompts.</p>
+<h2>Step 13 — head trend across a larger prompt set (15 prompts)</h2>
+<h3>Setup</h3>
+<p>Fifteen prompts, three groups:</p>
+<ul>
+<li><strong>ASSISTANT (n=7)</strong> — utterances in assistant voice, observed in earlier
+  experiments to flip Bielik to JSON tool-call when run via ollama Q8_0:
+  <em>"Zapewniam wsparcie w różnych dziedzinach."</em>, <em>"Służę pomocą w każdym
+  temacie."</em>, <em>"Jestem obok, gotowy Ci pomóc."</em>, <em>"Moim celem jest ułatwić
+  Ci pracę."</em>, <em>"Moja wiedza jest do Twojej dyspozycji."</em>, <em>"Jestem
+  dostępny całą dobę."</em>, <em>"Znam odpowiedzi na wiele pytań."</em></li>
+<li><strong>GIBBERISH (n=5)</strong> — random or repeated tokens: <em>"asdfghjkl1234567"</em>,
+  <em>"kot kot kot kot kot kot kot"</em>, <em>"???"</em>, <em>"ąśżćń ęłóźż"</em>, <em>"qqq www eee
+  rrr ttt"</em></li>
+<li><strong>NORMAL (n=3)</strong> — plain queries / replies: <em>"Jaka jest stolica Francji?"</em>,
+  <em>"Stolica Francji to Paryż."</em>, <em>"Tak, dziękuję."</em></li>
+</ul>
+<p>For each prompt:
+1. Generate a response in HF float32 Bielik (T=0.3, seed=42, max 100 tokens).
+2. Forward pass on full <code>prompt + actual response</code> with
+   <code>output_attentions=True</code>.
+3. Compute copy_score (sum of attention to earlier same-token positions,
+   averaged over response query positions) for each of the five heads from
+   Step 4 (L7.H11, L10.H3, L10.H4, L8.H7, L6.H10).
+4. Classify the response.</p>
+<h3>Findings</h3>
+<p>Per-prompt copy_scores:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>type</th>
+<th>response_class</th>
+<th>L7.H11</th>
+<th>L10.H3</th>
+<th>L10.H4</th>
+<th>L8.H7</th>
+<th>L6.H10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>ASSISTANT</td>
+<td>HELP_OFFER</td>
+<td>0.253</td>
+<td>0.453</td>
+<td>0.081</td>
+<td>0.056</td>
+<td>0.185</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>ASSISTANT</td>
+<td>HELP_OFFER</td>
+<td>0.208</td>
+<td>0.392</td>
+<td>0.133</td>
+<td>0.028</td>
+<td>0.049</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>ASSISTANT</td>
+<td>HELP_OFFER</td>
+<td>0.228</td>
+<td>0.456</td>
+<td>0.116</td>
+<td>0.038</td>
+<td>0.077</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>ASSISTANT</td>
+<td>HELP_OFFER</td>
+<td>0.137</td>
+<td>0.203</td>
+<td>0.136</td>
+<td>0.036</td>
+<td>0.028</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>ASSISTANT</td>
+<td>HELP_OFFER</td>
+<td>0.073</td>
+<td>0.172</td>
+<td>0.078</td>
+<td>0.031</td>
+<td>0.015</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>ASSISTANT</td>
+<td>HELP_OFFER</td>
+<td>0.081</td>
+<td>0.270</td>
+<td>0.055</td>
+<td>0.018</td>
+<td>0.008</td>
+</tr>
+<tr>
+<td>A7</td>
+<td>ASSISTANT</td>
+<td>HELP_OFFER</td>
+<td>0.095</td>
+<td>0.312</td>
+<td>0.094</td>
+<td>0.026</td>
+<td>0.012</td>
+</tr>
+<tr>
+<td>G1</td>
+<td>GIBBERISH</td>
+<td>OTHER</td>
+<td>0.113</td>
+<td>0.239</td>
+<td>0.078</td>
+<td>0.084</td>
+<td>0.055</td>
+</tr>
+<tr>
+<td>G2</td>
+<td>GIBBERISH</td>
+<td>OTHER</td>
+<td>0.348</td>
+<td>0.412</td>
+<td>0.299</td>
+<td>0.160</td>
+<td>0.206</td>
+</tr>
+<tr>
+<td>G3</td>
+<td>GIBBERISH</td>
+<td>OTHER</td>
+<td>0.078</td>
+<td>0.181</td>
+<td>0.114</td>
+<td>0.040</td>
+<td>0.033</td>
+</tr>
+<tr>
+<td>G4</td>
+<td>GIBBERISH</td>
+<td>OTHER</td>
+<td>0.312</td>
+<td>0.503</td>
+<td><strong>0.549</strong></td>
+<td>0.125</td>
+<td>0.192</td>
+</tr>
+<tr>
+<td>G5</td>
+<td>GIBBERISH</td>
+<td>CODE</td>
+<td>0.325</td>
+<td>0.470</td>
+<td>0.128</td>
+<td>0.178</td>
+<td>0.124</td>
+</tr>
+<tr>
+<td>N1</td>
+<td>NORMAL</td>
+<td>OTHER</td>
+<td>0.075</td>
+<td>0.541</td>
+<td>0.094</td>
+<td>0.057</td>
+<td>0.092</td>
+</tr>
+<tr>
+<td>N2</td>
+<td>NORMAL</td>
+<td>CONFIRM</td>
+<td>0.126</td>
+<td><strong>0.736</strong></td>
+<td>0.156</td>
+<td>0.077</td>
+<td>0.122</td>
+</tr>
+<tr>
+<td>N3</td>
+<td>NORMAL</td>
+<td>HELP_OFFER</td>
+<td>0.146</td>
+<td>0.334</td>
+<td>0.130</td>
+<td>0.043</td>
+<td>0.039</td>
+</tr>
+</tbody>
+</table>
+<p>Means per group:</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>n</th>
+<th>L7.H11</th>
+<th>L10.H3</th>
+<th>L10.H4</th>
+<th>L8.H7</th>
+<th>L6.H10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASSISTANT</td>
+<td>7</td>
+<td>0.154</td>
+<td>0.323</td>
+<td>0.099</td>
+<td>0.033</td>
+<td>0.053</td>
+</tr>
+<tr>
+<td>GIBBERISH</td>
+<td>5</td>
+<td><strong>0.235</strong></td>
+<td>0.361</td>
+<td><strong>0.233</strong></td>
+<td>0.117</td>
+<td>0.122</td>
+</tr>
+<tr>
+<td>NORMAL</td>
+<td>3</td>
+<td>0.116</td>
+<td><strong>0.537</strong></td>
+<td>0.127</td>
+<td>0.059</td>
+<td>0.084</td>
+</tr>
+</tbody>
+</table>
+<p>Several observations cut against the earlier interpretation that L7.H11 is
+specifically an "echoing head":</p>
+<ol>
+<li><strong>L7.H11 is not higher on ASSISTANT prompts than on GIBBERISH or NORMAL.</strong>
+   Mean for ASSISTANT (0.154) is <em>lower</em> than GIBBERISH (0.235) and similar
+   to NORMAL (0.116). Earlier readings of 0.42–0.56 came from cases where
+   prompt and response were <em>literally identical</em> by construction (G2 / G3
+   in Step 1) — an artefact of selecting cases with maximum literal overlap,
+   not a generic property of "echo-prone" inputs.</li>
+<li><strong>L10.H3 is high in every condition.</strong> It reaches its maximum in N2
+   (<em>"Stolica Francji to Paryż."</em> → confirmation response), not in any
+   ASSISTANT or GIBBERISH case. This reinforces the Step 8/Step 9 reading
+   that L10.H3 is a <em>general-purpose copy head</em>, not echo-specific.</li>
+<li><strong>L10.H4 spikes on GIBBERISH G4 (0.549)</strong> — <em>"ąśżćń ęłóźż"</em>, where the
+   model output contains many of the same diacritic byte-tokens as the
+   prompt. This is repetition-driven, not echo-driven.</li>
+<li><strong>G2 <em>"kot kot kot kot kot kot kot"</em></strong> has the highest L7.H11 in the
+   table (0.348). The repeated identical token triggers induction-style
+   attention, yet the response is not echo — it is a tangentially-related
+   elaboration about cats. L7.H11 reacts to <em>literal token repetition in
+   the sequence</em>, not to an "echo behaviour" semantically.</li>
+<li><strong>None of the ASSISTANT prompts produced JSON in HF float32</strong> — all 7
+   gave HELP_OFFER responses. This is consistent with Step 4 of Bielik
+   logits analysis (<code>&lt;tool_call&gt;</code> ranked #11 with prob 0.015 at the pivot
+   position in HF float32; it dominates only under quantized/sampling
+   pipelines like ollama Q8_0).</li>
+</ol>
+<p>The picture from this larger sample: the heads identified as "echo heads"
+in Step 4 are better described as <strong>literal-repetition heads</strong> — they fire
+whenever response tokens duplicate earlier tokens (whether in the prompt or
+inside the response). The strong activation we observed on G2/G3 in Step 4
+came from the by-construction identity of prompt and response in those
+cases, not from any specific "echo circuit".</p>
+<h3>Visualization</h3>
+<p><code>raport_assets/attention_loops/exp35_head_trend_per_prompt.png</code> — five
+stacked panels (one per head), each a bar chart of copy_score across the
+15 prompts coloured by group (red=ASSISTANT, gray=GIBBERISH, green=NORMAL),
+with dashed group means.</p>
+<p><code>raport_assets/exp35_head_trend.json</code> — full per-prompt records (prompt,
+generated response, response_class, copy_scores, per-region attention).</p>
+<hr />
+<h2>Step 14 — newline-injection threshold on neutral prompts (null result)</h2>
+<h3>Setup</h3>
+<p>Hypothesis to test: a neutral, fact-asking prompt can be tipped toward JSON
+output by inserting raw newline tokens (<code>&lt;0x0A&gt;</code>, ID 17) — and the threshold
+where this happens depends on the count of injected newlines, their
+position, and the proportion of newlines relative to total prompt length.</p>
+<p>Procedure (using llama-cpp-python with the standalone GGUF Q8_0,
+<code>n_gpu_layers=-1</code> on Metal):</p>
+<ul>
+<li>3 base prompts of varying length:</li>
+<li><strong>SHORT</strong> (input ≈ 18 tokens after templating): <em>"Jaka jest stolica
+    Francji?"</em></li>
+<li><strong>MEDIUM</strong> (≈ 25 tokens): <em>"Czy mogłabyś mi powiedzieć, jaka jest
+    stolica Francji?"</em></li>
+<li><strong>LONG</strong> (≈ 38 tokens): <em>"Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś
+    mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję."</em></li>
+<li>3 injection positions: <strong>PRE</strong> (between header and content),
+  <strong>POST</strong> (between content and <code>&lt;|im_end|&gt;</code>), <strong>MID</strong> (in the middle of
+  the user content).</li>
+<li>11 injection counts: N ∈ {0, 1, 2, 3, 4, 5, 6, 8, 10, 14, 20}.</li>
+<li>Total: 3 × 3 × 11 = 99 generations, each with <code>temperature=0.3, seed=42,
+  max_tokens=80</code>. Outputs were classified into JSON / CODE / HELP_OFFER /
+  FACT_CONFIRM / OTHER / EMPTY.</li>
+</ul>
+<h3>Findings</h3>
+<p><strong>No JSON or CODE response was produced in any of the 99 generations.</strong> The
+output classes observed were:</p>
+<table>
+<thead>
+<tr>
+<th>Base / position</th>
+<th>Classes across N=0..20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SHORT / PRE</td>
+<td>FACT_CONFIRM ×3 → OTHER ×7 → EMPTY at N=20</td>
+</tr>
+<tr>
+<td>SHORT / POST</td>
+<td>FACT_CONFIRM ×11 (no change)</td>
+</tr>
+<tr>
+<td>SHORT / MID</td>
+<td>FACT_CONFIRM ×3 → OTHER ×2 → EMPTY ×3 → FACT_CONFIRM ×3</td>
+</tr>
+<tr>
+<td>MEDIUM / PRE</td>
+<td>OTHER ×1 → mostly OTHER (with one FACT_CONFIRM at N=1)</td>
+</tr>
+<tr>
+<td>MEDIUM / POST</td>
+<td>OTHER then FACT_CONFIRM from N=1 onward</td>
+</tr>
+<tr>
+<td>MEDIUM / MID</td>
+<td>OTHER then FACT_CONFIRM from N=1, with two re-OTHER at N=6, 14, 20</td>
+</tr>
+<tr>
+<td>LONG / PRE</td>
+<td>OTHER ×11 (no change)</td>
+</tr>
+<tr>
+<td>LONG / POST</td>
+<td>OTHER ×11 (no change)</td>
+</tr>
+<tr>
+<td>LONG / MID</td>
+<td>OTHER ×11 (no change)</td>
+</tr>
+</tbody>
+</table>
+<p>The dominant outputs are <em>"Stolicą Francji jest Paryż."</em> (FACT_CONFIRM) or
+<em>"Oczywiście! Stolicą Francji jest Paryż."</em> (OTHER, classified by the
+regex). Newline injection causes:</p>
+<ul>
+<li><strong>A short, marginal phrasing shift</strong> (e.g. SHORT/PRE goes from "Stolicą"
+  directly to a softer "Oczywiście!" preamble at N≥3).</li>
+<li><strong>Empty output</strong> for SHORT/MID at N=5..8 — the model emits a long run of
+  newlines and stops before producing any content. This is a degenerate
+  state, not a JSON state.</li>
+<li><strong>No effect</strong> for the LONG prompt at any N or position.</li>
+</ul>
+<p>The percentage of injected newlines relative to total token length in the
+strongest "EMPTY" cases is around 20–35% (e.g. SHORT/MID with N=5
+newlines on input_len=23 → 22% newline-tokens). LONG never shows any class
+change, even at N=20 (~35% of input).</p>
+<h3>Interpretation (factual)</h3>
+<ul>
+<li>A simple structural perturbation (newline padding) at the volumes tested
+  is not sufficient to induce a JSON response on a neutral prompt in
+  Bielik Q8_0.</li>
+<li>This is a <em>negative</em> result that rules out one specific hypothesis: that
+  JSON output is triggered primarily by attention dilution from injected
+  whitespace. Combined with Step 13 (the so-called "echo heads" do not
+  spike on assistant-voice prompts in HF float32), it pushes the
+  interpretation toward: <strong>the JSON attractor depends on specific content
+  patterns that resemble assistant-voice utterances</strong>, not on structural
+  whitespace, and not on a single attention head.</li>
+<li>The earlier observation in Step 7 of Part I (<code>exp21</code>-related work) that
+  4-5 newline injection on the prompt <em>"Can you help me?"</em> produced LaTeX
+  math/code is consistent with this: that input combined a content trigger
+  ("Can you help me?") with the perturbation, while the present experiment
+  uses a content-neutral prompt ("Jaka jest stolica Francji?") and no
+  trigger emerged.</li>
+</ul>
+<h3>Visualization</h3>
+<p><code>raport_assets/attention_loops/exp36_newline_threshold_heatmap.png</code> —
+heatmap with 9 rows (3 prompts × 3 positions) and 11 columns (N values).
+Each cell colour = response class; cell text = first 4 letters of the
+class. The heatmap shows the absence of any JSON/CODE region.</p>
+<p><code>raport_assets/exp36_newline_threshold.json</code> — per-call records
+(input_len, n_newlines, percentage, response, classification).</p>
 
 <hr>
 <h2>Gallery — all referenced figures</h2>
@@ -1624,5 +2022,7 @@ for the new models and will be reported separately.</p>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp32_takeover_after_L7H11.png</h3><img src="raport_assets/attention_loops/exp32_takeover_after_L7H11.png" alt="raport_assets/attention_loops/exp32_takeover_after_L7H11.png" /></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png</h3><img src="raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png" alt="raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png" /></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png</h3><img src="raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png" alt="raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp35_head_trend_per_prompt.png</h3><img src="raport_assets/attention_loops/exp35_head_trend_per_prompt.png" alt="raport_assets/attention_loops/exp35_head_trend_per_prompt.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp36_newline_threshold_heatmap.png</h3><img src="raport_assets/attention_loops/exp36_newline_threshold_heatmap.png" alt="raport_assets/attention_loops/exp36_newline_threshold_heatmap.png" /></div>
 </body>
 </html>

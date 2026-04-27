@@ -1,0 +1,392 @@
+[
+  {
+    "id": "A1",
+    "type": "ASSISTANT",
+    "prompt": "Zapewniam wsparcie w różnych dziedzinach.",
+    "response": "Oczywiście! Jestem tu, aby Ci pomóc w różnych dziedzinach. Jeśli masz jakieś pytania lub potrzebujesz wsparcia, śmiało pytaj.",
+    "response_class": "HELP_OFFER",
+    "seq_len": 48,
+    "resp_len": 26,
+    "head_scores": {
+      "L7H11": 0.25281172751316,
+      "L10H3": 0.45290269598415633,
+      "L10H4": 0.08124601147470198,
+      "L8H7": 0.05632310154448662,
+      "L6H10": 0.18509736081718334
+    },
+    "per_region": {
+      "header_total": 0.49861326813697815,
+      "header_per_token": 0.08310221880674362,
+      "user_cont_total": 0.08789875358343124,
+      "user_cont_per_token": 0.007990795187652111,
+      "ast_head_total": 0.06067897006869316,
+      "ast_head_per_token": 0.012135793454945087,
+      "resp_self_total": 0.35280901193618774,
+      "resp_self_per_token": 0.013569575734436512
+    }
+  },
+  {
+    "id": "A2",
+    "type": "ASSISTANT",
+    "prompt": "Służę pomocą w każdym temacie.",
+    "response": "Oczywiście! Jestem tu, aby pomóc Ci w każdym temacie, który Cię interesuje. Proszę, podaj temat, na który chcesz uzyskać pomoc.",
+    "response_class": "HELP_OFFER",
+    "seq_len": 52,
+    "resp_len": 30,
+    "head_scores": {
+      "L7H11": 0.20796020658453926,
+      "L10H3": 0.39239505718142026,
+      "L10H4": 0.132598061603494,
+      "L8H7": 0.027513538964558392,
+      "L6H10": 0.04942446331842802
+    },
+    "per_region": {
+      "header_total": 0.49442481994628906,
+      "header_per_token": 0.08240412920713425,
+      "user_cont_total": 0.07760527729988098,
+      "user_cont_per_token": 0.007055025082081556,
+      "ast_head_total": 0.05619051307439804,
+      "ast_head_per_token": 0.011238102801144123,
+      "resp_self_total": 0.3717794120311737,
+      "resp_self_per_token": 0.012392647564411163
+    }
+  },
+  {
+    "id": "A3",
+    "type": "ASSISTANT",
+    "prompt": "Jestem obok, gotowy Ci pomóc.",
+    "response": "Oczywiście, jestem tu, aby Ci pomóc. W czym mogę Ci pomóc?",
+    "response_class": "HELP_OFFER",
+    "seq_len": 38,
+    "resp_len": 17,
+    "head_scores": {
+      "L7H11": 0.22769752272870392,
+      "L10H3": 0.4563957857899368,
+      "L10H4": 0.11600104556418955,
+      "L8H7": 0.03774701175279915,
+      "L6H10": 0.0766768687099102
+    },
+    "per_region": {
+      "header_total": 0.5135836005210876,
+      "header_per_token": 0.08559726923704147,
+      "user_cont_total": 0.10931190848350525,
+      "user_cont_per_token": 0.010931190103292465,
+      "ast_head_total": 0.07624118030071259,
+      "ast_head_per_token": 0.015248236246407032,
+      "resp_self_total": 0.3008633255958557,
+      "resp_self_per_token": 0.01769784279167652
+    }
+  },
+  {
+    "id": "A4",
+    "type": "ASSISTANT",
+    "prompt": "Moim celem jest ułatwić Ci pracę.",
+    "response": "Oczywiście! Jestem tu, aby Ci pomóc w każdej kwestii związanej z programowaniem, projektowaniem stron internetowych lub rozwiązywaniem problemów technicznych. Jeśli masz jakieś pytania lub potrzebujesz wsparcia, śmiało pytaj!",
+    "response_class": "HELP_OFFER",
+    "seq_len": 62,
+    "resp_len": 40,
+    "head_scores": {
+      "L7H11": 0.13704317706287839,
+      "L10H3": 0.20299229822592224,
+      "L10H4": 0.13600721921466175,
+      "L8H7": 0.03560462706082035,
+      "L6H10": 0.027756228071666555
+    },
+    "per_region": {
+      "header_total": 0.5041226148605347,
+      "header_per_token": 0.08402044326066971,
+      "user_cont_total": 0.06452915072441101,
+      "user_cont_per_token": 0.0058662863448262215,
+      "ast_head_total": 0.045467521995306015,
+      "ast_head_per_token": 0.009093503467738628,
+      "resp_self_total": 0.38588064908981323,
+      "resp_self_per_token": 0.009647015482187271
+    }
+  },
+  {
+    "id": "A5",
+    "type": "ASSISTANT",
+    "prompt": "Moja wiedza jest do Twojej dyspozycji.",
+    "response": "Oczywiście! Jestem tu, aby pomóc Ci w każdej kwestii, którą możesz mieć. Proszę, zadaj pytanie, a ja postaram się odpowiedzieć najlepiej jak potrafię.",
+    "response_class": "HELP_OFFER",
+    "seq_len": 56,
+    "resp_len": 34,
+    "head_scores": {
+      "L7H11": 0.07313386718409934,
+      "L10H3": 0.17180902349251223,
+      "L10H4": 0.07803558721207082,
+      "L8H7": 0.0314350769788559,
+      "L6H10": 0.015490348084962793
+    },
+    "per_region": {
+      "header_total": 0.5126679539680481,
+      "header_per_token": 0.08544466644525528,
+      "user_cont_total": 0.05407385900616646,
+      "user_cont_per_token": 0.004915805067867041,
+      "ast_head_total": 0.054341573268175125,
+      "ast_head_per_token": 0.010868314653635025,
+      "resp_self_total": 0.3789166212081909,
+      "resp_self_per_token": 0.0111446063965559
+    }
+  },
+  {
+    "id": "A6",
+    "type": "ASSISTANT",
+    "prompt": "Jestem dostępny całą dobę.",
+    "response": "Cieszę się, że mogę Ci pomóc! Jeśli masz jakieś pytania lub potrzebujesz dalszej pomocy, śmiało pytaj.",
+    "response_class": "HELP_OFFER",
+    "seq_len": 43,
+    "resp_len": 24,
+    "head_scores": {
+      "L7H11": 0.08085652254521847,
+      "L10H3": 0.2704474655620288,
+      "L10H4": 0.05453769117593765,
+      "L8H7": 0.01830143271945417,
+      "L6H10": 0.0077792920637875795
+    },
+    "per_region": {
+      "header_total": 0.5240734815597534,
+      "header_per_token": 0.08734557032585144,
+      "user_cont_total": 0.07675807923078537,
+      "user_cont_per_token": 0.009594759903848171,
+      "ast_head_total": 0.06912108510732651,
+      "ast_head_per_token": 0.013824216090142727,
+      "resp_self_total": 0.3300473392009735,
+      "resp_self_per_token": 0.013751971535384655
+    }
+  },
+  {
+    "id": "A7",
+    "type": "ASSISTANT",
+    "prompt": "Znam odpowiedzi na wiele pytań.",
+    "response": "Oczywiście! Jeśli masz jakieś pytania lub potrzebujesz pomocy w rozwiązaniu konkretnego zadania, śmiało pytaj. Z przyjemnością Ci pomogę.",
+    "response_class": "HELP_OFFER",
+    "seq_len": 48,
+    "resp_len": 26,
+    "head_scores": {
+      "L7H11": 0.09520549575487773,
+      "L10H3": 0.3118642121553421,
+      "L10H4": 0.09370621976753075,
+      "L8H7": 0.026378696784377098,
+      "L6H10": 0.011870859501262506
+    },
+    "per_region": {
+      "header_total": 0.5105000138282776,
+      "header_per_token": 0.08508332818746567,
+      "user_cont_total": 0.0734214186668396,
+      "user_cont_per_token": 0.0066746738739311695,
+      "ast_head_total": 0.06363172084093094,
+      "ast_head_per_token": 0.012726343236863613,
+      "resp_self_total": 0.35244685411453247,
+      "resp_self_per_token": 0.013555648736655712
+    }
+  },
+  {
+    "id": "G1",
+    "type": "GIBBERISH",
+    "prompt": "asdfghjkl1234567",
+    "response": "It seems like you've provided a long string of characters, but it doesn't appear to be a valid input for any specific task or command. \n\nIf you're looking for a specific action or function, please provide more context or clarify what you're trying to achieve.",
+    "response_class": "OTHER",
+    "seq_len": 126,
+    "resp_len": 99,
+    "head_scores": {
+      "L7H11": 0.11346323485861032,
+      "L10H3": 0.23901001076247172,
+      "L10H4": 0.07760446603942635,
+      "L8H7": 0.08419691940472583,
+      "L6H10": 0.05474791019663495
+    },
+    "per_region": {
+      "header_total": 0.5105250477790833,
+      "header_per_token": 0.08508751541376114,
+      "user_cont_total": 0.03532107174396515,
+      "user_cont_per_token": 0.002207566751167178,
+      "ast_head_total": 0.03370239958167076,
+      "ast_head_per_token": 0.006740479730069637,
+      "resp_self_total": 0.4204515218734741,
+      "resp_self_per_token": 0.004246985074132681
+    }
+  },
+  {
+    "id": "G2",
+    "type": "GIBBERISH",
+    "prompt": "kot kot kot kot kot kot kot",
+    "response": "Oto kilka ciekawostek o kotach:\n\n1. **Największy kot**:\n   - **Słońcat (Panthera leo leo)** jest największym żyjącym kotem.\n   - Może osiągnąć wagę do 110 kg i długość ciała do 1,5 metra.\n\n2. **Najmniejszy kot**:\n   - **Kot domowy (Felis catus)",
+    "response_class": "OTHER",
+    "seq_len": 122,
+    "resp_len": 101,
+    "head_scores": {
+      "L7H11": 0.3477152280987949,
+      "L10H3": 0.41193682314847346,
+      "L10H4": 0.29895303799226397,
+      "L8H7": 0.16013255596715226,
+      "L6H10": 0.2062363514811626
+    },
+    "per_region": {
+      "header_total": 0.4891173243522644,
+      "header_per_token": 0.08151954412460327,
+      "user_cont_total": 0.02291930466890335,
+      "user_cont_per_token": 0.002291930839419365,
+      "ast_head_total": 0.02314639277756214,
+      "ast_head_per_token": 0.004629278555512428,
+      "resp_self_total": 0.46481695771217346,
+      "resp_self_per_token": 0.004602148197591305
+    }
+  },
+  {
+    "id": "G3",
+    "type": "GIBBERISH",
+    "prompt": "???",
+    "response": "It seems like you forgot to include the question you want me to solve. Please provide the question, and I'll be happy to assist you. I'll make sure to put the answer inside \\boxed{} as requested.",
+    "response_class": "OTHER",
+    "seq_len": 90,
+    "resp_len": 74,
+    "head_scores": {
+      "L7H11": 0.07829349755775183,
+      "L10H3": 0.18126354089523292,
+      "L10H4": 0.11385758440486494,
+      "L8H7": 0.04009516089007031,
+      "L6H10": 0.03267125573818868
+    },
+    "per_region": {
+      "header_total": 0.541656494140625,
+      "header_per_token": 0.0902760848402977,
+      "user_cont_total": 0.02507355436682701,
+      "user_cont_per_token": 0.00501471059396863,
+      "ast_head_total": 0.038195643573999405,
+      "ast_head_per_token": 0.007639128714799881,
+      "resp_self_total": 0.3950743079185486,
+      "resp_self_per_token": 0.005338839255273342
+    }
+  },
+  {
+    "id": "G4",
+    "type": "GIBBERISH",
+    "prompt": "ąśżćń ęłóźż",
+    "response": "Oto kilka przykładów zdań z użyciem polskich znaków diakrytycznych (ą, ę, ś, ć, ź, ż, ń, ł, ń, ń):\n\n1. **\"Zadanie domowe jest trudne, ale warto się postarać.\"**\n2. **\"Mój pies ma długie uszy i ogon.\"**\n3. **\"W kuchni pachnie świeżo upieczonym chlebem.\"**\n4. **\"Nie mogę się doczekać,",
+    "response_class": "OTHER",
+    "seq_len": 124,
+    "resp_len": 101,
+    "head_scores": {
+      "L7H11": 0.31201062002432217,
+      "L10H3": 0.5032441715240743,
+      "L10H4": 0.548924804189904,
+      "L8H7": 0.12453586222368247,
+      "L6H10": 0.191710578448071
+    },
+    "per_region": {
+      "header_total": 0.4637397825717926,
+      "header_per_token": 0.07728998363018036,
+      "user_cont_total": 0.035769395530223846,
+      "user_cont_per_token": 0.0029807831160724163,
+      "ast_head_total": 0.0226287841796875,
+      "ast_head_per_token": 0.004525755997747183,
+      "resp_self_total": 0.47786200046539307,
+      "resp_self_per_token": 0.004731305874884129
+    }
+  },
+  {
+    "id": "G5",
+    "type": "GIBBERISH",
+    "prompt": "qqq www eee rrr ttt",
+    "response": "The given string is \"www eee rrr ttt\". \n\nTo split the string into individual words, we can use the `split()` method in Python. Here's the code:\n\n```python\nstring = \"www eee rrr ttt\"\nwords = string.split()\nprint(words)",
+    "response_class": "CODE",
+    "seq_len": 126,
+    "resp_len": 101,
+    "head_scores": {
+      "L7H11": 0.3251865134640563,
+      "L10H3": 0.46995651502470537,
+      "L10H4": 0.12809604837684674,
+      "L8H7": 0.17765953999787598,
+      "L6H10": 0.12377554722146063
+    },
+    "per_region": {
+      "header_total": 0.47976934909820557,
+      "header_per_token": 0.07996156066656113,
+      "user_cont_total": 0.04501328989863396,
+      "user_cont_per_token": 0.0032152351923286915,
+      "ast_head_total": 0.026868276298046112,
+      "ast_head_per_token": 0.00537365535274148,
+      "resp_self_total": 0.44834908843040466,
+      "resp_self_per_token": 0.004439098294824362
+    }
+  },
+  {
+    "id": "N1",
+    "type": "NORMAL",
+    "prompt": "Jaka jest stolica Francji?",
+    "response": "Stolicą Francji jest Paryż.",
+    "response_class": "OTHER",
+    "seq_len": 28,
+    "resp_len": 8,
+    "head_scores": {
+      "L7H11": 0.07481676464279492,
+      "L10H3": 0.5407146305854743,
+      "L10H4": 0.09430792116715263,
+      "L8H7": 0.056960360457499824,
+      "L6H10": 0.09213627766196926
+    },
+    "per_region": {
+      "header_total": 0.5536561608314514,
+      "header_per_token": 0.09227602183818817,
+      "user_cont_total": 0.1307954043149948,
+      "user_cont_per_token": 0.01453282218426466,
+      "ast_head_total": 0.07706142216920853,
+      "ast_head_per_token": 0.01541228499263525,
+      "resp_self_total": 0.23848704993724823,
+      "resp_self_per_token": 0.02981087751686573
+    }
+  },
+  {
+    "id": "N2",
+    "type": "NORMAL",
+    "prompt": "Stolica Francji to Paryż.",
+    "response": "Tak, stolica Francji to Paryż.",
+    "response_class": "CONFIRM",
+    "seq_len": 29,
+    "resp_len": 8,
+    "head_scores": {
+      "L7H11": 0.12633941387757658,
+      "L10H3": 0.7360331222414971,
+      "L10H4": 0.1559716524556279,
+      "L8H7": 0.07744714692234993,
+      "L6H10": 0.12229927540756762
+    },
+    "per_region": {
+      "header_total": 0.5322974324226379,
+      "header_per_token": 0.08871624618768692,
+      "user_cont_total": 0.13078372180461884,
+      "user_cont_per_token": 0.013078371994197369,
+      "ast_head_total": 0.08299326151609421,
+      "ast_head_per_token": 0.016598651185631752,
+      "resp_self_total": 0.25392553210258484,
+      "resp_self_per_token": 0.031740691512823105
+    }
+  },
+  {
+    "id": "N3",
+    "type": "NORMAL",
+    "prompt": "Tak, dziękuję.",
+    "response": "Oczywiście, zawsze chętnie pomogę! Jeśli masz jeszcze jakieś pytania lub potrzebujesz dalszej pomocy, śmiało pytaj.",
+    "response_class": "HELP_OFFER",
+    "seq_len": 41,
+    "resp_len": 23,
+    "head_scores": {
+      "L7H11": 0.1461544311605394,
+      "L10H3": 0.33402660151477903,
+      "L10H4": 0.1301987045444548,
+      "L8H7": 0.04302692739292979,
+      "L6H10": 0.0385443156119436
+    },
+    "per_region": {
+      "header_total": 0.5449972152709961,
+      "header_per_token": 0.09083288162946701,
+      "user_cont_total": 0.062276605516672134,
+      "user_cont_per_token": 0.008896658197045326,
+      "ast_head_total": 0.06352415680885315,
+      "ast_head_per_token": 0.012704831548035145,
+      "resp_self_total": 0.32920196652412415,
+      "resp_self_per_token": 0.01431313157081604
+    }
+  }
+]
