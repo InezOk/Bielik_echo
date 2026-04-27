@@ -678,3 +678,198 @@ ablation configs × 2 sampling modes, plus per-case total_copy_score before
 and after each ablation. No standalone heatmap was generated for this step;
 the per-config delta heatmaps from Step 9 already cover the spatial
 distribution of changes.
+
+---
+
+# Part II — Qwen-0.5B and TinyLlama-1.1B
+
+The same instrumentation was applied to two other small instruct models on
+which **echo behaviour** had been observed in earlier recursive trajectories
+(`models/Qwen2.5-0.5B/trajectories.json` and
+`models/TinyLlama-1.1B/trajectories.json`). For each model, three cases were
+chosen — two with confirmed echo (one or more recursive iterations producing
+the same text as input, replayed here as `response = prompt`) and one
+non-echo baseline.
+
+## Step 11 — baseline cases (Qwen-0.5B and TinyLlama-1.1B)
+
+### Setup
+
+Both models loaded in HuggingFace `transformers` with
+`attn_implementation="eager"`, float32, CPU, single forward pass on
+`prompt + response` packed into the model's chat template.
+
+| Model | Layers | Q-heads | Total Q-heads | head_dim | KV heads (GQA) |
+|---|---|---|---|---|---|
+| Qwen-0.5B | 24 | 14 | 336 | 64 | 2 |
+| TinyLlama-1.1B | 22 | 32 | 704 | 64 | 4 |
+
+(Both use grouped-query attention; the figures below report attention
+expanded over Q-heads, the form returned by HF.)
+
+#### Qwen-0.5B cases
+
+| ID | Type | Source | Sequence length / response length |
+|---|---|---|---|
+| **Q1** MATH_ECHO | math problem in LaTeX, exact echo seen in 1 of 3 seeds (P051 from echo replay) | `models/Qwen2.5-0.5B/trajectories.json[P051]` | 417 / 194 |
+| **Q2** HELP_ECHO | *"Feel free to ask me any questions you have. I'm here to help."* — close echo (≥2 seeds) | `[P008]` | 61 / 16 |
+| **Q3** BASELINE | manual: prompt *"What is the capital of France?"* → response *"The capital of France is Paris."* (no echo) | constructed | 43 / 7 |
+
+#### TinyLlama-1.1B cases
+
+| ID | Type | Source | Sequence length / response length |
+|---|---|---|---|
+| **T1** FACT_ECHO | *"In conclusion, Berlin is indeed the capital of Germany, located in the Berlin-Br…"* — exact echo seen | `models/TinyLlama-1.1B/trajectories.json[P000]` | 216 / 100 |
+| **T2** FACT_ECHO | *"The Treaty of Versaille, also known as the Treaty of Versaille, was signed on Ma…"* — close echo ×3 seeds | `[P004]` | 336 / 160 |
+| **T3** BASELINE | manual: same as Q3 | constructed | 30 / 7 |
+
+For each case the response is set equal to the recorded fixed-point text from
+the model's recursive trajectories (i.e. the case is built such that the
+response *would be* an exact echo) so that the attention pattern observed
+during this single forward pass corresponds to the model "writing" the same
+text it had earlier produced as a fixed point.
+
+---
+
+## Step 12 — per-region attention from response positions
+
+### What was looked at
+
+Same procedure as Step 2 for Bielik: average attention (over all layers ×
+all Q-heads × all query positions inside the response region) was decomposed
+into four key-side regions:
+
+- **header** — chat-template role markers / system message (length depends
+  on model: Qwen ~24 tokens including auto-injected system message, TinyLlama
+  7 tokens)
+- **user_content** — between header and the first end-of-turn marker
+- **ast_header** — the assistant role marker before the response
+- **response_self** — earlier positions inside the response (causal)
+
+Two summaries are reported: total attention mass per region (sums to ~1.0
+per case) and mean attention per token (controls for region length).
+
+### Findings — Qwen-0.5B
+
+Total attention mass (sum per region, from all response query positions):
+
+| Case | Type | header | user_content | ast_header | response_self |
+|---|---|---|---|---|---|
+| Q1 MATH_ECHO | echo | 0.331 | 0.162 | 0.009 | **0.499** |
+| Q2 HELP_ECHO | echo | **0.504** | 0.159 | 0.057 | 0.280 |
+| Q3 BASELINE | baseline | **0.517** | 0.167 | 0.057 | 0.260 |
+
+Mean attention per token (each region's mass divided by its token count):
+
+| Case | header | user_content | ast_header | response_self |
+|---|---|---|---|---|
+| Q1 MATH_ECHO | 0.0138 | 0.0008 | 0.0029 | 0.0026 |
+| Q2 HELP_ECHO | 0.0210 | 0.0089 | 0.0189 | 0.0175 |
+| Q3 BASELINE | 0.0215 | 0.0185 | 0.0190 | 0.0371 |
+
+Observations:
+
+- **Q1 MATH_ECHO** (longest response, 194 tokens) has the highest
+  **response_self** mass (49.9%): when the response is a long copy of the
+  prompt, the model spends almost half of its attention budget looking at
+  what it has already produced rather than at the prompt itself. The
+  user_content share (16.2%) is non-trivial but smaller than Bielik's mirror
+  cases (G2/G3 ≈ 18–20%). Per-token attention to user_content is very low
+  (0.0008) — the model is selectively peeking at a few prompt tokens, not
+  scanning the whole prompt.
+- **Q2 HELP_ECHO** (short response, 16 tokens) has a very different profile:
+  header dominates at 50.4%, response_self only 28%. With a short response
+  the model has almost nothing to "look at itself" yet, so attention shifts
+  to the standard role anchors.
+- **Q3 BASELINE** (response 7 tokens, very short) is essentially identical
+  to Q2 in profile, except that per-token response_self is much higher
+  (0.037 vs 0.018) — because the response is so short, each of those few
+  self-attention positions carries a relatively larger share of the budget.
+
+The numerical contrast between Q1 (echo) and Q3 (baseline) is sharp on
+**user_content per-token** (0.0008 vs 0.0185 — over 20× lower in echo case):
+when echoing, Qwen is *not* uniformly reading the prompt; it is targeting
+specific positions, leaving most of the prompt unattended on a per-token
+basis. The total mass on user_content remains comparable to baseline only
+because the prompt is much longer in Q1 (194 prompt content tokens vs 7).
+
+### Findings — TinyLlama-1.1B
+
+Total attention mass:
+
+| Case | Type | header | user_content | ast_header | response_self |
+|---|---|---|---|---|---|
+| T1 BERLIN_ECHO | echo | 0.503 | 0.232 | 0.020 | 0.245 |
+| T2 TREATY_ECHO | echo | **0.553** | 0.163 | 0.017 | 0.267 |
+| T3 BASELINE | baseline | **0.667** | 0.111 | 0.077 | 0.145 |
+
+Mean attention per token:
+
+| Case | header | user_content | ast_header | response_self |
+|---|---|---|---|---|
+| T1 BERLIN_ECHO | 0.0718 | 0.0023 | 0.0029 | 0.0025 |
+| T2 TREATY_ECHO | 0.0790 | 0.0010 | 0.0025 | 0.0017 |
+| T3 BASELINE | 0.0952 | 0.0124 | 0.0110 | 0.0207 |
+
+Observations:
+
+- **TinyLlama puts a much larger fraction of total attention on the header**
+  (50–67%) than either Qwen or Bielik. Per-token the difference is even more
+  pronounced: TinyLlama 0.07–0.10 per header token, vs Qwen 0.014–0.022 and
+  Bielik 0.10 (Bielik has only 6 header tokens, Qwen has ~24, TinyLlama 7).
+  Per-token per-head, TinyLlama's header attention is on par with Bielik's;
+  the higher *total* mass reflects that fewer tokens absorb the same amount.
+- **Echo vs baseline contrast in user_content per-token is even steeper
+  than for Qwen**: T1 = 0.0023, T2 = 0.0010, T3 = 0.0124 — i.e. the prompt
+  tokens are attended ~5–12× less per-token during echo than during a normal
+  short answer. Because echo cases have very long prompts (109 / 169
+  user_content tokens) the *total* user_content mass is still notable
+  (0.16–0.23) but spread very thinly.
+- **T1 vs T2** (both echo cases) — very similar profiles. T2 (longer
+  prompt, 169 prompt tokens) directs slightly more mass to header (55.3%)
+  and less to user_content per-token (0.001) than T1.
+- **response_self** in TinyLlama echo cases is moderate (0.25–0.27) — much
+  lower than Qwen's Q1 (0.50). Despite the response being long, the model
+  is not relying as heavily on its own previously-produced tokens as Qwen
+  does in Q1.
+
+### Cross-model summary (Step 12)
+
+Where each model's attention goes when producing an echo response:
+
+| Model | Echo case | header | user_content | response_self |
+|---|---|---|---|---|
+| Bielik-1.5B (G2 mirror) | JSON | 0.443 | 0.178 | 0.324 |
+| Bielik-1.5B (G3 echo) | factual | 0.417 | 0.201 | 0.327 |
+| Qwen-0.5B (Q1) | math | 0.331 | 0.162 | 0.499 |
+| Qwen-0.5B (Q2) | help-offer | 0.504 | 0.159 | 0.280 |
+| TinyLlama-1.1B (T1) | factual | 0.503 | 0.232 | 0.245 |
+| TinyLlama-1.1B (T2) | factual | 0.553 | 0.163 | 0.267 |
+
+Three patterns emerge:
+
+1. **All three models keep header attention high (33–55%)**, regardless of
+   case type. This is the standard role-marker dependency present in chat
+   models.
+2. **`user_content` total mass (16–23%)** is comparable across all models
+   and cases when normalised by total tokens. *Per-token* user_content
+   attention is consistently low in echo cases (0.001–0.009) — echoing is
+   not a uniform read of the prompt; it is a sparse, targeted lookup.
+3. **`response_self` varies most across models**: Bielik 32%, TinyLlama 25%,
+   Qwen 28% (median across echo cases). Qwen Q1 (the long math echo) is the
+   single outlier at 50% — when both the prompt is short and the response is
+   long, the model relies heavily on its own freshly-produced tokens as
+   context.
+
+### Visualization
+
+- `raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png` —
+  per-region attention bar chart for Q1/Q2/Q3.
+- `raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png` —
+  same for T1/T2/T3.
+
+Per-case copy_score heatmaps and differential heatmaps (echo case minus
+baseline) have already been computed (`exp34_<model>_<case>_copyscore.png`
+and `exp34_<model>_<case>_diff_vs_baseline.png` — 6 + 4 plots). They are
+not analysed in detail in this part; that analysis is the analogue of Step 4
+for the new models and will be reported separately.

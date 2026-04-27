@@ -1166,6 +1166,416 @@ ablation configs × 2 sampling modes, plus per-case total_copy_score before
 and after each ablation. No standalone heatmap was generated for this step;
 the per-config delta heatmaps from Step 9 already cover the spatial
 distribution of changes.</p>
+<hr />
+<h1>Part II — Qwen-0.5B and TinyLlama-1.1B</h1>
+<p>The same instrumentation was applied to two other small instruct models on
+which <strong>echo behaviour</strong> had been observed in earlier recursive trajectories
+(<code>models/Qwen2.5-0.5B/trajectories.json</code> and
+<code>models/TinyLlama-1.1B/trajectories.json</code>). For each model, three cases were
+chosen — two with confirmed echo (one or more recursive iterations producing
+the same text as input, replayed here as <code>response = prompt</code>) and one
+non-echo baseline.</p>
+<h2>Step 11 — baseline cases (Qwen-0.5B and TinyLlama-1.1B)</h2>
+<h3>Setup</h3>
+<p>Both models loaded in HuggingFace <code>transformers</code> with
+<code>attn_implementation="eager"</code>, float32, CPU, single forward pass on
+<code>prompt + response</code> packed into the model's chat template.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Layers</th>
+<th>Q-heads</th>
+<th>Total Q-heads</th>
+<th>head_dim</th>
+<th>KV heads (GQA)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen-0.5B</td>
+<td>24</td>
+<td>14</td>
+<td>336</td>
+<td>64</td>
+<td>2</td>
+</tr>
+<tr>
+<td>TinyLlama-1.1B</td>
+<td>22</td>
+<td>32</td>
+<td>704</td>
+<td>64</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>(Both use grouped-query attention; the figures below report attention
+expanded over Q-heads, the form returned by HF.)</p>
+<h4>Qwen-0.5B cases</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Source</th>
+<th>Sequence length / response length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Q1</strong> MATH_ECHO</td>
+<td>math problem in LaTeX, exact echo seen in 1 of 3 seeds (P051 from echo replay)</td>
+<td><code>models/Qwen2.5-0.5B/trajectories.json[P051]</code></td>
+<td>417 / 194</td>
+</tr>
+<tr>
+<td><strong>Q2</strong> HELP_ECHO</td>
+<td><em>"Feel free to ask me any questions you have. I'm here to help."</em> — close echo (≥2 seeds)</td>
+<td><code>[P008]</code></td>
+<td>61 / 16</td>
+</tr>
+<tr>
+<td><strong>Q3</strong> BASELINE</td>
+<td>manual: prompt <em>"What is the capital of France?"</em> → response <em>"The capital of France is Paris."</em> (no echo)</td>
+<td>constructed</td>
+<td>43 / 7</td>
+</tr>
+</tbody>
+</table>
+<h4>TinyLlama-1.1B cases</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Source</th>
+<th>Sequence length / response length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T1</strong> FACT_ECHO</td>
+<td><em>"In conclusion, Berlin is indeed the capital of Germany, located in the Berlin-Br…"</em> — exact echo seen</td>
+<td><code>models/TinyLlama-1.1B/trajectories.json[P000]</code></td>
+<td>216 / 100</td>
+</tr>
+<tr>
+<td><strong>T2</strong> FACT_ECHO</td>
+<td><em>"The Treaty of Versaille, also known as the Treaty of Versaille, was signed on Ma…"</em> — close echo ×3 seeds</td>
+<td><code>[P004]</code></td>
+<td>336 / 160</td>
+</tr>
+<tr>
+<td><strong>T3</strong> BASELINE</td>
+<td>manual: same as Q3</td>
+<td>constructed</td>
+<td>30 / 7</td>
+</tr>
+</tbody>
+</table>
+<p>For each case the response is set equal to the recorded fixed-point text from
+the model's recursive trajectories (i.e. the case is built such that the
+response <em>would be</em> an exact echo) so that the attention pattern observed
+during this single forward pass corresponds to the model "writing" the same
+text it had earlier produced as a fixed point.</p>
+<hr />
+<h2>Step 12 — per-region attention from response positions</h2>
+<h3>What was looked at</h3>
+<p>Same procedure as Step 2 for Bielik: average attention (over all layers ×
+all Q-heads × all query positions inside the response region) was decomposed
+into four key-side regions:</p>
+<ul>
+<li><strong>header</strong> — chat-template role markers / system message (length depends
+  on model: Qwen ~24 tokens including auto-injected system message, TinyLlama
+  7 tokens)</li>
+<li><strong>user_content</strong> — between header and the first end-of-turn marker</li>
+<li><strong>ast_header</strong> — the assistant role marker before the response</li>
+<li><strong>response_self</strong> — earlier positions inside the response (causal)</li>
+</ul>
+<p>Two summaries are reported: total attention mass per region (sums to ~1.0
+per case) and mean attention per token (controls for region length).</p>
+<h3>Findings — Qwen-0.5B</h3>
+<p>Total attention mass (sum per region, from all response query positions):</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Type</th>
+<th>header</th>
+<th>user_content</th>
+<th>ast_header</th>
+<th>response_self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1 MATH_ECHO</td>
+<td>echo</td>
+<td>0.331</td>
+<td>0.162</td>
+<td>0.009</td>
+<td><strong>0.499</strong></td>
+</tr>
+<tr>
+<td>Q2 HELP_ECHO</td>
+<td>echo</td>
+<td><strong>0.504</strong></td>
+<td>0.159</td>
+<td>0.057</td>
+<td>0.280</td>
+</tr>
+<tr>
+<td>Q3 BASELINE</td>
+<td>baseline</td>
+<td><strong>0.517</strong></td>
+<td>0.167</td>
+<td>0.057</td>
+<td>0.260</td>
+</tr>
+</tbody>
+</table>
+<p>Mean attention per token (each region's mass divided by its token count):</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>header</th>
+<th>user_content</th>
+<th>ast_header</th>
+<th>response_self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1 MATH_ECHO</td>
+<td>0.0138</td>
+<td>0.0008</td>
+<td>0.0029</td>
+<td>0.0026</td>
+</tr>
+<tr>
+<td>Q2 HELP_ECHO</td>
+<td>0.0210</td>
+<td>0.0089</td>
+<td>0.0189</td>
+<td>0.0175</td>
+</tr>
+<tr>
+<td>Q3 BASELINE</td>
+<td>0.0215</td>
+<td>0.0185</td>
+<td>0.0190</td>
+<td>0.0371</td>
+</tr>
+</tbody>
+</table>
+<p>Observations:</p>
+<ul>
+<li><strong>Q1 MATH_ECHO</strong> (longest response, 194 tokens) has the highest
+  <strong>response_self</strong> mass (49.9%): when the response is a long copy of the
+  prompt, the model spends almost half of its attention budget looking at
+  what it has already produced rather than at the prompt itself. The
+  user_content share (16.2%) is non-trivial but smaller than Bielik's mirror
+  cases (G2/G3 ≈ 18–20%). Per-token attention to user_content is very low
+  (0.0008) — the model is selectively peeking at a few prompt tokens, not
+  scanning the whole prompt.</li>
+<li><strong>Q2 HELP_ECHO</strong> (short response, 16 tokens) has a very different profile:
+  header dominates at 50.4%, response_self only 28%. With a short response
+  the model has almost nothing to "look at itself" yet, so attention shifts
+  to the standard role anchors.</li>
+<li><strong>Q3 BASELINE</strong> (response 7 tokens, very short) is essentially identical
+  to Q2 in profile, except that per-token response_self is much higher
+  (0.037 vs 0.018) — because the response is so short, each of those few
+  self-attention positions carries a relatively larger share of the budget.</li>
+</ul>
+<p>The numerical contrast between Q1 (echo) and Q3 (baseline) is sharp on
+<strong>user_content per-token</strong> (0.0008 vs 0.0185 — over 20× lower in echo case):
+when echoing, Qwen is <em>not</em> uniformly reading the prompt; it is targeting
+specific positions, leaving most of the prompt unattended on a per-token
+basis. The total mass on user_content remains comparable to baseline only
+because the prompt is much longer in Q1 (194 prompt content tokens vs 7).</p>
+<h3>Findings — TinyLlama-1.1B</h3>
+<p>Total attention mass:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Type</th>
+<th>header</th>
+<th>user_content</th>
+<th>ast_header</th>
+<th>response_self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1 BERLIN_ECHO</td>
+<td>echo</td>
+<td>0.503</td>
+<td>0.232</td>
+<td>0.020</td>
+<td>0.245</td>
+</tr>
+<tr>
+<td>T2 TREATY_ECHO</td>
+<td>echo</td>
+<td><strong>0.553</strong></td>
+<td>0.163</td>
+<td>0.017</td>
+<td>0.267</td>
+</tr>
+<tr>
+<td>T3 BASELINE</td>
+<td>baseline</td>
+<td><strong>0.667</strong></td>
+<td>0.111</td>
+<td>0.077</td>
+<td>0.145</td>
+</tr>
+</tbody>
+</table>
+<p>Mean attention per token:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>header</th>
+<th>user_content</th>
+<th>ast_header</th>
+<th>response_self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1 BERLIN_ECHO</td>
+<td>0.0718</td>
+<td>0.0023</td>
+<td>0.0029</td>
+<td>0.0025</td>
+</tr>
+<tr>
+<td>T2 TREATY_ECHO</td>
+<td>0.0790</td>
+<td>0.0010</td>
+<td>0.0025</td>
+<td>0.0017</td>
+</tr>
+<tr>
+<td>T3 BASELINE</td>
+<td>0.0952</td>
+<td>0.0124</td>
+<td>0.0110</td>
+<td>0.0207</td>
+</tr>
+</tbody>
+</table>
+<p>Observations:</p>
+<ul>
+<li><strong>TinyLlama puts a much larger fraction of total attention on the header</strong>
+  (50–67%) than either Qwen or Bielik. Per-token the difference is even more
+  pronounced: TinyLlama 0.07–0.10 per header token, vs Qwen 0.014–0.022 and
+  Bielik 0.10 (Bielik has only 6 header tokens, Qwen has ~24, TinyLlama 7).
+  Per-token per-head, TinyLlama's header attention is on par with Bielik's;
+  the higher <em>total</em> mass reflects that fewer tokens absorb the same amount.</li>
+<li><strong>Echo vs baseline contrast in user_content per-token is even steeper
+  than for Qwen</strong>: T1 = 0.0023, T2 = 0.0010, T3 = 0.0124 — i.e. the prompt
+  tokens are attended ~5–12× less per-token during echo than during a normal
+  short answer. Because echo cases have very long prompts (109 / 169
+  user_content tokens) the <em>total</em> user_content mass is still notable
+  (0.16–0.23) but spread very thinly.</li>
+<li><strong>T1 vs T2</strong> (both echo cases) — very similar profiles. T2 (longer
+  prompt, 169 prompt tokens) directs slightly more mass to header (55.3%)
+  and less to user_content per-token (0.001) than T1.</li>
+<li><strong>response_self</strong> in TinyLlama echo cases is moderate (0.25–0.27) — much
+  lower than Qwen's Q1 (0.50). Despite the response being long, the model
+  is not relying as heavily on its own previously-produced tokens as Qwen
+  does in Q1.</li>
+</ul>
+<h3>Cross-model summary (Step 12)</h3>
+<p>Where each model's attention goes when producing an echo response:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Echo case</th>
+<th>header</th>
+<th>user_content</th>
+<th>response_self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bielik-1.5B (G2 mirror)</td>
+<td>JSON</td>
+<td>0.443</td>
+<td>0.178</td>
+<td>0.324</td>
+</tr>
+<tr>
+<td>Bielik-1.5B (G3 echo)</td>
+<td>factual</td>
+<td>0.417</td>
+<td>0.201</td>
+<td>0.327</td>
+</tr>
+<tr>
+<td>Qwen-0.5B (Q1)</td>
+<td>math</td>
+<td>0.331</td>
+<td>0.162</td>
+<td>0.499</td>
+</tr>
+<tr>
+<td>Qwen-0.5B (Q2)</td>
+<td>help-offer</td>
+<td>0.504</td>
+<td>0.159</td>
+<td>0.280</td>
+</tr>
+<tr>
+<td>TinyLlama-1.1B (T1)</td>
+<td>factual</td>
+<td>0.503</td>
+<td>0.232</td>
+<td>0.245</td>
+</tr>
+<tr>
+<td>TinyLlama-1.1B (T2)</td>
+<td>factual</td>
+<td>0.553</td>
+<td>0.163</td>
+<td>0.267</td>
+</tr>
+</tbody>
+</table>
+<p>Three patterns emerge:</p>
+<ol>
+<li><strong>All three models keep header attention high (33–55%)</strong>, regardless of
+   case type. This is the standard role-marker dependency present in chat
+   models.</li>
+<li><strong><code>user_content</code> total mass (16–23%)</strong> is comparable across all models
+   and cases when normalised by total tokens. <em>Per-token</em> user_content
+   attention is consistently low in echo cases (0.001–0.009) — echoing is
+   not a uniform read of the prompt; it is a sparse, targeted lookup.</li>
+<li><strong><code>response_self</code> varies most across models</strong>: Bielik 32%, TinyLlama 25%,
+   Qwen 28% (median across echo cases). Qwen Q1 (the long math echo) is the
+   single outlier at 50% — when both the prompt is short and the response is
+   long, the model relies heavily on its own freshly-produced tokens as
+   context.</li>
+</ol>
+<h3>Visualization</h3>
+<ul>
+<li><code>raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png</code> —
+  per-region attention bar chart for Q1/Q2/Q3.</li>
+<li><code>raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png</code> —
+  same for T1/T2/T3.</li>
+</ul>
+<p>Per-case copy_score heatmaps and differential heatmaps (echo case minus
+baseline) have already been computed (<code>exp34_&lt;model&gt;_&lt;case&gt;_copyscore.png</code>
+and <code>exp34_&lt;model&gt;_&lt;case&gt;_diff_vs_baseline.png</code> — 6 + 4 plots). They are
+not analysed in detail in this part; that analysis is the analogue of Step 4
+for the new models and will be reported separately.</p>
 
 <hr>
 <h2>Gallery — all referenced figures</h2>
@@ -1192,6 +1602,14 @@ distribution of changes.</p>
 <div class="figure-row"><h3>exp29_step1_G2_JSON_mirror_L7H11_arrows.png</h3><img src="raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png" alt="exp29_step1_G2_JSON_mirror_L7H11_arrows.png" /></div>
 <div class="figure-row"><h3>exp32_takeover_after_L10H3.png</h3><img src="raport_assets/attention_loops/exp32_takeover_after_L10H3.png" alt="exp32_takeover_after_L10H3.png" /></div>
 <div class="figure-row"><h3>exp32_takeover_after_L10H3_H4.png</h3><img src="raport_assets/attention_loops/exp32_takeover_after_L10H3_H4.png" alt="exp32_takeover_after_L10H3_H4.png" /></div>
+<div class="figure-row"><p><b>exp34_<model>_G1_JSON_trigger_copyscore.png</b> — file not found</p></div>
+<div class="figure-row"><p><b>exp34_<model>_G2_JSON_mirror_copyscore.png</b> — file not found</p></div>
+<div class="figure-row"><p><b>exp34_<model>_G3_meryt_echo_copyscore.png</b> — file not found</p></div>
+<div class="figure-row"><p><b>exp34_<model>_G4_baseline_conf_copyscore.png</b> — file not found</p></div>
+<div class="figure-row"><p><b>exp34_<model>_G1_JSON_trigger_diff_vs_baseline.png</b> — file not found</p></div>
+<div class="figure-row"><p><b>exp34_<model>_G2_JSON_mirror_diff_vs_baseline.png</b> — file not found</p></div>
+<div class="figure-row"><p><b>exp34_<model>_G3_meryt_echo_diff_vs_baseline.png</b> — file not found</p></div>
+<div class="figure-row"><p><b>exp34_<model>_G4_baseline_conf_diff_vs_baseline.png</b> — file not found</p></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp25_summary_4panels.svg</h3><img src="raport_assets/attention_loops/exp25_summary_4panels.svg" alt="raport_assets/attention_loops/exp25_summary_4panels.svg" /></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp26_G1_JSON_trigger_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G1_JSON_trigger_barfromresponse.png" alt="raport_assets/attention_loops/exp26_G1_JSON_trigger_barfromresponse.png" /></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp26_G2_JSON_mirror_barfromresponse.png</h3><img src="raport_assets/attention_loops/exp26_G2_JSON_mirror_barfromresponse.png" alt="raport_assets/attention_loops/exp26_G2_JSON_mirror_barfromresponse.png" /></div>
@@ -1204,5 +1622,7 @@ distribution of changes.</p>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp29_step1_G3_meryt_echo_L7H11_arrows.png</h3><img src="raport_assets/attention_loops/exp29_step1_G3_meryt_echo_L7H11_arrows.png" alt="raport_assets/attention_loops/exp29_step1_G3_meryt_echo_L7H11_arrows.png" /></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png</h3><img src="raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png" alt="raport_assets/attention_loops/exp29_step1_G2_JSON_mirror_L7H11_arrows.png" /></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp32_takeover_after_L7H11.png</h3><img src="raport_assets/attention_loops/exp32_takeover_after_L7H11.png" alt="raport_assets/attention_loops/exp32_takeover_after_L7H11.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png</h3><img src="raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png" alt="raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png</h3><img src="raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png" alt="raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png" /></div>
 </body>
 </html>
