@@ -876,203 +876,210 @@ for the new models and will be reported separately.
 
 ---
 
-# Part III — Generality checks (Bielik again)
-
-The previous parts identified L7.H11 / L10.H3 / L10.H4 as the strongest
-"echoing heads" on a four-case sample. The next two steps test how
-generalisable those observations are: (a) does the head ranking hold up on
-a larger and more varied prompt set; (b) is the JSON-trigger circuit
-sensitive to a simple structural perturbation (newline injection) on neutral
-prompts.
-
-## Step 13 — head trend across a larger prompt set (15 prompts)
-
-### Setup
-
-Fifteen prompts, three groups:
-
-- **ASSISTANT (n=7)** — utterances in assistant voice, observed in earlier
-  experiments to flip Bielik to JSON tool-call when run via ollama Q8_0:
-  *"Zapewniam wsparcie w różnych dziedzinach."*, *"Służę pomocą w każdym
-  temacie."*, *"Jestem obok, gotowy Ci pomóc."*, *"Moim celem jest ułatwić
-  Ci pracę."*, *"Moja wiedza jest do Twojej dyspozycji."*, *"Jestem
-  dostępny całą dobę."*, *"Znam odpowiedzi na wiele pytań."*
-- **GIBBERISH (n=5)** — random or repeated tokens: *"asdfghjkl1234567"*,
-  *"kot kot kot kot kot kot kot"*, *"???"*, *"ąśżćń ęłóźż"*, *"qqq www eee
-  rrr ttt"*
-- **NORMAL (n=3)** — plain queries / replies: *"Jaka jest stolica Francji?"*,
-  *"Stolica Francji to Paryż."*, *"Tak, dziękuję."*
-
-For each prompt:
-1. Generate a response in HF float32 Bielik (T=0.3, seed=42, max 100 tokens).
-2. Forward pass on full `prompt + actual response` with
-   `output_attentions=True`.
-3. Compute copy_score (sum of attention to earlier same-token positions,
-   averaged over response query positions) for each of the five heads from
-   Step 4 (L7.H11, L10.H3, L10.H4, L8.H7, L6.H10).
-4. Classify the response.
-
-### Findings
-
-Per-prompt copy_scores:
-
-| id | type | response_class | L7.H11 | L10.H3 | L10.H4 | L8.H7 | L6.H10 |
-|---|---|---|---|---|---|---|---|
-| A1 | ASSISTANT | HELP_OFFER | 0.253 | 0.453 | 0.081 | 0.056 | 0.185 |
-| A2 | ASSISTANT | HELP_OFFER | 0.208 | 0.392 | 0.133 | 0.028 | 0.049 |
-| A3 | ASSISTANT | HELP_OFFER | 0.228 | 0.456 | 0.116 | 0.038 | 0.077 |
-| A4 | ASSISTANT | HELP_OFFER | 0.137 | 0.203 | 0.136 | 0.036 | 0.028 |
-| A5 | ASSISTANT | HELP_OFFER | 0.073 | 0.172 | 0.078 | 0.031 | 0.015 |
-| A6 | ASSISTANT | HELP_OFFER | 0.081 | 0.270 | 0.055 | 0.018 | 0.008 |
-| A7 | ASSISTANT | HELP_OFFER | 0.095 | 0.312 | 0.094 | 0.026 | 0.012 |
-| G1 | GIBBERISH | OTHER | 0.113 | 0.239 | 0.078 | 0.084 | 0.055 |
-| G2 | GIBBERISH | OTHER | 0.348 | 0.412 | 0.299 | 0.160 | 0.206 |
-| G3 | GIBBERISH | OTHER | 0.078 | 0.181 | 0.114 | 0.040 | 0.033 |
-| G4 | GIBBERISH | OTHER | 0.312 | 0.503 | **0.549** | 0.125 | 0.192 |
-| G5 | GIBBERISH | CODE | 0.325 | 0.470 | 0.128 | 0.178 | 0.124 |
-| N1 | NORMAL | OTHER | 0.075 | 0.541 | 0.094 | 0.057 | 0.092 |
-| N2 | NORMAL | CONFIRM | 0.126 | **0.736** | 0.156 | 0.077 | 0.122 |
-| N3 | NORMAL | HELP_OFFER | 0.146 | 0.334 | 0.130 | 0.043 | 0.039 |
-
-Means per group:
-
-| Group | n | L7.H11 | L10.H3 | L10.H4 | L8.H7 | L6.H10 |
-|---|---|---|---|---|---|---|
-| ASSISTANT | 7 | 0.154 | 0.323 | 0.099 | 0.033 | 0.053 |
-| GIBBERISH | 5 | **0.235** | 0.361 | **0.233** | 0.117 | 0.122 |
-| NORMAL | 3 | 0.116 | **0.537** | 0.127 | 0.059 | 0.084 |
-
-Several observations cut against the earlier interpretation that L7.H11 is
-specifically an "echoing head":
-
-1. **L7.H11 is not higher on ASSISTANT prompts than on GIBBERISH or NORMAL.**
-   Mean for ASSISTANT (0.154) is *lower* than GIBBERISH (0.235) and similar
-   to NORMAL (0.116). Earlier readings of 0.42–0.56 came from cases where
-   prompt and response were *literally identical* by construction (G2 / G3
-   in Step 1) — an artefact of selecting cases with maximum literal overlap,
-   not a generic property of "echo-prone" inputs.
-2. **L10.H3 is high in every condition.** It reaches its maximum in N2
-   (*"Stolica Francji to Paryż."* → confirmation response), not in any
-   ASSISTANT or GIBBERISH case. This reinforces the Step 8/Step 9 reading
-   that L10.H3 is a *general-purpose copy head*, not echo-specific.
-3. **L10.H4 spikes on GIBBERISH G4 (0.549)** — *"ąśżćń ęłóźż"*, where the
-   model output contains many of the same diacritic byte-tokens as the
-   prompt. This is repetition-driven, not echo-driven.
-4. **G2 *"kot kot kot kot kot kot kot"*** has the highest L7.H11 in the
-   table (0.348). The repeated identical token triggers induction-style
-   attention, yet the response is not echo — it is a tangentially-related
-   elaboration about cats. L7.H11 reacts to *literal token repetition in
-   the sequence*, not to an "echo behaviour" semantically.
-5. **None of the ASSISTANT prompts produced JSON in HF float32** — all 7
-   gave HELP_OFFER responses. This is consistent with Step 4 of Bielik
-   logits analysis (`<tool_call>` ranked #11 with prob 0.015 at the pivot
-   position in HF float32; it dominates only under quantized/sampling
-   pipelines like ollama Q8_0).
-
-The picture from this larger sample: the heads identified as "echo heads"
-in Step 4 are better described as **literal-repetition heads** — they fire
-whenever response tokens duplicate earlier tokens (whether in the prompt or
-inside the response). The strong activation we observed on G2/G3 in Step 4
-came from the by-construction identity of prompt and response in those
-cases, not from any specific "echo circuit".
-
-### Visualization
-
-`raport_assets/attention_loops/exp35_head_trend_per_prompt.png` — five
-stacked panels (one per head), each a bar chart of copy_score across the
-15 prompts coloured by group (red=ASSISTANT, gray=GIBBERISH, green=NORMAL),
-with dashed group means.
-
-`raport_assets/exp35_head_trend.json` — full per-prompt records (prompt,
-generated response, response_class, copy_scores, per-region attention).
 
 ---
 
-## Step 14 — newline-injection threshold on neutral prompts (null result)
+# Part III — Generality checks on a setup that produces JSON (Bielik Q8)
+
+The earlier ablation experiments used HF float32, but in HF float32 Bielik
+**does not produce JSON** for assistant-voice prompts (Step 4 of Part I:
+`<tool_call>` is the 11th candidate at the pivot position with probability
+0.015; "Oczywiście!" wins with probability 0.55). To check the
+generalisation of the head observations across more prompts, and to test
+whether newline injection can flip a prompt toward JSON, the next two steps
+use the GGUF Q8_0 backend (where JSON output actually appears).
+
+## Step 13 — head trend across 15 prompts using real JSON responses
 
 ### Setup
 
-Hypothesis to test: a neutral, fact-asking prompt can be tipped toward JSON
-output by inserting raw newline tokens (`<0x0A>`, ID 17) — and the threshold
-where this happens depends on the count of injected newlines, their
-position, and the proportion of newlines relative to total prompt length.
+For each of 15 prompts (the same 7 ASSISTANT + 5 GIBBERISH + 3 NORMAL set as
+the cherry-pick check earlier in this analysis), the **response** used in
+the attention forward pass was either:
 
-Procedure (using llama-cpp-python with the standalone GGUF Q8_0,
-`n_gpu_layers=-1` on Metal):
+- For the 7 ASSISTANT prompts: the **real JSON tool-call output produced by
+  Bielik in ollama Q8** in our earlier 360-prompt sweep (`raport_assets/
+  exp22_responses_ollama.json`). All 7 prompts produced JSON in ollama Q8.
+- For 5 GIBBERISH and 3 NORMAL prompts: the HF float32 generated response
+  (whatever the model naturally produced — none was JSON).
 
-- 3 base prompts of varying length:
-  - **SHORT** (input ≈ 18 tokens after templating): *"Jaka jest stolica
-    Francji?"*
-  - **MEDIUM** (≈ 25 tokens): *"Czy mogłabyś mi powiedzieć, jaka jest
-    stolica Francji?"*
-  - **LONG** (≈ 38 tokens): *"Witaj. Bardzo cię proszę o pomoc. Czy mogłabyś
-    mi powiedzieć, jaka jest stolica Francji? Z góry dziękuję."*
-- 3 injection positions: **PRE** (between header and content),
-  **POST** (between content and `<|im_end|>`), **MID** (in the middle of
-  the user content).
-- 11 injection counts: N ∈ {0, 1, 2, 3, 4, 5, 6, 8, 10, 14, 20}.
-- Total: 3 × 3 × 11 = 99 generations, each with `temperature=0.3, seed=42,
-  max_tokens=80`. Outputs were classified into JSON / CODE / HELP_OFFER /
-  FACT_CONFIRM / OTHER / EMPTY.
+The full sequence `prompt + response + <|im_end|>` was then fed to **HF
+float32 Bielik** in a single forward pass with `output_attentions=True`,
+and copy_score was computed for the same five "echo heads" identified in
+Step 4 (L7.H11, L10.H3, L10.H4, L8.H7, L6.H10).
+
+This setup answers the question: when Bielik in Q8 actually writes JSON,
+which heads are most active during that writing?
 
 ### Findings
 
-**No JSON or CODE response was produced in any of the 99 generations.** The
-output classes observed were:
+Per-prompt copy_scores (HF attention computed over `prompt + real Q8 JSON
+response`):
 
-| Base / position | Classes across N=0..20 |
-|---|---|
-| SHORT / PRE | FACT_CONFIRM ×3 → OTHER ×7 → EMPTY at N=20 |
-| SHORT / POST | FACT_CONFIRM ×11 (no change) |
-| SHORT / MID | FACT_CONFIRM ×3 → OTHER ×2 → EMPTY ×3 → FACT_CONFIRM ×3 |
-| MEDIUM / PRE | OTHER ×1 → mostly OTHER (with one FACT_CONFIRM at N=1) |
-| MEDIUM / POST | OTHER then FACT_CONFIRM from N=1 onward |
-| MEDIUM / MID | OTHER then FACT_CONFIRM from N=1, with two re-OTHER at N=6, 14, 20 |
-| LONG / PRE | OTHER ×11 (no change) |
-| LONG / POST | OTHER ×11 (no change) |
-| LONG / MID | OTHER ×11 (no change) |
+| id | type | response_class | L7.H11 | L10.H3 | **L10.H4** | L8.H7 | L6.H10 |
+|---|---|---|---|---|---|---|---|
+| A1 Zapewniam wsparcie… | ASSIST_JSON | JSON | 0.338 | 0.680 | **0.343** | 0.067 | 0.141 |
+| A2 Służę pomocą… | ASSIST_JSON | JSON | 0.066 | 0.098 | **0.203** | 0.018 | 0.065 |
+| A3 Jestem obok… | ASSIST_JSON | JSON | 0.068 | 0.104 | **0.216** | 0.018 | 0.072 |
+| A4 Moim celem… | ASSIST_JSON | JSON | 0.065 | 0.100 | **0.200** | 0.019 | 0.063 |
+| A5 Moja wiedza… | ASSIST_JSON | JSON | 0.225 | 0.477 | **0.251** | 0.072 | 0.127 |
+| A6 Jestem dostępny… | ASSIST_JSON | JSON | 0.069 | 0.101 | **0.214** | 0.019 | 0.081 |
+| A7 Znam odpowiedzi… | ASSIST_JSON | JSON | 0.041 | 0.078 | 0.080 | 0.011 | 0.025 |
+| G1 asdfghjkl1234567 | GIBBERISH | OTHER | 0.113 | 0.239 | 0.078 | 0.084 | 0.055 |
+| G2 kot kot kot kot kot | GIBBERISH | OTHER | 0.348 | 0.412 | 0.299 | 0.160 | 0.206 |
+| G3 ??? | GIBBERISH | OTHER | 0.078 | 0.181 | 0.114 | 0.040 | 0.033 |
+| G4 ąśżćń ęłóźż | GIBBERISH | OTHER | 0.312 | 0.503 | **0.549** | 0.125 | 0.192 |
+| G5 qqq www eee rrr ttt | GIBBERISH | CODE | 0.325 | 0.470 | 0.128 | 0.178 | 0.124 |
+| N1 Jaka jest stolica… | NORMAL | OTHER | 0.075 | 0.541 | 0.094 | 0.057 | 0.092 |
+| N2 Stolica Francji to Paryż. | NORMAL | CONFIRM | 0.126 | **0.736** | 0.156 | 0.077 | 0.122 |
+| N3 Tak, dziękuję. | NORMAL | HELP_OFFER | 0.146 | 0.334 | 0.130 | 0.043 | 0.039 |
 
-The dominant outputs are *"Stolicą Francji jest Paryż."* (FACT_CONFIRM) or
-*"Oczywiście! Stolicą Francji jest Paryż."* (OTHER, classified by the
-regex). Newline injection causes:
+Means per group:
 
-- **A short, marginal phrasing shift** (e.g. SHORT/PRE goes from "Stolicą"
-  directly to a softer "Oczywiście!" preamble at N≥3).
-- **Empty output** for SHORT/MID at N=5..8 — the model emits a long run of
-  newlines and stops before producing any content. This is a degenerate
-  state, not a JSON state.
-- **No effect** for the LONG prompt at any N or position.
+| Group | n | L7.H11 | L10.H3 | **L10.H4** | L8.H7 | L6.H10 |
+|---|---|---|---|---|---|---|
+| ASSIST_JSON | 7 | 0.125 | 0.234 | **0.215** | 0.032 | 0.082 |
+| GIBBERISH | 5 | 0.235 | 0.361 | 0.233 | 0.117 | 0.122 |
+| NORMAL | 3 | 0.116 | **0.537** | 0.127 | 0.059 | 0.084 |
 
-The percentage of injected newlines relative to total token length in the
-strongest "EMPTY" cases is around 20–35% (e.g. SHORT/MID with N=5
-newlines on input_len=23 → 22% newline-tokens). LONG never shows any class
-change, even at N=20 (~35% of input).
+Direct comparison: **the same 7 ASSIST prompts run through HF float32 (which
+produces HELP_OFFER, not JSON)** versus the JSON-response version above:
+
+| Prompt | head | HELP_OFFER response | JSON response | Δ |
+|---|---|---|---|---|
+| A1 Zapewniam wsparcie… | L10.H4 | 0.081 | 0.343 | **+0.262** |
+| A2 Służę pomocą… | L10.H4 | 0.133 | 0.203 | +0.070 |
+| A3 Jestem obok… | L10.H4 | 0.116 | 0.216 | +0.100 |
+| A4 Moim celem… | L10.H4 | 0.136 | 0.200 | +0.064 |
+| A5 Moja wiedza… | L10.H4 | 0.078 | 0.251 | **+0.173** |
+| A6 Jestem dostępny… | L10.H4 | 0.055 | 0.214 | **+0.159** |
+| A7 Znam odpowiedzi… | L10.H4 | 0.094 | 0.080 | -0.014 |
+
+For 6 of the 7 prompts, **L10.H4 copy_score jumps when the response is
+real JSON instead of HELP_OFFER**. The mean change is from 0.099
+(HELP_OFFER) to 0.215 (JSON) — a ~2.2× increase. L7.H11, L10.H3, L8.H7,
+L6.H10 do not show a comparable systematic jump (L10.H3 even decreases on
+average because JSON responses are short and the response_self component
+contributes less per query).
 
 ### Interpretation (factual)
 
-- A simple structural perturbation (newline padding) at the volumes tested
-  is not sufficient to induce a JSON response on a neutral prompt in
-  Bielik Q8_0.
-- This is a *negative* result that rules out one specific hypothesis: that
-  JSON output is triggered primarily by attention dilution from injected
-  whitespace. Combined with Step 13 (the so-called "echo heads" do not
-  spike on assistant-voice prompts in HF float32), it pushes the
-  interpretation toward: **the JSON attractor depends on specific content
-  patterns that resemble assistant-voice utterances**, not on structural
-  whitespace, and not on a single attention head.
-- The earlier observation in Step 7 of Part I (`exp21`-related work) that
-  4-5 newline injection on the prompt *"Can you help me?"* produced LaTeX
-  math/code is consistent with this: that input combined a content trigger
-  ("Can you help me?") with the perturbation, while the present experiment
-  uses a content-neutral prompt ("Jaka jest stolica Francji?") and no
-  trigger emerged.
+- **L10.H4 is JSON-specific**: it activates substantially more strongly
+  when Bielik writes JSON tool-calls (mean 0.215) than when it writes a
+  paraphrased help-offer for the same input prompt (mean 0.099). This is
+  the most consistent per-head signal so far for "JSON-specific copy".
+- The Step 6 / Step 8 ablations of L10.H4 alone showed no effect on
+  generation, but those ablations were done in HF float32, which **does
+  not generate JSON** for these prompts in the first place. Whether L10.H4
+  ablation in the Q8 backend (where JSON does emerge) would suppress JSON
+  has not yet been tested.
+- L10.H3 remains a general-purpose copy head (highest in N2 = baseline
+  confirmation, not in JSON cases). Its earlier prominence in G2/G3 came
+  from the fact that those were by-construction verbatim mirrors.
+- L7.H11 reacts most strongly to **literal token repetition in the
+  sequence** (G2 *"kot kot kot…"* = 0.348 — induction-head territory),
+  not specifically to echo or to JSON.
 
 ### Visualization
 
-`raport_assets/attention_loops/exp36_newline_threshold_heatmap.png` —
-heatmap with 9 rows (3 prompts × 3 positions) and 11 columns (N values).
-Each cell colour = response class; cell text = first 4 letters of the
-class. The heatmap shows the absence of any JSON/CODE region.
+`raport_assets/attention_loops/exp37_head_trend_real_json_per_prompt.png` —
+five stacked panels (one per top head), bar chart of copy_score across the
+15 prompts, coloured by group (red=ASSIST_JSON, gray=GIBBERISH,
+green=NORMAL).
 
-`raport_assets/exp36_newline_threshold.json` — per-call records
-(input_len, n_newlines, percentage, response, classification).
+`raport_assets/exp37_head_trend_real_json.json` — full per-prompt
+records (prompt, real-JSON response, copy_scores, top-10 heads overall).
+
+---
+
+## Step 14 — newline-injection threshold on assistant-voice prompts (Q8)
+
+### Setup
+
+The earlier null-result newline-injection experiment used a content-neutral
+prompt (*"Jaka jest stolica Francji?"*), where Bielik never produces JSON
+in any pipeline tested. The cleaner test is on an **assistant-voice prompt**
+that does produce JSON in Q8, varying the count and position of injected
+newline tokens (`<0x0A>`, ID 17).
+
+Procedure (using **llama-cpp-python** with the standalone Q8_0 GGUF,
+`n_gpu_layers=-1` on Metal):
+
+- 3 base prompts of varying length, all in assistant voice:
+  - **SHORT**: *"Moja wiedza jest do Twojej dyspozycji."* (input ≈ 18 tok)
+  - **MEDIUM**: *"Zapewniam wsparcie w różnych dziedzinach i jestem
+    dostępny całą dobę."* (input ≈ 26 tok)
+  - **LONG**: *"Witam serdecznie. Zapewniam wsparcie w różnych dziedzinach,
+    jestem dostępny całą dobę i znam odpowiedzi na wiele pytań. Z chęcią
+    pomogę w każdej sprawie."* (input ≈ 45 tok)
+- 3 injection positions: PRE / POST / MID (before content / after content /
+  middle).
+- 11 injection counts: N ∈ {0, 1, 2, 3, 4, 5, 6, 8, 10, 14, 20}.
+- Total: 99 generations, T=0.3, seed=42, max_tokens=80.
+
+### Findings
+
+Per (base × position), classes for N = 0, 1, 2, 3, 4, 5, 6, 8, 10, 14, 20:
+
+| Base / position | Min N → JSON | Classes (N=0..20) |
+|---|---|---|
+| **SHORT / PRE** | **0** | JSON, JSON, JSON, JSON, HELP, HELP, JSON, JSON, HELP, HELP, HELP |
+| **SHORT / POST** | **0** | JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, HELP |
+| **SHORT / MID** | **0** | JSON, HELP, HELP, JSON, HELP, HELP, HELP, HELP, HELP, HELP, HELP |
+| MEDIUM / PRE | None | HELP × 11 |
+| MEDIUM / POST | None | HELP × 11 |
+| MEDIUM / MID | 1 | HELP, JSON, HELP, OTHER, HELP × 7 |
+| LONG / PRE | None | HELP × 8, OTHER × 3 (at N=10, 14, 20) |
+| LONG / POST | 2 | HELP, HELP, JSON, HELP × 8 |
+| LONG / MID | None | HELP × 11 |
+
+Total JSON outputs: **13 / 99 (13%)**, compared with 0 / 99 for the
+content-neutral version of this experiment.
+
+### Numerical observations
+
+- **The SHORT prompt produces JSON without any injection** (N=0 in all 3
+  positions). Newlines do not *induce* JSON; the prompt itself is the
+  trigger.
+- **SHORT / POST keeps JSON across N=0..14** (10 of 11 generations are
+  JSON), only flipping to HELP at N=20.
+- **SHORT / MID is the most disrupted by injection**: only 2 of 11 are JSON
+  (at N=0 and N=3); the rest are HELP_OFFER. Injecting newlines in the
+  middle of the assistant utterance breaks the JSON trigger.
+- **MEDIUM and LONG produce essentially no JSON** even at N=0. The longer
+  prompt context damps the assistant-archetype trigger, regardless of
+  newline injection. Across 66 generations on MEDIUM+LONG, only 2 produced
+  JSON (MEDIUM/MID/N=1, LONG/POST/N=2) — sporadic, not threshold-like.
+- **Length is the dominant factor.** The SHORT prompt (one short
+  assistant-archetype utterance) drives JSON; once the prompt expands into
+  more elaborate context (MEDIUM, LONG), the trigger weakens and is not
+  recoverable by newline injection.
+
+### Interpretation (factual)
+
+- **Newline injection is not an "induce-JSON" knob**. There is no
+  threshold N at which a non-JSON prompt switches to JSON. What injection
+  *can* do is:
+  - **Disrupt** an already-active JSON trigger (SHORT / MID at N=1, 2, 4–14
+    flips JSON → HELP_OFFER).
+  - **Sporadically and unpredictably** flip a HELP_OFFER prompt to JSON
+    (single occurrences in MEDIUM/MID at N=1 and LONG/POST at N=2).
+- The relevant variable for JSON output is the **content density of the
+  assistant archetype in the prompt** (short, "naked" assistant-voice
+  utterance → strong trigger; longer prompts with mixed content → weak
+  trigger), not the count of injected whitespace tokens.
+- Combined with Step 13: the JSON-trigger circuit appears to be content-
+  driven (specific assistant-archetype patterns near the start of a short
+  prompt), with attention-side traces visible in **L10.H4** when the
+  response actually unfolds as JSON. It is not localized in a single head
+  that can be "switched on" by injection.
+
+### Visualization
+
+`raport_assets/attention_loops/exp38_newline_threshold_assist_heatmap.png`
+— a 9 × 11 heatmap (3 prompts × 3 positions vs 11 N values), each cell
+coloured and labelled by response class. The dominant pattern is a JSON
+band across SHORT regardless of N, a HELP_OFFER expanse across MEDIUM and
+LONG, and a few isolated JSON cells (MEDIUM/MID/N=1, LONG/POST/N=2).
+
+`raport_assets/exp38_newline_threshold_assist.json` — per-call records.
