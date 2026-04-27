@@ -992,94 +992,168 @@ records (prompt, real-JSON response, copy_scores, top-10 heads overall).
 
 ---
 
-## Step 14 — newline-injection threshold on assistant-voice prompts (Q8)
+## Step 14 — provoking JSON on neutral prompts via injection (Q8)
 
 ### Setup
 
-The earlier null-result newline-injection experiment used a content-neutral
-prompt (*"Jaka jest stolica Francji?"*), where Bielik never produces JSON
-in any pipeline tested. The cleaner test is on an **assistant-voice prompt**
-that does produce JSON in Q8, varying the count and position of injected
-newline tokens (`<0x0A>`, ID 17).
+Direct test: take a *neutral* prompt — one that Bielik in Q8 normally
+answers in plain text — and inject special tokens into the input until the
+model produces JSON. Vary which tokens, how many, and where.
 
-Procedure (using **llama-cpp-python** with the standalone Q8_0 GGUF,
-`n_gpu_layers=-1` on Metal):
+Three neutral base prompts:
 
-- 3 base prompts of varying length, all in assistant voice:
-  - **SHORT**: *"Moja wiedza jest do Twojej dyspozycji."* (input ≈ 18 tok)
-  - **MEDIUM**: *"Zapewniam wsparcie w różnych dziedzinach i jestem
-    dostępny całą dobę."* (input ≈ 26 tok)
-  - **LONG**: *"Witam serdecznie. Zapewniam wsparcie w różnych dziedzinach,
-    jestem dostępny całą dobę i znam odpowiedzi na wiele pytań. Z chęcią
-    pomogę w każdej sprawie."* (input ≈ 45 tok)
-- 3 injection positions: PRE / POST / MID (before content / after content /
-  middle).
-- 11 injection counts: N ∈ {0, 1, 2, 3, 4, 5, 6, 8, 10, 14, 20}.
-- Total: 99 generations, T=0.3, seed=42, max_tokens=80.
+- **SHORT_FACT**: *"Jaka jest stolica Francji?"* — short factual question;
+  default response is *"Stolicą Francji jest Paryż."*
+- **SHORT_NEUTRAL**: *"Lubię herbatę."* — short statement, not a question;
+  default response is small-talk
+- **MED_NEUTRAL**: *"Pogoda dzisiaj jest piękna i ptaki śpiewają."* — neutral
+  observation; default response is small-talk / paraphrase
+
+Five injection units, repeated N times:
+
+| Inj label | Token IDs | Decoded |
+|---|---|---|
+| newlines | [17] | `\n` |
+| spaces | [31887] | `▁` |
+| open_brace | [31995] | `{` |
+| quote | [31927] | `"` |
+| **tool_call** | [31981, 370, 1104, 102, 4659, 31905, 31977] | `<tool_call>` (7 tokens) |
+
+Two positions (PRE / POST), 10 N values (0, 1, 2, 5, 10, 20, 50, 100, 200,
+500), seed=42, T=0.3, llama-cpp Q8 on Metal GPU. Total = 3 × 5 × 2 × 10 =
+**300 generations** (with seed=0 sweep on top, the JSON outputs were
+verified to also occur there).
 
 ### Findings
 
-Per (base × position), classes for N = 0, 1, 2, 3, 4, 5, 6, 8, 10, 14, 20:
+For each (base × inj × position), the table below gives the response class
+at each N (0, 1, 2, 5, 10, 20, 50, 100, 200, 500) and the smallest N at
+which JSON appears (`first_JSON@N=…`). Cells where injection produced JSON
+are bold.
 
-| Base / position | Min N → JSON | Classes (N=0..20) |
-|---|---|---|
-| **SHORT / PRE** | **0** | JSON, JSON, JSON, JSON, HELP, HELP, JSON, JSON, HELP, HELP, HELP |
-| **SHORT / POST** | **0** | JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, HELP |
-| **SHORT / MID** | **0** | JSON, HELP, HELP, JSON, HELP, HELP, HELP, HELP, HELP, HELP, HELP |
-| MEDIUM / PRE | None | HELP × 11 |
-| MEDIUM / POST | None | HELP × 11 |
-| MEDIUM / MID | 1 | HELP, JSON, HELP, OTHER, HELP × 7 |
-| LONG / PRE | None | HELP × 8, OTHER × 3 (at N=10, 14, 20) |
-| LONG / POST | 2 | HELP, HELP, JSON, HELP × 8 |
-| LONG / MID | None | HELP × 11 |
+| Base | Inj | Pos | Classes (N=0..500) | First JSON |
+|---|---|---|---|---|
+| SHORT_FACT | newlines | PRE | FACT, FACT, FACT, OTHER, OTHER, EMPTY×3, OTHER, OTHER | — |
+| SHORT_FACT | newlines | POST | FACT, FACT, FACT, FACT, FACT, FACT, FACT, FACT, FACT, FACT | — |
+| SHORT_FACT | spaces | PRE | FACT×3, OTHER×2, FACT×5 | — |
+| SHORT_FACT | spaces | POST | FACT × 10 | — |
+| SHORT_FACT | open_brace | PRE | FACT×5, OTHER×5 | — |
+| SHORT_FACT | open_brace | POST | FACT×9, OTHER | — |
+| SHORT_FACT | quote | PRE | FACT×4, OTHER×6 | — |
+| SHORT_FACT | quote | POST | FACT × 10 | — |
+| **SHORT_FACT** | **tool_call** | **PRE** | FACT, **JSON, JSON, JSON, JSON, JSON, JSON**, FACT, FACT, FACT | **N=1** |
+| SHORT_FACT | tool_call | POST | FACT×9, OTHER | — |
+| SHORT_NEUTRAL | newlines | PRE | OTHER×3, EMPTY×5, OTHER×2 | — |
+| SHORT_NEUTRAL | newlines | POST | OTHER×7, HELP_OFFER, OTHER×2 | — |
+| SHORT_NEUTRAL | spaces | PRE | OTHER×3, EMPTY×7 | — |
+| SHORT_NEUTRAL | spaces | POST | OTHER×7, HELP_OFFER, OTHER×2 | — |
+| SHORT_NEUTRAL | open_brace | PRE | OTHER × 10 | — |
+| SHORT_NEUTRAL | open_brace | POST | OTHER × 10 | — |
+| SHORT_NEUTRAL | quote | PRE | OTHER × 10 | — |
+| **SHORT_NEUTRAL** | **quote** | **POST** | OTHER×3, **JSON**, OTHER×2, HELP_OFFER×3, OTHER | **N=5** (single occurrence) |
+| **SHORT_NEUTRAL** | **tool_call** | **PRE** | OTHER, **JSON × 9** | **N=1** |
+| **SHORT_NEUTRAL** | **tool_call** | **POST** | OTHER, **JSON, JSON, JSON, JSON, JSON**, OTHER×4 | **N=1** |
+| MED_NEUTRAL | newlines | PRE | FACT, OTHER×2, EMPTY×7 | — |
+| MED_NEUTRAL | newlines | POST | FACT, OTHER × 9 | — |
+| MED_NEUTRAL | spaces | PRE | FACT×3, EMPTY, OTHER, FACT, EMPTY×3, OTHER | — |
+| MED_NEUTRAL | spaces | POST | FACT×6, OTHER×2, HELP_OFFER, OTHER | — |
+| MED_NEUTRAL | open_brace | PRE | FACT, OTHER × 9 | — |
+| **MED_NEUTRAL** | **open_brace** | **POST** | FACT×2, OTHER, **CODE**, OTHER×4, HELP_OFFER, OTHER | **N=5** |
+| **MED_NEUTRAL** | **quote** | **PRE** | FACT, OTHER×2, **JSON**, **CODE**, **JSON**, HELP_OFFER, OTHER, HELP_OFFER, OTHER | **N=5** |
+| **MED_NEUTRAL** | **quote** | **POST** | FACT, HELP_OFFER, OTHER, **JSON**, OTHER×4, **CODE**, OTHER | **N=5** |
+| **MED_NEUTRAL** | **tool_call** | **PRE** | FACT, **JSON, JSON**, OTHER, **JSON**, OTHER, **JSON × 4** | **N=1** |
+| **MED_NEUTRAL** | **tool_call** | **POST** | FACT, **JSON × 7**, OTHER, HELP_OFFER | **N=1** |
 
-Total JSON outputs: **13 / 99 (13%)**, compared with 0 / 99 for the
-content-neutral version of this experiment.
+(FACT = FACT_CONFIRM; HELP_OFFER and OTHER are non-JSON categories.)
+
+Total occurrences of JSON or CODE across all 300 generations:
+
+| Inj type | Total JSON+CODE / 60 |
+|---|---|
+| newlines | 0 |
+| spaces | 0 |
+| open_brace | 1 |
+| quote | 5 |
+| **tool_call** | **35** |
+
+### Concrete examples of provoked JSON outputs
+
+`SHORT_FACT / tool_call / PRE / N=1` (single 7-token `<tool_call>` injected
+between header and *"Jaka jest stolica Francji?"*):
+
+```
+<tool_call> {"name": "get_capital_of_france", "arguments": {}}
+```
+
+The model invents a function name (`get_capital_of_france`) appropriate to
+the prompt content and produces a syntactically correct JSON tool-call.
+
+`SHORT_NEUTRAL / tool_call / PRE / N=1` (`<tool_call>` before *"Lubię herbatę."*):
+
+JSON tool-call, despite the prompt being a small-talk statement that
+normally elicits a casual reply.
+
+`MED_NEUTRAL / quote / PRE / N=5` (five `"` tokens before *"Pogoda dzisiaj
+jest piękna…"*): JSON with a freshly-invented function. With N=10 same
+position, the response shifts to CODE (a Python snippet).
 
 ### Numerical observations
 
-- **The SHORT prompt produces JSON without any injection** (N=0 in all 3
-  positions). Newlines do not *induce* JSON; the prompt itself is the
-  trigger.
-- **SHORT / POST keeps JSON across N=0..14** (10 of 11 generations are
-  JSON), only flipping to HELP at N=20.
-- **SHORT / MID is the most disrupted by injection**: only 2 of 11 are JSON
-  (at N=0 and N=3); the rest are HELP_OFFER. Injecting newlines in the
-  middle of the assistant utterance breaks the JSON trigger.
-- **MEDIUM and LONG produce essentially no JSON** even at N=0. The longer
-  prompt context damps the assistant-archetype trigger, regardless of
-  newline injection. Across 66 generations on MEDIUM+LONG, only 2 produced
-  JSON (MEDIUM/MID/N=1, LONG/POST/N=2) — sporadic, not threshold-like.
-- **Length is the dominant factor.** The SHORT prompt (one short
-  assistant-archetype utterance) drives JSON; once the prompt expands into
-  more elaborate context (MEDIUM, LONG), the trigger weakens and is not
-  recoverable by newline injection.
+- **Only the `<tool_call>` injection acts as a reliable trigger.** A
+  single occurrence (7 tokens, the literal byte sequence `<tool_call>`)
+  before the prompt content is sufficient on all three base prompts to
+  flip Bielik to a JSON tool-call output. Larger N continues to produce
+  JSON for several N values, eventually degrading to repeated `<tool_call>`
+  spam.
+- **`"` (quote) injection is a much weaker trigger** that only works on the
+  longer / more "atmospheric" prompt (MED_NEUTRAL), at N≥5. The output
+  alternates between JSON, CODE and HELP_OFFER without a clean threshold.
+- **`{` (open_brace) injection produced exactly one CODE output** out of
+  60 attempts (MED_NEUTRAL/POST/N=5). Insufficient to call it a trigger.
+- **`\n` and `▁` injection do not provoke JSON.** On the SHORT prompts they
+  cause EMPTY output (model emits only newlines/spaces back) at high N.
+  This rules out the hypothesis that JSON is induced by simple structural
+  perturbation of attention.
+- **Position matters**: `<tool_call>` PRE works on all 3 prompts; POST
+  works only on the two non-question prompts (SHORT_NEUTRAL,
+  MED_NEUTRAL). On SHORT_FACT the question structure dominates and
+  injection at the end of the user content does not flip the output.
+- **Length of the base prompt is not protective**: MED_NEUTRAL is *more*
+  susceptible to weaker triggers (`{`, `"`) than the SHORT prompts. The
+  factor that resists JSON provocation in SHORT_FACT is the question form,
+  not the length.
 
 ### Interpretation (factual)
 
-- **Newline injection is not an "induce-JSON" knob**. There is no
-  threshold N at which a non-JSON prompt switches to JSON. What injection
-  *can* do is:
-  - **Disrupt** an already-active JSON trigger (SHORT / MID at N=1, 2, 4–14
-    flips JSON → HELP_OFFER).
-  - **Sporadically and unpredictably** flip a HELP_OFFER prompt to JSON
-    (single occurrences in MEDIUM/MID at N=1 and LONG/POST at N=2).
-- The relevant variable for JSON output is the **content density of the
-  assistant archetype in the prompt** (short, "naked" assistant-voice
-  utterance → strong trigger; longer prompts with mixed content → weak
-  trigger), not the count of injected whitespace tokens.
-- Combined with Step 13: the JSON-trigger circuit appears to be content-
-  driven (specific assistant-archetype patterns near the start of a short
-  prompt), with attention-side traces visible in **L10.H4** when the
-  response actually unfolds as JSON. It is not localized in a single head
-  that can be "switched on" by injection.
+- The JSON-trigger circuit in Bielik Q8 can be activated on a neutral
+  prompt by injecting just **one occurrence of the literal token sequence
+  `<tool_call>`** (7 tokens). The model fills in the slot with a
+  contextually-plausible function name on its own.
+- Whitespace tokens (newline, space) do not have this property; they are
+  not the "structural attention dilution" trigger that the previous
+  experiments tested for.
+- Sample-efficient JSON triggering thus appears to require **content that
+  matches the formatting of a tool-use trigger**, not generic structural
+  perturbation. The token sequence `<tool_call>` apparently already maps,
+  in Q8 weights, to a sufficiently dominant successor distribution
+  (probably learned from tool-use fine-tuning data) that the model
+  continues with valid JSON regardless of the surrounding text.
+- A consistency check: the `<tool_call>` sequence is the exact wrapper
+  that ollama-served Bielik adds around any model-generated JSON in our
+  earlier experiments. The same wrapper, injected into the *user* side of
+  the conversation, is enough to flip the model into producing the same
+  wrapper on the *assistant* side. The asymmetry of the chat template
+  (user vs assistant role) does not block this token-level trigger.
 
 ### Visualization
 
-`raport_assets/attention_loops/exp38_newline_threshold_assist_heatmap.png`
-— a 9 × 11 heatmap (3 prompts × 3 positions vs 11 N values), each cell
-coloured and labelled by response class. The dominant pattern is a JSON
-band across SHORT regardless of N, a HELP_OFFER expanse across MEDIUM and
-LONG, and a few isolated JSON cells (MEDIUM/MID/N=1, LONG/POST/N=2).
+`raport_assets/attention_loops/exp39_provoke_json_heatmap.png` — five
+sub-heatmaps (one per injection type), each 6 rows (3 prompts × 2
+positions) × 10 columns (N values). Cell colour and label encode response
+class. The `tool_call` panel is dramatically different from the others:
+predominant JSON across most cells; the `quote` panel shows a few JSON
+spots; `newlines`, `spaces`, `open_brace` are dominated by FACT_CONFIRM /
+OTHER.
 
-`raport_assets/exp38_newline_threshold_assist.json` — per-call records.
+`raport_assets/exp39_provoke_json_neutral.json` — per-call records
+(prompt, injection type, position, N, seed, input_len, response, class).

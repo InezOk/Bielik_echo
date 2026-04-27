@@ -1912,133 +1912,392 @@ green=NORMAL).</p>
 <p><code>raport_assets/exp37_head_trend_real_json.json</code> — full per-prompt
 records (prompt, real-JSON response, copy_scores, top-10 heads overall).</p>
 <hr />
-<h2>Step 14 — newline-injection threshold on assistant-voice prompts (Q8)</h2>
+<h2>Step 14 — provoking JSON on neutral prompts via injection (Q8)</h2>
 <h3>Setup</h3>
-<p>The earlier null-result newline-injection experiment used a content-neutral
-prompt (<em>"Jaka jest stolica Francji?"</em>), where Bielik never produces JSON
-in any pipeline tested. The cleaner test is on an <strong>assistant-voice prompt</strong>
-that does produce JSON in Q8, varying the count and position of injected
-newline tokens (<code>&lt;0x0A&gt;</code>, ID 17).</p>
-<p>Procedure (using <strong>llama-cpp-python</strong> with the standalone Q8_0 GGUF,
-<code>n_gpu_layers=-1</code> on Metal):</p>
+<p>Direct test: take a <em>neutral</em> prompt — one that Bielik in Q8 normally
+answers in plain text — and inject special tokens into the input until the
+model produces JSON. Vary which tokens, how many, and where.</p>
+<p>Three neutral base prompts:</p>
 <ul>
-<li>3 base prompts of varying length, all in assistant voice:</li>
-<li><strong>SHORT</strong>: <em>"Moja wiedza jest do Twojej dyspozycji."</em> (input ≈ 18 tok)</li>
-<li><strong>MEDIUM</strong>: <em>"Zapewniam wsparcie w różnych dziedzinach i jestem
-    dostępny całą dobę."</em> (input ≈ 26 tok)</li>
-<li><strong>LONG</strong>: <em>"Witam serdecznie. Zapewniam wsparcie w różnych dziedzinach,
-    jestem dostępny całą dobę i znam odpowiedzi na wiele pytań. Z chęcią
-    pomogę w każdej sprawie."</em> (input ≈ 45 tok)</li>
-<li>3 injection positions: PRE / POST / MID (before content / after content /
-  middle).</li>
-<li>11 injection counts: N ∈ {0, 1, 2, 3, 4, 5, 6, 8, 10, 14, 20}.</li>
-<li>Total: 99 generations, T=0.3, seed=42, max_tokens=80.</li>
+<li><strong>SHORT_FACT</strong>: <em>"Jaka jest stolica Francji?"</em> — short factual question;
+  default response is <em>"Stolicą Francji jest Paryż."</em></li>
+<li><strong>SHORT_NEUTRAL</strong>: <em>"Lubię herbatę."</em> — short statement, not a question;
+  default response is small-talk</li>
+<li><strong>MED_NEUTRAL</strong>: <em>"Pogoda dzisiaj jest piękna i ptaki śpiewają."</em> — neutral
+  observation; default response is small-talk / paraphrase</li>
 </ul>
-<h3>Findings</h3>
-<p>Per (base × position), classes for N = 0, 1, 2, 3, 4, 5, 6, 8, 10, 14, 20:</p>
+<p>Five injection units, repeated N times:</p>
 <table>
 <thead>
 <tr>
-<th>Base / position</th>
-<th>Min N → JSON</th>
-<th>Classes (N=0..20)</th>
+<th>Inj label</th>
+<th>Token IDs</th>
+<th>Decoded</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>SHORT / PRE</strong></td>
-<td><strong>0</strong></td>
-<td>JSON, JSON, JSON, JSON, HELP, HELP, JSON, JSON, HELP, HELP, HELP</td>
+<td>newlines</td>
+<td>[17]</td>
+<td><code>\n</code></td>
 </tr>
 <tr>
-<td><strong>SHORT / POST</strong></td>
-<td><strong>0</strong></td>
-<td>JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, JSON, HELP</td>
+<td>spaces</td>
+<td>[31887]</td>
+<td><code>▁</code></td>
 </tr>
 <tr>
-<td><strong>SHORT / MID</strong></td>
-<td><strong>0</strong></td>
-<td>JSON, HELP, HELP, JSON, HELP, HELP, HELP, HELP, HELP, HELP, HELP</td>
+<td>open_brace</td>
+<td>[31995]</td>
+<td><code>{</code></td>
 </tr>
 <tr>
-<td>MEDIUM / PRE</td>
-<td>None</td>
-<td>HELP × 11</td>
+<td>quote</td>
+<td>[31927]</td>
+<td><code>"</code></td>
 </tr>
 <tr>
-<td>MEDIUM / POST</td>
-<td>None</td>
-<td>HELP × 11</td>
-</tr>
-<tr>
-<td>MEDIUM / MID</td>
-<td>1</td>
-<td>HELP, JSON, HELP, OTHER, HELP × 7</td>
-</tr>
-<tr>
-<td>LONG / PRE</td>
-<td>None</td>
-<td>HELP × 8, OTHER × 3 (at N=10, 14, 20)</td>
-</tr>
-<tr>
-<td>LONG / POST</td>
-<td>2</td>
-<td>HELP, HELP, JSON, HELP × 8</td>
-</tr>
-<tr>
-<td>LONG / MID</td>
-<td>None</td>
-<td>HELP × 11</td>
+<td><strong>tool_call</strong></td>
+<td>[31981, 370, 1104, 102, 4659, 31905, 31977]</td>
+<td><code>&lt;tool_call&gt;</code> (7 tokens)</td>
 </tr>
 </tbody>
 </table>
-<p>Total JSON outputs: <strong>13 / 99 (13%)</strong>, compared with 0 / 99 for the
-content-neutral version of this experiment.</p>
+<p>Two positions (PRE / POST), 10 N values (0, 1, 2, 5, 10, 20, 50, 100, 200,
+500), seed=42, T=0.3, llama-cpp Q8 on Metal GPU. Total = 3 × 5 × 2 × 10 =
+<strong>300 generations</strong> (with seed=0 sweep on top, the JSON outputs were
+verified to also occur there).</p>
+<h3>Findings</h3>
+<p>For each (base × inj × position), the table below gives the response class
+at each N (0, 1, 2, 5, 10, 20, 50, 100, 200, 500) and the smallest N at
+which JSON appears (<code>first_JSON@N=…</code>). Cells where injection produced JSON
+are bold.</p>
+<table>
+<thead>
+<tr>
+<th>Base</th>
+<th>Inj</th>
+<th>Pos</th>
+<th>Classes (N=0..500)</th>
+<th>First JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SHORT_FACT</td>
+<td>newlines</td>
+<td>PRE</td>
+<td>FACT, FACT, FACT, OTHER, OTHER, EMPTY×3, OTHER, OTHER</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_FACT</td>
+<td>newlines</td>
+<td>POST</td>
+<td>FACT, FACT, FACT, FACT, FACT, FACT, FACT, FACT, FACT, FACT</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_FACT</td>
+<td>spaces</td>
+<td>PRE</td>
+<td>FACT×3, OTHER×2, FACT×5</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_FACT</td>
+<td>spaces</td>
+<td>POST</td>
+<td>FACT × 10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_FACT</td>
+<td>open_brace</td>
+<td>PRE</td>
+<td>FACT×5, OTHER×5</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_FACT</td>
+<td>open_brace</td>
+<td>POST</td>
+<td>FACT×9, OTHER</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_FACT</td>
+<td>quote</td>
+<td>PRE</td>
+<td>FACT×4, OTHER×6</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_FACT</td>
+<td>quote</td>
+<td>POST</td>
+<td>FACT × 10</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>SHORT_FACT</strong></td>
+<td><strong>tool_call</strong></td>
+<td><strong>PRE</strong></td>
+<td>FACT, <strong>JSON, JSON, JSON, JSON, JSON, JSON</strong>, FACT, FACT, FACT</td>
+<td><strong>N=1</strong></td>
+</tr>
+<tr>
+<td>SHORT_FACT</td>
+<td>tool_call</td>
+<td>POST</td>
+<td>FACT×9, OTHER</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_NEUTRAL</td>
+<td>newlines</td>
+<td>PRE</td>
+<td>OTHER×3, EMPTY×5, OTHER×2</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_NEUTRAL</td>
+<td>newlines</td>
+<td>POST</td>
+<td>OTHER×7, HELP_OFFER, OTHER×2</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_NEUTRAL</td>
+<td>spaces</td>
+<td>PRE</td>
+<td>OTHER×3, EMPTY×7</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_NEUTRAL</td>
+<td>spaces</td>
+<td>POST</td>
+<td>OTHER×7, HELP_OFFER, OTHER×2</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_NEUTRAL</td>
+<td>open_brace</td>
+<td>PRE</td>
+<td>OTHER × 10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_NEUTRAL</td>
+<td>open_brace</td>
+<td>POST</td>
+<td>OTHER × 10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SHORT_NEUTRAL</td>
+<td>quote</td>
+<td>PRE</td>
+<td>OTHER × 10</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>SHORT_NEUTRAL</strong></td>
+<td><strong>quote</strong></td>
+<td><strong>POST</strong></td>
+<td>OTHER×3, <strong>JSON</strong>, OTHER×2, HELP_OFFER×3, OTHER</td>
+<td><strong>N=5</strong> (single occurrence)</td>
+</tr>
+<tr>
+<td><strong>SHORT_NEUTRAL</strong></td>
+<td><strong>tool_call</strong></td>
+<td><strong>PRE</strong></td>
+<td>OTHER, <strong>JSON × 9</strong></td>
+<td><strong>N=1</strong></td>
+</tr>
+<tr>
+<td><strong>SHORT_NEUTRAL</strong></td>
+<td><strong>tool_call</strong></td>
+<td><strong>POST</strong></td>
+<td>OTHER, <strong>JSON, JSON, JSON, JSON, JSON</strong>, OTHER×4</td>
+<td><strong>N=1</strong></td>
+</tr>
+<tr>
+<td>MED_NEUTRAL</td>
+<td>newlines</td>
+<td>PRE</td>
+<td>FACT, OTHER×2, EMPTY×7</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MED_NEUTRAL</td>
+<td>newlines</td>
+<td>POST</td>
+<td>FACT, OTHER × 9</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MED_NEUTRAL</td>
+<td>spaces</td>
+<td>PRE</td>
+<td>FACT×3, EMPTY, OTHER, FACT, EMPTY×3, OTHER</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MED_NEUTRAL</td>
+<td>spaces</td>
+<td>POST</td>
+<td>FACT×6, OTHER×2, HELP_OFFER, OTHER</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MED_NEUTRAL</td>
+<td>open_brace</td>
+<td>PRE</td>
+<td>FACT, OTHER × 9</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>MED_NEUTRAL</strong></td>
+<td><strong>open_brace</strong></td>
+<td><strong>POST</strong></td>
+<td>FACT×2, OTHER, <strong>CODE</strong>, OTHER×4, HELP_OFFER, OTHER</td>
+<td><strong>N=5</strong></td>
+</tr>
+<tr>
+<td><strong>MED_NEUTRAL</strong></td>
+<td><strong>quote</strong></td>
+<td><strong>PRE</strong></td>
+<td>FACT, OTHER×2, <strong>JSON</strong>, <strong>CODE</strong>, <strong>JSON</strong>, HELP_OFFER, OTHER, HELP_OFFER, OTHER</td>
+<td><strong>N=5</strong></td>
+</tr>
+<tr>
+<td><strong>MED_NEUTRAL</strong></td>
+<td><strong>quote</strong></td>
+<td><strong>POST</strong></td>
+<td>FACT, HELP_OFFER, OTHER, <strong>JSON</strong>, OTHER×4, <strong>CODE</strong>, OTHER</td>
+<td><strong>N=5</strong></td>
+</tr>
+<tr>
+<td><strong>MED_NEUTRAL</strong></td>
+<td><strong>tool_call</strong></td>
+<td><strong>PRE</strong></td>
+<td>FACT, <strong>JSON, JSON</strong>, OTHER, <strong>JSON</strong>, OTHER, <strong>JSON × 4</strong></td>
+<td><strong>N=1</strong></td>
+</tr>
+<tr>
+<td><strong>MED_NEUTRAL</strong></td>
+<td><strong>tool_call</strong></td>
+<td><strong>POST</strong></td>
+<td>FACT, <strong>JSON × 7</strong>, OTHER, HELP_OFFER</td>
+<td><strong>N=1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>(FACT = FACT_CONFIRM; HELP_OFFER and OTHER are non-JSON categories.)</p>
+<p>Total occurrences of JSON or CODE across all 300 generations:</p>
+<table>
+<thead>
+<tr>
+<th>Inj type</th>
+<th>Total JSON+CODE / 60</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>newlines</td>
+<td>0</td>
+</tr>
+<tr>
+<td>spaces</td>
+<td>0</td>
+</tr>
+<tr>
+<td>open_brace</td>
+<td>1</td>
+</tr>
+<tr>
+<td>quote</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>tool_call</strong></td>
+<td><strong>35</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Concrete examples of provoked JSON outputs</h3>
+<p><code>SHORT_FACT / tool_call / PRE / N=1</code> (single 7-token <code>&lt;tool_call&gt;</code> injected
+between header and <em>"Jaka jest stolica Francji?"</em>):</p>
+<pre><code>&lt;tool_call&gt; {&quot;name&quot;: &quot;get_capital_of_france&quot;, &quot;arguments&quot;: {}}
+</code></pre>
+<p>The model invents a function name (<code>get_capital_of_france</code>) appropriate to
+the prompt content and produces a syntactically correct JSON tool-call.</p>
+<p><code>SHORT_NEUTRAL / tool_call / PRE / N=1</code> (<code>&lt;tool_call&gt;</code> before <em>"Lubię herbatę."</em>):</p>
+<p>JSON tool-call, despite the prompt being a small-talk statement that
+normally elicits a casual reply.</p>
+<p><code>MED_NEUTRAL / quote / PRE / N=5</code> (five <code>"</code> tokens before <em>"Pogoda dzisiaj
+jest piękna…"</em>): JSON with a freshly-invented function. With N=10 same
+position, the response shifts to CODE (a Python snippet).</p>
 <h3>Numerical observations</h3>
 <ul>
-<li><strong>The SHORT prompt produces JSON without any injection</strong> (N=0 in all 3
-  positions). Newlines do not <em>induce</em> JSON; the prompt itself is the
-  trigger.</li>
-<li><strong>SHORT / POST keeps JSON across N=0..14</strong> (10 of 11 generations are
-  JSON), only flipping to HELP at N=20.</li>
-<li><strong>SHORT / MID is the most disrupted by injection</strong>: only 2 of 11 are JSON
-  (at N=0 and N=3); the rest are HELP_OFFER. Injecting newlines in the
-  middle of the assistant utterance breaks the JSON trigger.</li>
-<li><strong>MEDIUM and LONG produce essentially no JSON</strong> even at N=0. The longer
-  prompt context damps the assistant-archetype trigger, regardless of
-  newline injection. Across 66 generations on MEDIUM+LONG, only 2 produced
-  JSON (MEDIUM/MID/N=1, LONG/POST/N=2) — sporadic, not threshold-like.</li>
-<li><strong>Length is the dominant factor.</strong> The SHORT prompt (one short
-  assistant-archetype utterance) drives JSON; once the prompt expands into
-  more elaborate context (MEDIUM, LONG), the trigger weakens and is not
-  recoverable by newline injection.</li>
+<li><strong>Only the <code>&lt;tool_call&gt;</code> injection acts as a reliable trigger.</strong> A
+  single occurrence (7 tokens, the literal byte sequence <code>&lt;tool_call&gt;</code>)
+  before the prompt content is sufficient on all three base prompts to
+  flip Bielik to a JSON tool-call output. Larger N continues to produce
+  JSON for several N values, eventually degrading to repeated <code>&lt;tool_call&gt;</code>
+  spam.</li>
+<li><strong><code>"</code> (quote) injection is a much weaker trigger</strong> that only works on the
+  longer / more "atmospheric" prompt (MED_NEUTRAL), at N≥5. The output
+  alternates between JSON, CODE and HELP_OFFER without a clean threshold.</li>
+<li><strong><code>{</code> (open_brace) injection produced exactly one CODE output</strong> out of
+  60 attempts (MED_NEUTRAL/POST/N=5). Insufficient to call it a trigger.</li>
+<li><strong><code>\n</code> and <code>▁</code> injection do not provoke JSON.</strong> On the SHORT prompts they
+  cause EMPTY output (model emits only newlines/spaces back) at high N.
+  This rules out the hypothesis that JSON is induced by simple structural
+  perturbation of attention.</li>
+<li><strong>Position matters</strong>: <code>&lt;tool_call&gt;</code> PRE works on all 3 prompts; POST
+  works only on the two non-question prompts (SHORT_NEUTRAL,
+  MED_NEUTRAL). On SHORT_FACT the question structure dominates and
+  injection at the end of the user content does not flip the output.</li>
+<li><strong>Length of the base prompt is not protective</strong>: MED_NEUTRAL is <em>more</em>
+  susceptible to weaker triggers (<code>{</code>, <code>"</code>) than the SHORT prompts. The
+  factor that resists JSON provocation in SHORT_FACT is the question form,
+  not the length.</li>
 </ul>
 <h3>Interpretation (factual)</h3>
 <ul>
-<li><strong>Newline injection is not an "induce-JSON" knob</strong>. There is no
-  threshold N at which a non-JSON prompt switches to JSON. What injection
-  <em>can</em> do is:</li>
-<li><strong>Disrupt</strong> an already-active JSON trigger (SHORT / MID at N=1, 2, 4–14
-    flips JSON → HELP_OFFER).</li>
-<li><strong>Sporadically and unpredictably</strong> flip a HELP_OFFER prompt to JSON
-    (single occurrences in MEDIUM/MID at N=1 and LONG/POST at N=2).</li>
-<li>The relevant variable for JSON output is the <strong>content density of the
-  assistant archetype in the prompt</strong> (short, "naked" assistant-voice
-  utterance → strong trigger; longer prompts with mixed content → weak
-  trigger), not the count of injected whitespace tokens.</li>
-<li>Combined with Step 13: the JSON-trigger circuit appears to be content-
-  driven (specific assistant-archetype patterns near the start of a short
-  prompt), with attention-side traces visible in <strong>L10.H4</strong> when the
-  response actually unfolds as JSON. It is not localized in a single head
-  that can be "switched on" by injection.</li>
+<li>The JSON-trigger circuit in Bielik Q8 can be activated on a neutral
+  prompt by injecting just <strong>one occurrence of the literal token sequence
+  <code>&lt;tool_call&gt;</code></strong> (7 tokens). The model fills in the slot with a
+  contextually-plausible function name on its own.</li>
+<li>Whitespace tokens (newline, space) do not have this property; they are
+  not the "structural attention dilution" trigger that the previous
+  experiments tested for.</li>
+<li>Sample-efficient JSON triggering thus appears to require <strong>content that
+  matches the formatting of a tool-use trigger</strong>, not generic structural
+  perturbation. The token sequence <code>&lt;tool_call&gt;</code> apparently already maps,
+  in Q8 weights, to a sufficiently dominant successor distribution
+  (probably learned from tool-use fine-tuning data) that the model
+  continues with valid JSON regardless of the surrounding text.</li>
+<li>A consistency check: the <code>&lt;tool_call&gt;</code> sequence is the exact wrapper
+  that ollama-served Bielik adds around any model-generated JSON in our
+  earlier experiments. The same wrapper, injected into the <em>user</em> side of
+  the conversation, is enough to flip the model into producing the same
+  wrapper on the <em>assistant</em> side. The asymmetry of the chat template
+  (user vs assistant role) does not block this token-level trigger.</li>
 </ul>
 <h3>Visualization</h3>
-<p><code>raport_assets/attention_loops/exp38_newline_threshold_assist_heatmap.png</code>
-— a 9 × 11 heatmap (3 prompts × 3 positions vs 11 N values), each cell
-coloured and labelled by response class. The dominant pattern is a JSON
-band across SHORT regardless of N, a HELP_OFFER expanse across MEDIUM and
-LONG, and a few isolated JSON cells (MEDIUM/MID/N=1, LONG/POST/N=2).</p>
-<p><code>raport_assets/exp38_newline_threshold_assist.json</code> — per-call records.</p>
+<p><code>raport_assets/attention_loops/exp39_provoke_json_heatmap.png</code> — five
+sub-heatmaps (one per injection type), each 6 rows (3 prompts × 2
+positions) × 10 columns (N values). Cell colour and label encode response
+class. The <code>tool_call</code> panel is dramatically different from the others:
+predominant JSON across most cells; the <code>quote</code> panel shows a few JSON
+spots; <code>newlines</code>, <code>spaces</code>, <code>open_brace</code> are dominated by FACT_CONFIRM /
+OTHER.</p>
+<p><code>raport_assets/exp39_provoke_json_neutral.json</code> — per-call records
+(prompt, injection type, position, N, seed, input_len, response, class).</p>
 
 <hr>
 <h2>Gallery — all referenced figures</h2>
@@ -2088,6 +2347,6 @@ LONG, and a few isolated JSON cells (MEDIUM/MID/N=1, LONG/POST/N=2).</p>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png</h3><img src="raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png" alt="raport_assets/attention_loops/exp34_Qwen-0.5B_per_region_bars.png" /></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png</h3><img src="raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png" alt="raport_assets/attention_loops/exp34_TinyLlama-1.1B_per_region_bars.png" /></div>
 <div class="figure-row"><h3>raport_assets/attention_loops/exp37_head_trend_real_json_per_prompt.png</h3><img src="raport_assets/attention_loops/exp37_head_trend_real_json_per_prompt.png" alt="raport_assets/attention_loops/exp37_head_trend_real_json_per_prompt.png" /></div>
-<div class="figure-row"><h3>raport_assets/attention_loops/exp38_newline_threshold_assist_heatmap.png</h3><img src="raport_assets/attention_loops/exp38_newline_threshold_assist_heatmap.png" alt="raport_assets/attention_loops/exp38_newline_threshold_assist_heatmap.png" /></div>
+<div class="figure-row"><h3>raport_assets/attention_loops/exp39_provoke_json_heatmap.png</h3><img src="raport_assets/attention_loops/exp39_provoke_json_heatmap.png" alt="raport_assets/attention_loops/exp39_provoke_json_heatmap.png" /></div>
 </body>
 </html>
